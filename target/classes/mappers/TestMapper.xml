@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="InsertTest">
 		INSERT INTO test(test_msg)
-		VALUES('축하해요');
+		VALUES('이거 변했나 확인해보자');
 	</insert>
 
 </mapper>
