@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.leaf.test.mapper.ITestMapper">
+
+	<!--
+		사용법은 TestController 에 적은 사용법을 확인해주세요!!
+	-->
+
+	<insert id="InsertTest">
+		INSERT INTO test(test_msg)
+		VALUES('nice test');
+	</insert>
+
+</mapper>
