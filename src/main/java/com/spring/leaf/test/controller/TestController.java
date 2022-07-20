@@ -33,8 +33,10 @@ public class TestController {
 	private ITestService service;
 	
 	@GetMapping("/test")
-	public void InsertTest() {
+	public String InsertTest() {
 		service.InsertTest();
+		
+		return "/test/test";
 	}
 	
 }
