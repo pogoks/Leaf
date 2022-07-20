@@ -18,7 +18,7 @@ import com.spring.leaf.test.service.ITestService;
 	      쿼리에서 nice test를 본인이 바꿔서 저장한다.
 	4. 프로젝트를 우클릭 한 후, Run on Server를 실행하면
 	      뜨는 브라우저에서 주소창에 localhost/test 라고 작성한다.
-	5. 에러페이지가 뜨게 된다. (에러페이지가 뜨는건 정상입니다. 화면을 연결 안해서 그럼)
+	5. 완료되었다는 페이지가 뜬다.
 	6. STS로 돌아와서 콘솔창을 살펴본다.
 	7. INFO : jdbc.sqlonly - INSERT INTO test(test_msg) VALUES('nice test'); 라는 문구가 떠있다면 성공
 	8. MySQL Workbench 를 실행해서 조장이 저장해둔 서버 MySQL로 접속한다.

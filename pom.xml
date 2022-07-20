@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.spring</groupId>
 	<artifactId>leaf</artifactId>
-	<name>Project_Leaf</name>
+	<name>Leaf</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	
+
 	<!-- 자바 버전 1.8, 스프링 버전 5.3.18로 설정 -->
 	<properties>
 		<java-version>1.8</java-version>

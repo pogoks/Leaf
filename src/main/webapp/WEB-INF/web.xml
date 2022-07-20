@@ -21,13 +21,10 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			
-			
 			<!-- 인터셉터들을 servlet-config.xml에 등록하지 않고 따로 파일을 만들어서 등록해준다. -->
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
 			</param-value>
-			
-			
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
