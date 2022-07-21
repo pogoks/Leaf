@@ -16,7 +16,7 @@ import com.spring.leaf.test.service.ITestService;
 	3. INSERT INTO test(test_msg)
 	   VALUES('.......');
 	      쿼리에서 '........' 부분을 본인이 작성할 아무 메시지로 바꿔서 저장한다.
-	4. 프로젝트를 우클릭 한 후, Run on Server를 실행하면
+	4. 프로젝트를 우클릭 한 후, Run on Server 를 실행하면
 	      뜨는 브라우저에서 주소창에 localhost/test 라고 작성한다.
 	5. 완료되었다는 페이지가 뜬다.
 	6. STS로 돌아와서 콘솔창을 살펴본다.
