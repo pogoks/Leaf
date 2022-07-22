@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /*
 	메인 화면으로 이동하도록 제어하는 컨트롤러
+	수정 X
 */
 @Controller
 public class HomeController {
