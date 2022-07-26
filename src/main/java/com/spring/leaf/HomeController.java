@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /*
-	메인 화면으로 이동하도록 제어하는 컨트롤러
+	메인 화면으로 이동하도록 제어하는 컨트롤러입니다.
 	수정 X
 */
 @Controller
