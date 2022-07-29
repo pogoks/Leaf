@@ -113,10 +113,11 @@
 						</div>
 						<div class="form-group">
 							
+							
 							<div class="col-sm-12">
 								<button type="button" class="btn btn-primary btn-lg btn-block" id="btn-modal-regist2" 
-								style="font-size: 14px; background: #B45F04; border: none; color: white; border-radius: 0; padding: 8px 16px; 
-								width: 340px; height: 40px; margin: 0 auto; border-radius: 4px;">기업 가입 신청</button>
+								style="font-size: 14px; background: green; border: none; color: white; border-radius: 0; padding: 8px 16px; 
+								width: 340px; height: 40px; margin: 0 auto; border-radius: 4px;">회원가입</button>
 							</div>
 							
 							<div class="col-sm-12">
