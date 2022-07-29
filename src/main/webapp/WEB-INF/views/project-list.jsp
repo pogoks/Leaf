@@ -105,7 +105,7 @@
               </div>
               <div class="project-in">
                 <div class="project-container-right">
-                  <button type="button" class="btn btn-danger">마감 임박</button>
+                  <button type="button" class="btn btn-danger" disabled>마감 임박</button>
                 </div><br>
                 <a href="#">상세보기</a>
               </div>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="project-in">
                   <div class="project-container-right">
-                    <button type="button" class="btn btn-success">현재 모집</button>
+                    <button type="button" class="btn btn-success" disabled>현재 모집</button>
                   </div><br>
                   <a href="#">상세보기</a>
                 </div>
@@ -167,7 +167,7 @@
                 </div>
                 <div class="project-in">
                   <div class="project-container-right">
-                    <button type="button" class="btn btn-danger">마감 임박</button>
+                    <button type="button" class="btn btn-danger" disabled>마감 임박</button>
                   </div><br>
                   <a href="#">상세보기</a>
                 </div>
@@ -199,7 +199,7 @@
                 </div>
                 <div class="project-in">
                   <div class="project-container-right">
-                    <button type="button" class="btn btn-success">현재 모집</button>
+                    <button type="button" class="btn btn-success" disabled>현재 모집</button>
                   </div> <br>
                   <a href="#">상세보기</a>
                 </div>
@@ -230,7 +230,7 @@
                 </div>
                 <div class="project-in">
                   <div class="project-container-right">
-                    <button type="button" class="btn btn-danger">마감 임박</button>
+                    <button type="button" class="btn btn-danger" disabled>마감 임박</button>
                   </div><br>
                   <a href="#">상세보기</a>
                 </div>
