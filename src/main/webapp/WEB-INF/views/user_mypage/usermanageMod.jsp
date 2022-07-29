@@ -38,17 +38,20 @@
 
 	<div class="mainbox">
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<a href="#" class="list-group-item active notice-list-top"
-				style="width: 1300px; margin-top: 10px;"> <span
-				class="main-board-title" style="color: #950000;">사용자 관리</span>
-			</a>
+			<section>
+	        
+	        
+	        <div class="container">
+	            <div class="row">
+					<!-- 메인화면 공지사항 상단 -->
+				            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+				            	<span class="main-notice-title">사용자 관리</span>
+				            </a>
 
-			<div class="card" style="transform: translate(0, -60px);">
+			<div class="card" style="width:20%; transform: translate(0, -70px);">
 				<img src="resources/img/profile.png" alt="profile"
 					class="img-circle">
-				<div class="container">
+				<div class="container1">
 					<div>
 						<button type="button" class="btn btn-link">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>프로필사진수정
@@ -101,7 +104,7 @@
 						<p class="mb-0">Phone</p>
 					</div>
 					<div class="col-sm-9">
-						<select class="form-control">
+						<select class="form-control" style="width:20%;">
 							<option>010</option>
 							<option>011</option>
 							<option>017</option>
@@ -134,6 +137,7 @@
 				</div>
 
 			</div>
+			</section>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 </body>

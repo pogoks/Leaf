@@ -48,12 +48,18 @@
 
 	<div class="mainbox">
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<a href="#" class="list-group-item active notice-list-top"
-				style="width: 1300px; margin-top: 10px;"> <span
-				class="main-board-title" style="color: #228B22;">프로젝트 등록</span>
-			</a>
+		<section>
+        
+       
+        
+        
+        <div class="container">
+            <div class="row">
+				<!-- 메인화면 공지사항 상단 -->
+			             <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			            	<span class="main-notice-title">프로젝트 등록</span>
+			            </a>
+
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8" style="padding-top: 40px; background: #F5F5F5;">
 				<div class="projectReg">
@@ -223,7 +229,7 @@
 						<button type="button" class="btn btn-primary btn-lg"
 							style="width: 300px;">등록하기</button>
 					</div>
-					<div style="text-align: center; margin-bottom: 5px;">
+					<div style="text-align: center; margin-bottom: 20px;">
 						<button type="button" class="btn btn-default btn-lg"
 							style="width: 300px;">취소하기</button>
 					</div>
@@ -234,6 +240,7 @@
 
 
 		</div>
+		</section>
 		<%@ include file="../include/footer.jsp"%>
 	</div>
 </body>

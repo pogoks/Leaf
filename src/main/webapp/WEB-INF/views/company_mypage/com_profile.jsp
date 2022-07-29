@@ -36,19 +36,24 @@
 
 	<%@ include file="../include/header.jsp"%>
 
-	<div class="mainbox">
-
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<div class="mydiv">
-			 <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+<div class="mainbox">
+	
+		<section>
+        
+       
+        
+        
+        <div class="container">
+            <div class="row">
+				<!-- 메인화면 공지사항 상단 -->
+			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">기업 정보</span>
 			            </a>
 
-			<div class="com_card">
+			<div class="com_card" style="width:20%; transform:translate(0,-510px);">
 				<img src="resources/img/logo2.png" alt="profile"
 					class="img-circle">
-				<div class="container">
+				<div class="container1">
 					<h3>
 						<b class="card-title">Green123 님</b>
 					</h3>
@@ -187,6 +192,8 @@
 				</div>
 
 			</div>
+			
+			</section>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 </body>

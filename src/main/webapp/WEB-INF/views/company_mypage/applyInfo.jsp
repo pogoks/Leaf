@@ -35,21 +35,23 @@
 <body>
 
 	<%@ include file="../include/header.jsp"%>
-
 	<div class="mainbox">
+	
+		<section>
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<a href="#" class="list-group-item active notice-list-top" style="width: 1300px; margin-top: 10px;">
-			     <span class="main-board-title" style="color:#6aa3d5; font-size:12px;">(주) 그린컴퍼니</span><br>
-                 <span class="main-board-title" style="color:#6aa3d5;">2022년 환경 푸르미 프로젝트 개발자 모집</span>
-             </a>
+        <div class="container">
+            <div class="row">
+				<!-- 메인화면 공지사항 상단 -->
+			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			            	<span class="main-notice-title" style="font-size:12px;">(주) 그린컴퍼니</span><br>
+			            	<span class="main-notice-title" >2022년 환경 푸르미 프로젝트 개발자 모집</span>
+			            </a>
 
-			<div class="card">
+			<div class="card" style="width:20%; transform:translate(-60px, -55px);">
 				<h6 style="text-align:center; color:green;">개발자 상세정보</h6>
 				<img src="resources/img/profile.png" alt="profile"
 					class="img-circle">
-				<div class="container">
+				<div class="container1">
 					<h3>
 						<b class="card-title">semiy1101 님 </b>
 					</h3>
@@ -133,13 +135,17 @@
 					<div class="col-sm-3"></div>
 					<div class="col-sm-9">
 						<div class="form-group btn-profile">
+						
+							<button type="button" class="btn btn-success">합격 통보</button>
+							<button type="button" class="btn btn-danger">불합격</button>
 							<button type="button" class="btn btn-primary">목록으로</button>
-							<button type="button" class="btn btn-warning">합격 통보</button>
 						</div>
 					</div>
 				</div>
 
 			</div>
+			
+			</section>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 </body>

@@ -38,17 +38,20 @@
 
 	<div class="mainbox">
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<a href="#" class="list-group-item active notice-list-top"
-				style="width: 1300px; margin-top: 10px;"> <span
-				class="main-board-title" style="color: #6aa3d5;">내 정보</span>
-			</a>
+		<section>
+	        
+	        
+	        <div class="container">
+	            <div class="row">
+					<!-- 메인화면 공지사항 상단 -->
+				            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+				            	<span class="main-notice-title">내 정보</span>
+				            </a>
 
-			<div class="card">
+			<div class="card" style="width:20%; transform:translate(0,-100px);">
 				<img src="resources/img/profile.png" alt="profile"
 					class="img-circle">
-				<div class="container">
+				<div class="container1">
 					<h3>
 						<b class="card-title">semiy1101 님 </b>
 					</h3>
@@ -177,6 +180,8 @@
 				</div>
 
 			</div>
+			
+			</section>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 </body>

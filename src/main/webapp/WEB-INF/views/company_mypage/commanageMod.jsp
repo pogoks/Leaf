@@ -38,15 +38,21 @@
 
 	<div class="mainbox">
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<a href="#" class="list-group-item active notice-list-top" style="width: 1300px; margin-top: 10px;">
-                 <span class="main-board-title" style="color:#950000;">사용자 관리</span>
-             </a>
+			<section>
+        
+       
+        
+        
+        <div class="container">
+            <div class="row">
+				<!-- 메인화면 공지사항 상단 -->
+			             <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			            	<span class="main-notice-title">사용자 관리</span>
+			            </a>
 
-			<div class="com_card">
+			<div class="com_card" style="width:20%; transform:translate(0,-470px);">
 				<img src="resources/img/logo2.png" alt="profile" class="img-circle">
-				<div class="container">
+				<div class="container1">
 					<div>
 						<button type="button" class="btn btn-link">
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>프로필사진수정
@@ -137,19 +143,54 @@
 							placeholder="서울 강남구 테헤란로7길 7 에스코빌딩 6층" disabled>
 						<input class="form-control" id="disabledInput" type="text"
 							placeholder="4실습실" disabled>		
-						<div id="map" style="width: 300px; height: 200px; margin-top: 15px"></div>
-						<script type="text/javascript"
-							src="//dapi.kakao.com/v2/maps/sdk.js?appkey=101c80782d440afe7bdde4defbe26209"></script>
-						<script>
-							var container = document.getElementById('map');
-							var options = {
-								center : new kakao.maps.LatLng(
-										37.49962103981387, 127.03047184411338),
-								level : 3
-							};
+						<div id="map" style="width: 100%; height: 300px;"></div>
 
-							var map = new kakao.maps.Map(container, options);
-						</script>
+                     <script type="text/javascript"
+                        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=101c80782d440afe7bdde4defbe26209&libraries=services"></script>
+                     <script>
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                        mapOption = {
+                           center : new kakao.maps.LatLng(33.450701,
+                                 126.570667), // 지도의 중심좌표
+                           level : 3
+                        // 지도의 확대 레벨
+                        };
+
+                        // 지도를 생성합니다    
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                        // 주소-좌표 변환 객체를 생성합니다
+                        var geocoder = new kakao.maps.services.Geocoder();
+                        
+                        
+                        // 주소로 좌표를 검색합니다
+                        geocoder.addressSearch(
+                                    '서울 강남구 강남대로120길 33',
+                                    function(result, status) {
+
+                                       // 정상적으로 검색이 완료됐으면 
+                                       if (status === kakao.maps.services.Status.OK) {
+
+                                          var coords = new kakao.maps.LatLng(
+                                                result[0].y,
+                                                result[0].x);
+
+                                          // 결과값으로 받은 위치를 마커로 표시합니다
+                                          var marker = new kakao.maps.Marker(
+                                                {
+                                                   map : map,
+                                                   position : coords
+                                                });
+
+
+                                          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                                          
+                                          map.setCenter(coords);
+                                             
+                                       }
+                                    });
+                                          
+                     </script>
 					</div>
 				</div>
 				<hr>
@@ -165,6 +206,7 @@
 				</div>
 
 			</div>
+			</section>
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 </body>

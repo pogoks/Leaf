@@ -3,7 +3,7 @@
 /* 프로필 이미지 */
 .img-circle {
 	width: 100%;
-	padding: 50px;
+	padding: 30px;
 }
 /* 프로필 카드 */
 .card {
@@ -16,17 +16,17 @@
   transform: translate(0, -120px);
 }
 
-/* 프로필 카드 호버 */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
 /* 프로필 내용 */
-.container {
+.container1 {
   text-align:center;
   width: 100%;
  
   
+}
+
+/* 프로필 카드 호버 */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .card-body {

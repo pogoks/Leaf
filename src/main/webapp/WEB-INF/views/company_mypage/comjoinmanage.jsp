@@ -37,22 +37,24 @@
 	<%@ include file="../include/header.jsp"%>
 
 	<div class="mainbox">
+<section>
+        
+       
+        
+        
+        <div class="container">
+            <div class="row">
+				<!-- 메인화면 공지사항 상단 -->
+			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			            	<span class="main-notice-title">기업 가입 관리</span><br>
+			            	<span class="main-notice-title" style="font-size:12px;">(주) 그린컴퍼니</span>
+			            </a>
 
-		<!-- 이곳에다가 div 생성해서 만드시면 될겁니다~~ -->
-		<div class="mydiv">
-			<div class="mydiv">
-				<a href="#" class="list-group-item active notice-list-top"
-					style="width: 1300px; margin-top: 10px;"> <span
-					class="main-board-title" style="color: #950000;">기업 가입 관리</span><br>
-					<span class="main-board-title" style="font-size: 12px;">(주)
-						그린컴퍼니</span><br>
-				</a>
-
-				<div class="com_card" style="background: #fff; transform: translate(0, -130px);">
+				<div class="com_card" style="background: #fff; width:20%; transform:translate(-35px, -140px);">
 					<h6 style="text-align: center; color: #950000;">기업 상세 정보</h6>
 					<img src="resources/img/profile.png" alt="profile"
 						class="img-circle" style="padding: 30px;">
-					<div class="container">
+					<div class="container1">
 						<h3>
 							<b class="card-title">green123 님</b>
 						</h3>
@@ -138,6 +140,7 @@
 						<div class="col-sm-9">
 							<div class="form-group btn-profile">
 								<button type="button" class="btn btn-success">가입 승인</button>
+								<button type="button" class="btn btn-danger">승인 취소</button>
 								<button type="button" class="btn btn-primary">목록으로</button>
 							</div>
 						</div>
@@ -146,6 +149,7 @@
 
 
 				</div>
+				</section>
 				<%@ include file="../include/footer.jsp"%>
 			</div>
 </body>
