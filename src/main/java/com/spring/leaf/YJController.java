@@ -6,10 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 
 public class YJController {
-
+	//프로젝트 목록 
 	@GetMapping("/project")
 	public String project() {
 		return "project-list";
+	} 
+	//프로젝트 상세보기
+	@GetMapping("/projectview")
+	public String project1() {
+		return "project-view";
 		
 	} 
 	
