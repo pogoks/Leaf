@@ -171,8 +171,8 @@
         <a href="#">신고하기</a>
       </div>
       <div class="project-container-bottom">
-        <button type="button" class="btn btn-success">지원하기</button>
-        <button type="button" class="btn btn-primary">목록</button>
+        <button type="button" id="jiwon-btn" class="btn btn-success">지원하기</button>
+        <button type="button" id="mokrok-btn" class="btn btn-primary">목록</button>
       </div>
       </div>
     </div>
@@ -188,13 +188,5 @@
 
 
 <script>
-
-
-  s
+  
 </script>
-
-
-
-
-    
-    

@@ -17,5 +17,9 @@ public class YJController {
 		return "project-view";
 		
 	} 
-	
+	//프로젝트 등록
+	@GetMapping("/projectputin")
+	public String project2() {
+		return "project-putin";
+	}
 }
