@@ -113,7 +113,7 @@
 			    <div class="project-minilist col-md-8">
 			    		<div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -130,7 +130,7 @@
 					    
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -147,7 +147,7 @@
 					    
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -164,7 +164,7 @@
 					    
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -181,7 +181,7 @@
 
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -198,7 +198,7 @@
 					    
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -215,7 +215,7 @@
 					    
 					    <div class="project-box">
 				    		<div class="project-img-box">
-					    		<img alt="사진" src="resources/img/main4.jpg" width="250px">
+					    		<img alt="사진" src="resources/img/main4.jpg" width="100%">
 					    	</div>
 					    	<div class="project-form">
 					    		<div class="project-title">
@@ -329,6 +329,11 @@
 
 <script>
 
-
+	// 특정 메시지 표현을 위한 스크립트
+	const msg = '${msg}';
+	
+	if(msg != '') {
+		alert(msg);
+	}
 
 </script>
