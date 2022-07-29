@@ -53,30 +53,25 @@
         <p>현재 모집중</p>
       </div>
     </div>
-   
+    <br>
     </div>
 
     <div class="user-profile-intro">
         
             <div class="username-input-box">
-                <div class="name-all">
-                    <p>이름 *</p>
-                    <input type="search" id="user-name" class="input-all input1" placeholder="이름을 입력해 주세요." maxlength="40" name="userName">
+                <div class="project-user-name">
+                    <p>이름</p>
+                    <input type="search" id="project-user-name" class="input-all input1" placeholder="이름을 입력해 주세요." maxlength="40" name="userName">
                     <span id="span-name"></span>
                 </div>
-                <div class="e-mail-all">
-                    <p>이메일 *</p>
-                    <input type="search" id="user-email1" class="input-all input2" placeholder="이메일을 입력해 주세요." maxlength="40" style="width: 45%;" name="userEmail1">&nbsp;@
-                    <select name="userEmail2" id="user-email2" class="regi-droup-down input3" style="width: 25%; float: none;">
-                        <option value="naver.com" selected>naver.com</option>
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="daum.net">daum.net</option>
-                    </select>
+                <div class="project-e-mail">
+                    <p>이메일</p>
+                    <input type="search" id="project-user-email" class="input-all input2" placeholder="이메일을 입력해 주세요." maxlength="40"  name="userEmail1">
                     <span id="span-email"></span>
                 </div>
-                <div class="phone-all">
-                    <p>전화번호 *</p>
-                    <select name="userPhone1" id="user-phone1" class="regi-droup-down input4-1">
+                <div class="project-phone">
+                    <p>전화번호</p>
+                    <select name="userPhone1" id="project-user-phone1" class="regi-droup-down input4-1">
                         <option value="010" selected>010</option>
                         <option value="010" >011</option>
                         <option value="010" >016</option>
@@ -87,7 +82,11 @@
                 </div>
                 <div class="resume-user">  
                     <p>이력서 등록</p>
-                    <input type="file" name="profile_pt" id="user-profile" onchange="previewImage(this,'View_area')" accept="file/hwp, file/" >
+                    <input type="file" name="profile_pt" id="user-profile" onchange="previewImage(this,'View_area')" accept="file/hwp, file/docx" >
+                </div>
+                <div class="user-saying">
+                  <p>담당자에게 전할 메세지</p>
+                  <textarea name="user-say" id="user-textarea" cols="30" rows="10"></textarea>
                 </div>
             </div>
        
@@ -98,7 +97,11 @@
                 <button type="button" id="chwiso-btn" class="btn btn-danger">취소</button>
               </div>
         </div>
-
+        <div class="user-check-box">
+          <label>
+            <input type="checkbox"> 개인정보 제공 동의
+          </label>
+        </div>
 
 
 
