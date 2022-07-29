@@ -71,7 +71,7 @@
             <div class="row">
 				<!-- 메인화면 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
-			            	<span class="main-notice-title">개발자 목록</span>
+			            	<span class="main-notice-title">지원 결과 조회</span>
 			            </a>
                  <select class="head-control mx-sm-3 mb-2 pull-left" >
                     <option>10개씩</option>
@@ -83,11 +83,10 @@
                     <thead>
                         <tr>
                             <th style="background-color: #bbd0e7; text-align: center;">번호</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">ID</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">이름</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">전화번호</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">이메일</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">비고</th>
+                            <th style="background-color: #bbd0e7; text-align: center;">프로젝트 명</th>
+                            <th style="background-color: #bbd0e7; text-align: center;">지원날짜</th>
+                            <th style="background-color: #bbd0e7; text-align: center;">모집기간</th>
+                            <th style="background-color: #bbd0e7; text-align: center;">결과</th>
                             
                         </tr>
                     </thead>
@@ -96,29 +95,34 @@
                     
                         <tr>
                             <td>1</td>
-                            <td style="text-align: left;"><a>kim1234</a></td>
-                            <td>김철수</td>
-                            <td>010-1111-1111</td>
-                            <td>kim1234@naver.com</td>
-                            <td></td>
+                            <td style="text-align: left;"><a>2022년 환경 푸르미 프로젝트 개발자 모집</a></td>
+                            <td>2022.07.14</td>
+                            <td>2022.07.10 ~ 2022.07.22</td>
+                            <td style="color:green;">1차 서류 심사중</td>
                         </tr>
 
                         <tr>
                             <td>2</td>
-                            <td style="text-align: left;"><a>hong123</a></td>
-                            <td>홍길동</td>
-                            <td>010-2222-2222</td>
-                            <td>hong123@gmail.com</td>
-                            <td></td>
+                            <td style="text-align: left;"><a>2022년 환경 푸르미 프로젝트 개발자 모집</a></td>
+                            <td>2022.07.14</td>
+                            <td>2022.07.10 ~ 2022.07.22</td>
+                            <td style="color:blue;" >2차 면접 인터뷰 심사중</td>
                         </tr>
 
                         <tr>
                             <td>3</td>
-                            <td style="text-align: left;"><a>kim1234</a></td>
-                            <td>김철</td>
-                            <td>010-1111-1111</td>
-                            <td>kim123@naver.com</td>
-                            <td></td>
+                            <td style="text-align: left;"><a>2022년 환경 푸르미 프로젝트 개발자 모집</a></td>
+                            <td>2022.07.14</td>
+                            <td>2022.07.10 ~ 2022.07.22</td>
+                            <td style="color:red;">불합격</td>
+                        </tr>
+                        
+                         <tr>
+                            <td>4</td>
+                            <td style="text-align: left;"><a>2022년 환경 푸르미 프로젝트 개발자 모집</a></td>
+                            <td>2022.07.14</td>
+                            <td>2022.07.10 ~ 2022.07.22</td>
+                            <td style="color:lightpurple;">진행중</td>
                         </tr>
                       
 									
@@ -130,9 +134,9 @@
                 <form class="form-inline d-flex justify-content-end" method="GET", th:action="@{/board/boardList}" th:value="${param.searchText}">
 				            <div class="form-group mx-sm-3 mb-2 pull-right">
 				                <select class="foot-control" >
-                                    <option>ID</option>
-                                    <option>이름</option>
-                                    <option>전화번호</option>
+                                    <option>프로젝트 명</option>
+                                    <option>지원날짜</option>
+                                    <option>결과</option>
                                  </select>
 				                <input type="text" class="form-control" id="searchText" name="searchText" placeholder="검색어를 입력하세요.">
 				            	<button type="submit" class="btn btn-primary mb-2">검색 </button>

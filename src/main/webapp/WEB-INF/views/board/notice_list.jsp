@@ -20,6 +20,7 @@
    
    <!-- 개인 디자인 추가, ?after를 붙이면 기존에 동일한 이름의 파일을 인식하는것이 아닌 새로운 파일을 인식하게 된다. -->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpage-style.css">
    
    <!-- 여기다가 나만의 새로운 css 만들기 -->
    <style>
@@ -48,6 +49,7 @@
     border-radius: 5px;
    }
 
+	
  
 
 
@@ -68,10 +70,11 @@
         
         <div class="container">
             <div class="row">
-
-                <h2>공지사항</h2>
-                <hr class="borderline">
-                 <select class="head-control mx-sm-3 mb-2 pull-left" >
+						<!-- 메인화면 공지사항 상단 -->
+			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			            	<span class="main-notice-title">공지사항</span>
+			            </a>
+                 <select class="head-control mx-sm-3 mb-2" >
                     <option>10개씩</option>
                     <option>20개씩</option>
                  </select>
@@ -122,7 +125,7 @@
                     </tbody>
                 </table>
                 
-                <form class="form-inline d-flex justify-content-end" method="GET", th:action="@{/board/boardList}" th:value="${param.searchText}">
+                <form class="form-inline d-flex justify-content-end" >
 				            <div class="form-group mx-sm-3 mb-2 pull-right">
 				                <select class="foot-control" >
                                     <option>제목</option>
