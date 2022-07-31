@@ -110,8 +110,8 @@
                             </div>
                              <hr class="borderline" />
                              <a type="submit" class=" mb-2" style="margin-left:20px;">신고하기</a>
-                             <button type="submit" class="btn btn-info mb-2 pull-right" onclick="location.href='qa_list'">목록 </button>
-                             <button type="submit" class="btn btn-primary mb-2 pull-right" onclick="location.href='qa_modify'">수정 </button>
+                             <button type="submit" class="btn btn-info mb-2 pull-right" onclick="location.href='qna_list'">목록 </button>
+                             <button type="submit" class="btn btn-primary mb-2 pull-right" onclick="location.href='qna_modify'">수정 </button>
                              <button type="submit" class="btn btn-success mb-2 pull-right">답변하기 </button>
                            
                         </div>
