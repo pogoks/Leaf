@@ -27,6 +27,8 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpage-style.css">
   
    <link rel="stylesheet" href="./css/bootstrap-theme.css">
+
+
 </head>
 <body>
 
@@ -94,32 +96,11 @@
         <p>서울특별시 강남구 역삼동 649*5 에스코 빌딩 6층 그린컴퍼니 사무실</p> 
       </div>
       <div class="project-container-right">
-        <button type="button" class="btn btn-primary"data-toggle="modal" data-target="#testModal">
+        <button type="button" class="btn btn-primary" href="/project-map.html" onclick="window.open(this.href, '_blank', 'width=600px, height=400px,toolbars=no,scrollbars=no');">
           지도
           </button>
       </div> <br>
-      <div id="testModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">지도</h4>
-                </div>
-                <div class="modal-body" id="map" style="width:100%; height:350px; display: block;">
-                </div>
-                
-                  
-                  <p>
-                    <button onclick="resizeMap()">지도 크기 바꾸기</button>-->
-                    <button onclick="relayout()">지도 크게 보기</button>
-                  </p>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+      
       
       
       <div class="project-int">
@@ -209,65 +190,11 @@
 
 </body>
 </html>
-<script type="text/javascript"
-src="//dapi.kakao.com/v2/maps/sdk.js?appkey=101c80782d440afe7bdde4defbe26209&libraries=services"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = {
-   center : new kakao.maps.LatLng(33.450701,
-         126.570667), // 지도의 중심좌표
-   level : 4
-// 지도의 확대 레벨
-};
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption);
-
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
-
-function resizeMap() {
-    var mapContainer = document.getElementById('map');
-    mapContainer.style.width = '100%';
-    mapContainer.style.height = '350px'; 
-}
-
-function relayout() {    
-    
-    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-    map.relayout();
-}
-
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch(
-            '서울 강남구 강남대로120길 33',
-            function(result, status) {
-
-               // 정상적으로 검색이 완료됐으면 
-               if (status === kakao.maps.services.Status.OK) {
-
-                  var coords = new kakao.maps.LatLng(
-                        result[0].y,
-                        result[0].x);
-
-                  // 결과값으로 받은 위치를 마커로 표시합니다
-                  var marker = new kakao.maps.Marker(
-                        {
-                           map : map,
-                           position : coords
-                        });
 
 
-                  // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                  
-                  map.setCenter(coords);
-                     
-               }
-            });
-                  
-</script>
+</script> 
+                 
 
 
 
