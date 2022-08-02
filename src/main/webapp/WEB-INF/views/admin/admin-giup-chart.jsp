@@ -30,7 +30,7 @@
 	   
 	<div class="mainbox">
 		
-		<div class="admin-project-chart">
+		<div class="admin-chart">
 			
 			<div class="box1">
 				개발자 통계
@@ -190,7 +190,7 @@
 </body>
 </html>
 
-<!-- 이상한 꺾 -->
+<!-- 꺾은선 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
 new Chart(document.getElementById("line-chart"), {

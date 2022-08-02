@@ -2,22 +2,22 @@
 
 @charset "UTF-8";
 
-.admin-project-chart {
+.admin-chart {
 	margin: 20px 50px 20px 50px;;
 }
 
-.admin-project-chart .box1 { /* 프로젝트 통계 글씨있는곳 */
+.admin-chart .box1 { /* 프로젝트 통계 글씨있는곳 */
 	color: #5D2C2C;
 	font-weight: bold;
 	font-size: 20px;
 	border-bottom: 2px solid #aaaaaa;
 }
 
-.admin-project-chart .box2 { /* 위에 세로로 버튼3개 있는곳 영역 */
+.admin-chart .box2 { /* 위에 세로로 버튼3개 있는곳 영역 */
 	border-bottom: 3px solid black;
 }
 
-.admin-project-chart .box2 button { /* 위에버튼3개 버튼들  */
+.admin-chart .box2 button { /* 위에버튼3개 버튼들  */
 	background-color: white;
 	text-align: center;
 	font-size: 15px;
@@ -30,54 +30,54 @@
 	font-weight: bold;
 }
 
-.admin-project-chart .box2 .active { /* 위에버튼3개 켜져있는 버튼 */
+.admin-chart .box2 .active { /* 위에버튼3개 켜져있는 버튼 */
 	border-top: 5px solid #CC6666;
 	font-weight: bold;
 	font-color: #CC6666;
 }
-.admin-project-chart .box2 .btn1 { /* 위에버튼3개 버튼1  */
+.admin-chart .box2 .btn1 { /* 위에버튼3개 버튼1  */
 	margin-left: 0pxx;
-} .admin-project-chart .box2 .btn1:hover { background-color: #e4e4e4; } 
+} .admin-chart .box2 .btn1:hover { background-color: #e4e4e4; } 
 
-.admin-project-chart .box2 .btn2 { /* 위에버튼3개 버튼2  */
+.admin-chart .box2 .btn2 { /* 위에버튼3개 버튼2  */
 	margin-left: 10px;
-} .admin-project-chart .box2 .btn2:hover { background-color: #e4e4e4; } 
+} .admin-chart .box2 .btn2:hover { background-color: #e4e4e4; } 
 
-.admin-project-chart .box2 .btn3 { /* 위에버튼3개 버튼3  */
+.admin-chart .box2 .btn3 { /* 위에버튼3개 버튼3  */
 	margin-left: 10px;
-} .admin-project-chart .box2 .btn3:hover { background-color: #e4e4e4; } 
+} .admin-chart .box2 .btn3:hover { background-color: #e4e4e4; } 
 
 
-.admin-project-chart .top-box { /* [내용] 영역*/
+.admin-chart .top-box { /* [내용] 영역*/
 	border-radius: 10px;
 	padding: 20px 10px 20px 10px;
 }
 
-.admin-project-chart .top-box .text1 { /* 박스3> [프로젝트 신규등록 통계]텍스트 */
+.admin-chart .top-box .text1 { /* 박스3> [프로젝트 신규등록 통계]텍스트 */
 	font-size: 23px;
 	font-weight: bold;
 }
 
-.admin-project-chart .top-box .text2 { /* 박스3> 기간: 텍스트 */
+.admin-chart .top-box .text2 { /* 박스3> 기간: 텍스트 */
 	float: right;
 	font-size: 19px;
 	margin-top: 5px;
 }
 
-.admin-project-chart .top-box .dropdown { /* 박스3> 기간옆에 드롭다운 */
+.admin-chart .top-box .dropdown { /* 박스3> 기간옆에 드롭다운 */
 	float: right;
 	font-size: 19px;
 	margin-top: 5px;
 }
 
-.admin-project-chart .content-box .chart-box1 { /* 왼쪽 차트 영역 */
+.admin-chart .content-box .chart-box1 { /* 왼쪽 차트 영역 */
 	float: left;
 	width: 50%;
 	height: 600px;
 	border: 1px solid lightgray;
 }
 
-.admin-project-chart .content-box .chart-box2 { /* 오른쪽 차트 영역 */
+.admin-chart .content-box .chart-box2 { /* 오른쪽 차트 영역 */
 	float: right;
 	width: 50%;
 	height: 600px;
@@ -88,14 +88,14 @@
 /***************************************************************************************************************************/
 
 /******************** 내용 영역 *****************************************************************************************/
-.admin-project-chart #project3 .applicant {
+.admin-chart #project3 .applicant {
 	background-color: none;
 	width: 100%;
 	height: 450px;
 	
 }
 
-.admin-project-chart #project3 .appli1 ,.appli2 { /* 일일 프로젝트 지원자 수 영역*/
+.admin-chart #project3 .appli1 ,.appli2 { /* 일일 프로젝트 지원자 수 영역*/
 	float: left;
 	width: 20%;
 	height: 50%;
@@ -104,25 +104,25 @@
 	padding-top: 60px;
 }
 
-.admin-project-chart #project3 .day {
+.admin-chart #project3 .day {
 	font-size: 15px;
 	color: gray;
 }
-.admin-project-chart #project3 .top-text { 
+.admin-chart #project3 .top-text { 
 	font-size: 17px;
 	font-weight: bold;
 }
-.admin-project-chart #project3 .count { 
+.admin-chart #project3 .count { 
 	font-size: 25px;
 	font-weight: bold;
 	font-color: #434141;
 }
-.admin-project-chart #project3 span { 
+.admin-chart #project3 span { 
 	font-size: 20px;
 	font-weight: bold;
 }
 	
-.admin-project-chart #project3 .appli2 { /* 총 프로젝트 지원자 수 영역 */
+.admin-chart #project3 .appli2 { /* 총 프로젝트 지원자 수 영역 */
 	float: left;
 	width: 20%;
 	height: 50%;
@@ -131,7 +131,7 @@
 	vertical-align: middle;
 }
 
-.admin-project-chart #project3 .appli3 { /* 막대차트 영역 */
+.admin-chart #project3 .appli3 { /* 막대차트 영역 */
 	float: right;
 	width: 75%;
 	height: 100%;
@@ -139,13 +139,38 @@
 }
 /***************************************************************************************************************************/
 
+/******************** 차트 영역 *********************************************************************************************/
+.admin-chart #project1 .chart-box {
+	float: right;
+	width: 40%;
+	height: 460px;
+	margin-left: 5%;
+}
+/***************************************************************************************************************************/
+
 /******************** 아래 테이블 영역 *********************************************************************************************/
-.admin-project-chart .content-box table {
-	width: 100%;
+.admin-chart #project3 .content-box .table1 {
+	float: left;
+	width: 50%;
+	border: 1px solid lightgray;
 }
 
+.admin-chart #project3 .content-box label {
+	font-size: 15px;
+}
 
+.admin-chart #project3 .content-box .table2 {
+	width: 100%;
+	border: 1px solid lightgray;
+}
 
+.admin-chart #project3 .content-box th {
+	background-color: #F2F2F2;
+}
 
+.admin-chart #project3 .content-box .table3 {
+	width: 100%;
+	border: 1px solid lightgray;
+}
 
 /***************************************************************************************************************************/

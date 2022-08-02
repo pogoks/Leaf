@@ -32,7 +32,7 @@
 	   
 	<div class="mainbox">
 		
-		<div class="admin-project-chart">
+		<div class="admin-chart">
 			
 			<div class="box1">
 				프로젝트 통계
@@ -73,7 +73,7 @@
 							</div>
 							<!-- 막대기 차트입니다. -->
 							<div class="chart-box2">
-								<div id="barchart_material" style="width: 900px; height: 500px;"></div>
+								<div id="barchart_material" style="width: 400px; height: 200px;"></div>
 							</div>
 							
 							<div class="table-box">
@@ -119,8 +119,9 @@
 									<div class="count">17명</div>
 								</div>
 								<div class="appli3">
-									막대차트
-									<div id="chart_div"></div>
+									<div class="chart-box">
+										<canvas id="line-chart" width="200px" height="90px"></canvas> <!-- 꺾은선 -->
+									</div>
 								</div>
 								<div class="appli2">
 									<div class="day">2022-07-28</div>
@@ -128,14 +129,36 @@
 									<div class="count">17명</div>
 								</div>
 							</div>
-							<table border="0">
+							
+							<hr>
+							
+							<table border="0" class="table2">
+								<label>월간 프로젝트 지원 수</label>
 								<tr>
-									<th>ㅇ</th>
+									<th>2022년</th>
+									<c:forEach var="i" begin="1" end="12">
+										<th>${i}월</th>
+									</c:forEach>
 								</tr>
 								<tr>
-									<td>ㄹ</td>
+									<th>프로젝트 지원 수</th>
+									<c:forEach var="i" begin="1" end="12">
+										<td>${i}</td>
+									</c:forEach>
 								</tr>
-							</table>
+							</table> <br>
+							
+														
+							<table border="0" class="table3">
+								<label>년간 프로젝트 지원 수</label>
+								<tr>
+									<th></th>
+									<th></th>
+								</tr>
+								<tr>
+								
+								</tr>
+							</table> <br>
 						</div>
 			  			
 			  		</div>
@@ -326,4 +349,30 @@
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
   }
+</script>
+
+<!-- 꺾은선 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+new Chart(document.getElementById("line-chart"), {
+	width: 600, /*크기조정: 원래는 900x500*/
+	height: 300,
+	type: 'line',
+	data: {
+	    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ,25, 26, 27, 28, 29, 30, 31],
+	    datasets: [{ 
+	        data: [5,2,3,7,5,4,8,6,7,8,5,2,3,7,5,12,8,6,7,8,5,2,3,7,5,4,8,6,7,8,2],
+	        label: "일일 프로젝트 지원수",
+	        borderColor: "#3e95cd",
+	        fill: false
+	      },
+	    ]
+	  },
+	  options: {
+	    title: {
+	      display: true,
+	      text: '2022년 n월 n일'
+	    }
+	  }
+	});
 </script>

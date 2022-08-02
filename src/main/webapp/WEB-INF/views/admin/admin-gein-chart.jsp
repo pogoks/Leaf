@@ -30,7 +30,7 @@
 	   
 	<div class="mainbox">
 		
-		<div class="admin-project-chart">
+		<div class="admin-chart">
 			
 			<div class="box1">
 				개발자 통계

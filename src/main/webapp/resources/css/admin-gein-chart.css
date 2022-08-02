@@ -1,22 +1,22 @@
 @charset "UTF-8";
 
 
-.admin-project-chart {
+.admin-chart {
 	margin: 20px 50px 20px 50px;;
 }
 
-.admin-project-chart .box1 { /* 프로젝트 통계 글씨있는곳 */
+.admin-chart .box1 { /* 프로젝트 통계 글씨있는곳 */
 	color: #5D2C2C;
 	font-weight: bold;
 	font-size: 20px;
 	border-bottom: 2px solid #aaaaaa;
 }
 
-.admin-project-chart .box2 { /* 위에 세로로 버튼3개 있는곳 영역 */
+.admin-chart .box2 { /* 위에 세로로 버튼3개 있는곳 영역 */
 	border-bottom: 3px solid black;
 }
 
-.admin-project-chart .box2 button { /* 위에버튼3개 버튼들  */
+.admin-chart .box2 button { /* 위에버튼3개 버튼들  */
 	background-color: white;
 	text-align: center;
 	font-size: 15px;
@@ -29,39 +29,39 @@
 	font-weight: bold;
 }
 
-.admin-project-chart .box2 .active { /* 위에버튼3개 켜져있는 버튼 */
+.admin-chart .box2 .active { /* 위에버튼3개 켜져있는 버튼 */
 	border-top: 5px solid #CC6666;
 	font-weight: bold;
 	font-color: #CC6666;
 }
 
-.admin-project-chart .box2 .btn1 { /* 위에버튼3개 버튼1  */
+.admin-chart .box2 .btn1 { /* 위에버튼3개 버튼1  */
 	margin-left: 0pxx;
 } .admin-project-chart .box2 .btn1:hover { background-color: #e4e4e4; } 
 
-.admin-project-chart .box2 .btn2 { /* 위에버튼3개 버튼2  */
+.admin-chart .box2 .btn2 { /* 위에버튼3개 버튼2  */
 	margin-left: 10px;
-} .admin-project-chart .box2 .btn2:hover { background-color: #e4e4e4; } 
+} .admin-chart .box2 .btn2:hover { background-color: #e4e4e4; } 
 
 
-.admin-project-chart .top-box { /* [내용] 영역*/
+.admin-chart .top-box { /* [내용] 영역*/
 	background-color: none;
 	border-radius: 10px;
 	padding: 20px 10px 20px 10px;
 }
 
-.admin-project-chart .top-box .text1 { /* 박스3> [프로젝트 신규등록 통계]텍스트 */
+.admin-chart .top-box .text1 { /* 박스3> [프로젝트 신규등록 통계]텍스트 */
 	font-size: 23px;
 	font-weight: bold;
 }
 
-.admin-project-chart .top-box .text2 { /* 박스3> 기간: 텍스트 */
+.admin-chart .top-box .text2 { /* 박스3> 기간: 텍스트 */
 	float: right;
 	font-size: 19px;
 	margin-top: 5px;
 }
 
-.admin-project-chart .top-box .dropdown { /* 박스3> 기간옆에 드롭다운 */
+.admin-chart .top-box .dropdown { /* 박스3> 기간옆에 드롭다운 */
 	float: right;
 	font-size: 19px;
 	margin-top: 5px;
@@ -69,14 +69,14 @@
 /******************************************************************************************************************************/
 
 /*--------------------------------------차트영역-------------------------------------------*/
-.admin-project-chart #project1 .chart-box {
+.admin-chart #project1 .chart-box {
 	float: left;
 	width: 50%;
 	height: 460px;
 	margin-left: 5%;
 }
 
-.admin-project-chart #project1 .right-box { /* project1 오른쪽 상자*/
+.admin-chart #project1 .right-box { /* project1 오른쪽 상자*/
 	float: right;
 	width: 45%;
 	height: 460px;
@@ -84,7 +84,7 @@
 	padding: 50px 20px 70px 50px;
 }
 
-.admin-project-chart #project1 .right-box .in { /* project1 오른쪽 상자 (오늘가입수)*/
+.admin-chart #project1 .right-box .in { /* project1 오른쪽 상자 (오늘가입수)*/
 	float: left;
 	width: 50%;
 	text-align: center;
@@ -92,7 +92,7 @@
 	padding: 20px 0px;
 }
 
-.admin-project-chart #project1 .right-box .out { /* project1 오른쪽 상자 (오늘탈퇴수)*/
+.admin-chart #project1 .right-box .out { /* project1 오른쪽 상자 (오늘탈퇴수)*/
 	float: left;
 	width: 50%;
 	text-align: center;
@@ -100,7 +100,7 @@
 	padding: 20px 0px;
 }
 
-.admin-project-chart #project1 .right-box .total-in { /* project1 오른쪽 상자 (총 가입수)*/
+.admin-chart #project1 .right-box .total-in { /* project1 오른쪽 상자 (총 가입수)*/
 	float: right;
 	width: 50%;
 	text-align: center;
@@ -108,7 +108,7 @@
 	padding: 20px 0px;
 }
 
-.admin-project-chart #project1 .right-box .total-out { /* project1 오른쪽 상자 (총 탈퇴수)*/
+.admin-chart #project1 .right-box .total-out { /* project1 오른쪽 상자 (총 탈퇴수)*/
 	float: right;
 	width: 50%;
 	text-align: center;
@@ -116,23 +116,23 @@
 	padding: 20px 0px;
 }
 
-.admin-project-chart #project1 .right-box .day { /* project1 오른쪽 상자  날짜*/
+.admin-chart #project1 .right-box .day { /* project1 오른쪽 상자  날짜*/
 	font-size: 15px;
 	color: gray;
 }
 
-.admin-project-chart #project1 .right-box .top-text { /* project1 오른쪽 상자  (오늘~수 글자)*/
+.admin-chart #project1 .right-box .top-text { /* project1 오른쪽 상자  (오늘~수 글자)*/
 	font-size: 17px;
 	font-weight: bold;
 }
 
-.admin-project-chart #project1 .right-box .count { /* project1 오른쪽 상자  (명 수글자)*/
+.admin-chart #project1 .right-box .count { /* project1 오른쪽 상자  (명 수글자)*/
 	font-size: 25px;
 	font-weight: bold;
 	font-color: #434141;
 }
 
-.admin-project-chart #project1 .right-box span { /* project1 오른쪽 상자  (명 수)*/
+.admin-chart #project1 .right-box span { /* project1 오른쪽 상자  (명 수)*/
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -141,42 +141,42 @@
 /*-----------------------------------------------------------------------------------------*/
 
 /*------------------------------------- 테이블영역 -------------------------------------------*/
-.admin-project-chart .table-box1 .table { /* 가입자 탈퇴자 누적 테이블*/
+.admin-chart .table-box1 .table { /* 가입자 탈퇴자 누적 테이블*/
 	border: 1px solid lightgray;
 	text-align: center;
 	vertical-align: middle;
 }
 
-.admin-project-chart .table-box1 .table th { /* 가입자 탈퇴자 누적 테이블*/
+.admin-chart .table-box1 .table th { /* 가입자 탈퇴자 누적 테이블*/
 	background-color: #F2F2F2;
 	text-align: center;
 	vertical-align: middle;
 }
 
-.admin-project-chart .table-box2 { width: 100%;}
+.admin-chart .table-box2 { width: 100%;}
 
-.admin-project-chart .table-box2 .table {
+.admin-chart .table-box2 .table {
 	border: 1px solid lightgray;
 	text-align: center;
 	vertical-align: middle;
 }
 
-.admin-project-chart .table-box2 .table th { /* 가입자 탈퇴자 누적 테이블*/
+.admin-chart .table-box2 .table th { /* 가입자 탈퇴자 누적 테이블*/
 	background-color: #F2F2F2;
 	text-align: center;
 	vertical-align: middle;
 }
 
 
-.admin-project-chart .table-box3 { width: 40%; }
+.admin-chart .table-box3 { width: 40%; }
 
-.admin-project-chart .table-box3 .table {
+.admin-chart .table-box3 .table {
 	border: 1px solid lightgray;
 	text-align: center;
 	vertical-align: middle;
 }
 
-.admin-project-chart .table-box3 .table th { /* 가입자 탈퇴자 누적 테이블*/
+.admin-chart .table-box3 .table th { /* 가입자 탈퇴자 누적 테이블*/
 	background-color: #F2F2F2;
 	text-align: center;
 	vertical-align: middle;
