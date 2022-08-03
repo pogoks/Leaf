@@ -1,4 +1,4 @@
-package com.spring.leaf.qna.controller;
+package com.spring.leaf.question.controller;
 
 import org.springframework.stereotype.Controller;
 

@@ -38,31 +38,36 @@
 		<section>
 			<div class="container">
 				<div class="row">
-					 <!-- 메인화면 공지사항 상단 -->
+					 <!-- 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">공지사항</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
-		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
-			    	    	<thead>
-				    	    	<tr>
-				    	    		<th colspan= "2">공지사항 제목</th>
-				    	    	</tr>
-				    	    	<tr>
-					    			<td><input type="text" class="form-control" placeholder="제목을 입력하세요." maxlength="50" ></td>
-					    		</tr>
-			    	    	</thead>
-					    	<tbody>
-					    		<tr>
-				    	    		<th colspan= "2">공지사항 내용</th>
-				    	    	</tr>
-					    		<tr>
-					    			<td><textarea class="form-control" placeholder="내용을 입력하세요." maxlength="2048" style= "height:350px" ></textarea></td>
-					    		</tr>
-					    	</tbody>
-		    	    	</table>
-    	    			<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
-    	    			<input type="submit" class="btn btn-primary pull-right" onclick="location.href='notice_list'" value="목록">
+						<form action="<c:url value='/notice/noticeWrite'/>" method="post" name="noticeWriteform">
+			    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
+				    	    	<thead>
+					    	    	<tr>
+					    	    		<th colspan= "2">공지사항 제목</th>
+					    	    	</tr>
+					    	    	<tr>
+						    			<td><input type="text" name="noticeTitle" class="form-control" placeholder="제목을 입력하세요." maxlength="50" ></td>
+						    			<td><input type="hidden" name="noticeWriter" value="${user.userID}"></td>
+						    		</tr>
+						    		
+				    	    	</thead>
+						    	<tbody>
+						    		<tr>
+					    	    		<th colspan= "2">공지사항 내용</th>
+					    	    	</tr>
+						    		<tr>
+						    			<td><textarea class="form-control" name="noticeContent" placeholder="내용을 입력하세요." maxlength="2048" style= "height:350px" ></textarea></td>
+						    		</tr>
+						    	</tbody>
+			    	    	</table>
+		    	    	
+    	    			<input type="submit" id="btn-notice-write" class="btn btn-primary pull-right" value="글쓰기">
+    	    			<button type="button" id="btn-notice-list" class="btn btn-primary pull-right" >목록</button>
+    	    			</form>
 					</div>
 				</div>
 			</div>		   
@@ -78,7 +83,17 @@
 
 
 <script>
-
+	
+	//목록 이동 버튼
+	$(function() {
+		$('#btn-notice-list').click(function() {
+			location.href='<c:url value="/notice/noticeList" />';
+		})
+		
+	});
+	
+	
+	
 
 
 </script>
