@@ -79,7 +79,7 @@
                     <option>10개씩</option>
                     <option>20개씩</option>
                  </select>
-                 <button type="submit" class="btn btn-success mb-2 pull-right" onclick="location.href='qa_write'">질문하기</button>
+                 <button type="submit" class="btn btn-success mb-2 pull-right" onclick="location.href='qna_write'">질문하기</button>
                  
                  
                 <table class="table table-bordered"  style="text-align: center; border: 1px gray">
@@ -98,7 +98,7 @@
                     
                         <tr>
                             <td>1</td>
-                            <td style="text-align: left;"><a onclick="location.href='qa_content'">Q.경력이 없어도 프로젝트에 지원할 수 있을까요...?</a></td>
+                            <td style="text-align: left;"><a onclick="location.href='qna_content'">Q.경력이 없어도 프로젝트에 지원할 수 있을까요...?</a></td>
                             <td>Hong123</td>
                             <td>1시간 전</td>
                             <td>4</td>
