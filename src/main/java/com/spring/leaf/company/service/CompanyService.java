@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.spring.leaf.company.command.CompanyLogoVO;
 import com.spring.leaf.company.command.CompanyVO;
 import com.spring.leaf.company.mapper.ICompanyMapper;
 
@@ -63,5 +64,17 @@ public class CompanyService implements ICompanyService {
 	@Override
 	public CompanyVO companyGetInfo(String companyID) {
 		return mapper.companyGetInfo(companyID);
+	}
+	
+	
+	@Override
+	public int companyNOGet() {
+		return mapper.companyNOGet();
+	}
+	
+	
+	@Override
+	public void companyLogo(CompanyLogoVO vo) {
+		mapper.companyLogo(vo);
 	}
 }

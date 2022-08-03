@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.user.mapper.IUserMapper;
 
@@ -63,5 +64,25 @@ public class UserService implements IUserService {
 	@Override
 	public UserVO userGetInfo(String userID) {
 		return mapper.userGetInfo(userID);
+	}
+	
+	
+	// 사용자 회원번호 얻는 요청
+	@Override
+	public int userNOGet() {
+		return mapper.userNOGet();
+	}
+	
+	
+	// 사용자 프로필사진 등록 요청
+	@Override
+	public void userProfile(UserProfileVO vo) {
+		mapper.userProfile(vo);
+	}
+	
+	
+	@Override
+	public UserProfileVO userProfileGet(int userNO) {
+		return mapper.userProfileGet(userNO);
 	}
 }

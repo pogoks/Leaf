@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.util.UserLoginInterceptor;
 
@@ -44,7 +45,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 		// 컨트롤러에서 보낸 model들을 ModelMap으로 받아내어 변수에 저장
 		ModelMap modelMap = modelAndView.getModelMap();
 		UserVO vo = (UserVO) modelMap.get("userLogin");
-		//ProfileVO pvo = (ProfileVO) modelMap.get("profile");
+		UserProfileVO pvo = (UserProfileVO) modelMap.get("userProfile");
 		String userPW = (String) modelMap.get("userPW");
 
 		
@@ -56,8 +57,8 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
 				// 로그인에 성공한 후 사용자 정보를 user 라는 세션에 담아 저장한다.
 				session.setAttribute("user", vo);
-				// 로그인에 성공한 후 사용자의 프로필 사진 정보를 profile 이라는 세션에 담아 저장한다.
-				//session.setAttribute("profile", pvo);
+				// 로그인에 성공한 후 사용자의 프로필 사진 정보를 userProfile 이라는 세션에 담아 저장한다.
+				session.setAttribute("userProfile", pvo);
 
 				response.sendRedirect("/");
 

@@ -102,14 +102,15 @@
 				               	<input type="search" id="user-phone3" class="input-all input4-3" placeholder="전화번호 뒷 4자" maxlength="4" name="userPhone3">
 				                <br><span id="span-phone"></span>
 				            </div>
-				            <div class="profile all">
-				                <p>프로필사진</p>
-				                <input type="file" name="profile_pt" id="user-profile" onchange="previewImage(this,'View_area')" accept="image/png, image/jpeg, image/jpg, image/gif" >
-				                	<img alt="프로필" id="img_profile" width="120px" height="120px" src="<c:url value='/resources/img/profile.png' />" style="display: block; margin-top:10px; border-radius: 100px;">
-				                <br>
-				            </div>
 				        </div>
 				    </form>
+				    
+				    <div id="div-profile" class="profile all">
+				        <p>프로필사진</p>
+				        <input type="file" name="userProfile" id="user-profile" accept="image/png, image/jpeg, image/jpg, image/gif">
+				            <img alt="프로필" id="img_profile" width="120px" height="120px" src="<c:url value='/resources/img/profile.png' />" style="display: block; margin-top:10px; border-radius: 100px;">
+				        <br>
+				    </div>
 				    
 				    <div class="regi-button">
 				        <input type="button" class="regi-button1" value="회원가입" style=" cursor: pointer; background: #2D5BD2" id="btn-user-regist-go">
@@ -526,7 +527,7 @@
 	$(function() {
 		
 		// 일반회원 프로필 사진 파일 선택 시 미리보기 기능
-		$('#profile').change(function () {
+		$('#user-profile').change(function () {
 			readURL(this);
 		});
 		
@@ -784,6 +785,7 @@
 					return;
 				}
 				
+				/*
 				// 이메일 인증 여부 체크 1
 				if(!$('#user-email1').attr('readonly')) {
 					alert('이메일 인증이 필요합니다.');
@@ -803,6 +805,7 @@
 					$('#user-email-check-num').focus();
 					return;
 				}
+				*/
 				
 				// 전화번호 가운데 칸 입력 여부 체크
 				if($('#user-phone2').val() == '') {
@@ -827,6 +830,97 @@
 				// 모든 항목들이 적합하다면 회원가입 폼 내용들을 컨트롤러로 보낸다.
 				document.userRegistForm.submit();
 				
+				
+				// 프로필사진을 등록하지 않고 회원가입 할 경우
+				if($('#user-profile').val() == '') {
+					const userID = $('#user-id').val();
+					
+					// 회원가입하는 회원의 회원번호를 불러오는 userNOGet을 비동기로 처리
+					$.ajax({
+						type: 'POST',
+						url: '<c:url value="/user/userNOGet" />',
+						contentType: false,
+						processData: false,
+						
+						success: function(userNO) {
+							// 프로필사진을 등록하는 userProfile를 비동기로 처리 (보내는 데이터 없음)
+							$.ajax({
+								type: 'POST',
+								url: '<c:url value="/user/userProfileNo/" />' + userNO,
+								contentType: false,
+								processData: false,
+								
+								success: function(result) {
+									if(result == 'NoProfile') {
+										console.log('프로필사진 없이 가입 성공');
+									} else {
+										alert('프로필 사진 없이 가입 중 오류가 발생했습니다.');
+										return;
+									}
+								},
+								
+								error: function() {
+									alert('프로필 사진 없이 가입 중 서버오류가 발생했습니다.');
+									return;
+								}
+							});
+						},
+						
+						error: function() {
+							alert("서버 오류 발생 ");
+							return;
+						}
+					});
+				} else {		// 프로필사진 등록하고 회원가입 할 경우
+					const userID = $('#user-id').val();
+					
+					// 회원가입하는 회원의 회원번호를 불러오는 userNOGet을 비동기로 처리
+					$.ajax({
+						type: 'POST',
+						url: '<c:url value="/user/userNOGet" />',
+						contentType: false,
+						processData: false,
+						
+						success: function(userNO) {
+							// 가상 Form을 생성한다.
+							const formData = new FormData();
+						
+							const data = $('#user-profile');
+							
+							// 가상 Form에 받은 파일을 userProfile이라는 이름으로 넣는다.
+							formData.append('userProfile', data[0].files[0]);
+							
+							// 프로필사진을 등록하는 userProfile를 비동기로 처리
+							$.ajax({
+								type: 'POST',
+								url: '<c:url value="/user/userProfile/" />' + userNO,
+								contentType: false,
+								processData: false,
+								
+								data: formData,
+								
+								success: function(result) {
+									if(result == 'YesProfile') {
+										console.log('프로필사진 등록 성공');
+									} else {
+										alert('프로필사진을 업로드 하는 중 오류가 발생했습니다.');
+										return;
+									}
+								},
+								
+								error: function() {
+									alert('프로필사진을 업로드 하는 중 서버오류가 발생했습니다.');
+									return;
+								}
+							});		// ajax(userProfile) 끝
+						},
+						
+						error: function() {
+							alert("서버 오류 발생 ");
+							return;
+						}
+					});		// ajax(userNOGet) 끝
+				}
 			} else {
 				return;
 			}
@@ -1149,6 +1243,46 @@
 				
 				// 모든 항목들이 적합하다면 회원가입 폼 내용들을 컨트롤러로 보낸다.
 				document.companyRegistForm.submit();
+				
+				
+				const companyID = $('#company-id').val();
+				
+				$.ajax({
+					type: 'POST',
+					url: '<c:url value="/company/companyNOGet" />',
+					contentType: false,
+					processData: false,
+					
+					success: function(companyNO) {
+						
+						$.ajax({
+							type: 'POST',
+							url: '<c:url value="/company/companyLogoNo/" />' + companyNO,
+							contentType: false,
+							processData: false,
+							
+							success: function(result) {
+								if(result == 'NoLogo') {
+									console.log('기업 로고 없이 가입 성공');
+								} else {
+									alert('기업 로고 없이 가입 중 오류가 발생했습니다.');
+									return;
+								}
+							},
+							
+							error: function() {
+								alert('기업 로고 없이 가입 중 서버오류가 발생했습니다.');
+								return;
+							}
+						});
+						
+					},
+					
+					error: function() {
+						alert("서버 오류 발생 ");
+						return;
+					}
+				});
 				
 			} else {
 				return;

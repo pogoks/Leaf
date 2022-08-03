@@ -5,8 +5,8 @@
 
 	<c:choose>
 	
-		<!-- 일반 푸터 -->
-		<c:when test="${user != null && company == null && user.commonCODE == 'ADM002'}">
+		<c:when test="${company == null && user.commonCODE == 'ADM002'}">
+			<!-- 관리자 푸터 -->
 			<footer style="background: #ccac00;">
 				  <div class="notice_box">
 				    <a href="/"><span class="sidebar-icon"><i class="fa fa-building"></i></span> RunWith</a>
@@ -38,8 +38,8 @@
 	
 	
 	
-		<!-- 관리자 푸터 -->
 		<c:otherwise>
+			<!-- 일반 푸터 -->
 			<footer>
 				  <div class="notice_box">
 				    <a href="/"><span class="sidebar-icon"><i class="fa fa-building"></i></span> RunWith</a>

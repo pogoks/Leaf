@@ -2,6 +2,7 @@ package com.spring.leaf.user.service;
 
 import java.util.Map;
 
+import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.command.UserVO;
 
 
@@ -23,5 +24,17 @@ public interface IUserService {
 	
 	// 사용자 정보 불러오기 요청
 	UserVO userGetInfo(String userID);
+	
+	
+	// 사용자 회원번호 얻는 요청
+	int userNOGet();
+		
+		
+	// 사용자 프로필사진 등록 요청
+	void userProfile(UserProfileVO vo);
+	
+	
+	// 사용자 프로필사진 불러오기 요청
+	UserProfileVO userProfileGet(int userNO);
 	
 }
