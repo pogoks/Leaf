@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -71,29 +72,31 @@
         <section>
             <div class="container">
 				<div class="row">
-					 <!-- 메인화면 공지사항 상단 -->
+					 <!-- 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">공지사항</span>
 			            </a>
                 	 
 				
                      <div class="container my-1">
-
+						<form action"<c:url value='/notice/noticeDelete'/>" method="post" name="noticeContentForm" >
                         <div class="row" >
+                      		<!-- 공지사항 글 상세보기  -->
                             <div class="notice_content" >
                             	<div class="notice_content_up" style="margin-left:30px;" >
 		                                        <div class="notice_title" scope="col" style="width: 100%;  margin-top:10px;">
-		                                        	<h4 style="display:inline-block;">[기업] 공지사항 1 </h4>
-			                                        <a type="submit" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
+		                                        	<input type="hidden" value="${notice.noticeNo}">
+		                                        	<h4 style="display:inline-block;">${notice.noticeTitle}</h4>
+			                                        <button type="submit" id="btn-notice-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</button>
 		                                        </div>
 		                                        
 		                                        <div style="margin-top:30px;">
 			                                        <div class="notice_writer" style="display: inline-block;">
-			                                            <img src="resources/img/logo2.png" width="50px" > kim1234
+			                                            <img src="resources/img/logo2.png" width="50px" > ${notice.noticeWriter}
 		                                       		</div>
 		                                       		<div style="display:inline-block; float:right; margin-top:10px; margin-right:40px; color:gray;">
 				                                        <div style="display:inline-block;" >
-				                                            2022-07-22
+				                                            <fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd HH:mm" />
 				                                        </div>
 				                                        <div style="display:inline-block;">
 				                                        	조회수 : 95
@@ -104,21 +107,14 @@
 
                                     <div class="notice_content_down" style="margin-top:30px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
                                         
-                                        	관리자입니다.<br>
-											<br>
-                                            기업 회원분들에게 알려드립니다.<br>
-                                            2022년 7월 18일 기업 회원 데이터베이스 점검 예정입니다.<br>
-                                            기업 회원분들께서는 해당 기간에는 로그인을 자제해주시길 바라며,<br>
-                                            변경사항을 꼭 저장해주시기 바랍니다.<br>
-                                            <br>
-                                            감사합니다.
+                                        	${notice.noticeContent}
                                            
                                     </div>
-                 			</div>
-                            <hr class="borderline" />
-                            <input type="submit" class="btn btn-info pull-right" onclick="location.href='notice_modify'" value="수정하기">
-                            <button type="submit" class="btn btn-primary mb-2 pull-right" onclick="location.href='notice_list'">목록</button>
-                            
+	                 		</div>
+	                            <hr class="borderline" />
+	                            <button type="button" id="btn-notice-modify" class="btn btn-info pull-right" onclick="location.href='<c:url value="/notice/noticeModify?noticeNo=${notice.noticeNo}"/>'">수정하기</button>
+	                            <button type="button" id="btn-notice-list" class="btn btn-primary mb-2 pull-right" onclick="location.href='<c:url value="/notice/noticeList"/>'">목록</button>
+                       	</form>
                         </div>
                     </div>
 				</div>
@@ -138,6 +134,30 @@
 
 <script>
 
+
+ 	// 목록 이동 버튼
+	$(function() {
+		$('#btn-notice-list').click(function() {
+			location.href='<c:url value="/notice/noticeList"/>';
+		})
+		
+	});
+ 	
+ 	//삭제 버튼 처리
+ 	$('btn-notice-delete').click(function() {
+ 		
+ 		if(confirm('정말 삭제하시겠습니까?')) {
+			$('form[name=updateForm]').attr('action', '<c:url value="/notice/noticeDelete"/>');
+			//document.updateForm.setAttribute('action', ~~~~);
+			$('form[name=updateForm]').submit();
+		}
+	});
+ 		
+		location.href='<c:url value="/notice/noticeDelete"/>';
+	})
+	
+	});
+ 	
 
 
 </script>

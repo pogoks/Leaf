@@ -61,8 +61,8 @@
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
-    	    			<input type="submit" class="btn btn-success pull-right" value="질문하기">
-    	    			<input type="submit" class="btn btn-primary pull-right" onclick="location.href='qa_list'" value="목록">
+    	    			<input type="submit" class="btn btn-success pull-right" onclick="location.href='qna_list'" value="질문하기">
+    	    			<input type="submit" class="btn btn-primary pull-right" onclick="location.href='qna_list'" value="목록">
 					</div>
 				</div>
 			</div>		   

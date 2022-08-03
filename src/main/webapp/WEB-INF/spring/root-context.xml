@@ -48,5 +48,8 @@
 	<mybatis-spring:scan base-package="com.spring.leaf.user.mapper"/>
 	<!-- 기업회원 ICompanyMapper 연결 -->
 	<mybatis-spring:scan base-package="com.spring.leaf.company.mapper"/>
+	<!-- 공지사항 INoticeMapper 연결 -->
+	<mybatis-spring:scan base-package="com.spring.leaf.notice.mapper"/>
+	
 	
 </beans>

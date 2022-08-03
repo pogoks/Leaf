@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <html>
 <head>
@@ -70,7 +71,7 @@
         
         <div class="container">
             <div class="row">
-						<!-- 메인화면 공지사항 상단 -->
+						<!-- 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">공지사항</span>
 			            </a>
@@ -78,7 +79,7 @@
                     <option>10개씩</option>
                     <option>20개씩</option>
                  </select>
-                 <button type="submit" class="btn btn-success mb-2 pull-right" onclick="location.href='notice_write'">글쓰기</button>
+                 <button type="submit" class="btn btn-success mb-2 pull-right" id="btn-notice-write">글쓰기</button>
                  
                  
                 <table class="table table-bordered"  style="text-align: center;">
@@ -94,37 +95,24 @@
                     </thead>
                     
                     <tbody>
-                    
+                    <!-- 공지사항 목록 -->
+                    	<c:forEach var="notice" items="${noticeList}">
                         <tr>
-                            <td>1</td>
-                            <td style="text-align: left;"><a onclick="location.href='notice_content'">공지사항 테스트</a></td>
-                            <td>홍길동</td>
-                            <td>2022-07-22</td>
+                            <td>${notice.noticeNo}</td>
+                            <td style="text-align: left;">
+                            	<a href="<c:url value='/notice/noticeContent/${notice.noticeNo}'/>">${notice.noticeTitle}</a>
+                            </td>
+                            <td>${notice.noticeWriter}</td>
+                            <td><fmt:formatDate value="${notice.noticeDate}" pattern="yyyy-MM-dd HH:mm" /></td>
                             <td>3</td>
                         </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td style="text-align: left;"><a>공지사항 테스트</a></td>
-                            <td>홍길동</td>
-                            <td>2022-07-22</td>
-                            <td>3</td>
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td style="text-align: left;"><a>공지사항 테스트</a></td>
-                            <td>홍길동</td>
-                            <td>2022-07-22</td>
-                            <td>3</td>
-                        </tr>
-                      
+                      </c:forEach>
 									
                    
                        
                     </tbody>
                 </table>
-                
+               
                 <form class="form-inline d-flex justify-content-end" >
 				            <div class="form-group mx-sm-3 mb-2 pull-right">
 				                <select class="foot-control" >
@@ -139,6 +127,7 @@
                 
             </div>
 
+			<!-- 공지사항 페이징 -->
             <div class="text-center">
                 <ul class="pagination pagination-sm">
                     <li><a href="#"><<</a></li>
@@ -166,6 +155,13 @@
 
 <script>
 
+	//글쓰기 페이지 이동 버튼
+	$(function() {
+		$('#btn-notice-write').click(function() {
+			location.href='<c:url value="/notice/noticeWrite" />';
+		})
+		
+	});
 
 
 </script>
