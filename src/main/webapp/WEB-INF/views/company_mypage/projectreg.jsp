@@ -52,7 +52,7 @@
         
        
         
-        
+        <form action="<c:url value='/project/projectputin' />" method="post">
         <div class="container">
             <div class="row">
 				<!-- 메인화면 공지사항 상단 -->
@@ -67,7 +67,7 @@
 						<p class="projectFont">프로젝트 이름</p>
 					</div>
 					<div>
-						<input type="text" class="form-control"
+						<input type="text" class="form-control" name="projectName"
 							placeholder="프로젝트 이름을 입력하세요." style="width: 700px;">
 					</div>
 				</div>
@@ -78,12 +78,12 @@
 					<div>
 						<div>
 							<div style="width:500px;">
-							시작일자: <input type="date" class="form-control" id="exampleInputdate"
+							시작일자: <input name="projectRequireDate1" type="date" class="form-control" id="exampleInputdate" 
 								placeholder="0000/00/00"> 
 							</div>
 							<div style="width:500px;">
 							종료일자: <input
-								type="date" class="form-control" id="exampleInputdate"
+								name="projectRequireDate2" type="date" class="form-control" id="exampleInputdate"
 								placeholder="0000/00/00">
 							</div>
 						</div>
@@ -96,8 +96,9 @@
 						<p class="projectFont">협력사</p>
 					</div>
 					<div>
-						<input class="form-control" id="disabledInput" type="text"
-							placeholder="(주) Green Company" style="width: 300px;" disabled>
+						<input type="hidden" value="${company.companyNO}" name="companyNO">
+						<input class="form-control" id="disabledInput" type="text" 
+							value="${company.companyName}" style="width: 300px;" disabled>
 					</div>
 				</div>
 				<div class="projectReg">
@@ -106,7 +107,7 @@
 					</div>
 					<div>
 						<input class="form-control" id="disabledInput" type="text"
-							placeholder="(02) - 123 - 4567" style="width: 200px;" disabled>
+							value="${company.companyPhone1} - ${company.companyPhone2} - ${company.companyPhone3}" style="width: 200px;" disabled>
 					</div>
 				</div>
 				<div class="projectReg">
@@ -116,15 +117,15 @@
 					<div>
 						<div>
 							<input class="form-control" id="disabledInput" type="text"
-								placeholder="14052" style="width: 300px;" disabled>
+								value="${company.companyAddress1}" style="width: 300px;" disabled>
 						</div>
 						<div>
 							<input class="form-control" id="disabledInput" type="text"
-								placeholder="강남구 역삼동 649-5" style="width: 300px;" disabled>
+								value="${company.companyAddress2}" style="width: 300px;" disabled>
 						</div>
 						<div>
 							<input class="form-control" id="disabledInput" type="text"
-								placeholder="에스코빌딩 6층 그린컴퍼니 사무실" style="width: 300px;" disabled>
+								value="${company.companyAddress3}" style="width: 300px;" disabled>
 						</div>
 					</div>
 				</div>
@@ -133,7 +134,7 @@
 						<p class="projectFont">프로젝트 설명</p>
 					</div>
 					<div>
-						<textarea class="form-control" rows="10"
+						<textarea class="form-control" rows="10" name="projectDesc"
 							placeholder="프로젝트 설명을 간략하게 입력하세요."></textarea>
 					</div>
 				</div>
@@ -142,7 +143,7 @@
 						<p class="projectFont">담당자 이름</p>
 					</div>
 					<div>
-						<input type="text" class="form-control"
+						<input type="text" class="form-control" name="projectManager"
 							placeholder="담당자 이름을 입력하세요." style="width: 300px;">
 					</div>
 				</div>
@@ -151,14 +152,8 @@
 						<p class="projectFont">담당자 전화번호</p>
 					</div>
 					<div>
-						<select class="form-control" style="width: 75px;">
-							<option>010</option>
-							<option>011</option>
-							<option>017</option>
-							<option>070</option>
-							<option>018</option>
-						</select> <input type="text" class="form-control"
-							placeholder="전화번호 뒷자리를 입력하세요." style="width: 270px;">
+						<input type="text" class="form-control" name="projectManagerPhone"
+							placeholder="전화번호를 입력하세요." style="width: 300px;">
 					</div>
 				</div>
 				<div class="projectReg">
@@ -166,7 +161,7 @@
 						<p class="projectFont">담당자 이메일</p>
 					</div>
 					<div>
-						<input type="text" class="form-control"
+						<input type="text" class="form-control" name="projectManagerEmail"
 							placeholder="담당자 이메일을 입력해주세요." style="width: 230px;"> <select
 							class="form-control" style="width: 145px;">
 							<option>@naver.com</option>
@@ -180,7 +175,7 @@
 						<p class="projectFont">지원자격</p>
 					</div>
 					<div>
-						<textarea class="form-control" rows="5"
+						<textarea class="form-control" rows="5" name="projectRequireLicense"
 							placeholder="지원자격을 간략하게 입력하세요."></textarea>
 					</div>
 				</div>
@@ -189,7 +184,7 @@
 						<p class="projectFont">모집역할</p>
 					</div>
 					<div>
-						<input type="text" class="form-control"
+						<input type="text" class="form-control" name="projectRequireRole"
 							placeholder="모집하는 역할을 간단하게 입력하세요." style="width: 700px;">
 					</div>
 				</div>
@@ -198,17 +193,8 @@
 						<p class="projectFont">모집인원</p>
 					</div>
 					<div>
-						<input type="text" class="form-control"
+						<input type="text" class="form-control" name="projectRequirePeople"
 							placeholder="모집 인원을 입력하세요." style="width: 700px;">
-					</div>
-				</div>
-				<div class="projectReg">
-					<div>
-						<p class="projectFont">전형절차</p>
-					</div>
-					<div>
-						<input type="text" class="form-control"
-							placeholder="해당 기업의 전형 절차를 입력하세요." style="width: 700px;">
 					</div>
 				</div>
 				<div class="projectReg">
@@ -226,7 +212,7 @@
 
 				<div>
 					<div style="text-align: center; margin-bottom: 5px;">
-						<button type="button" class="btn btn-primary btn-lg"
+						<button type="submit" class="btn btn-primary btn-lg"  
 							style="width: 300px;">등록하기</button>
 					</div>
 					<div style="text-align: center; margin-bottom: 20px;">
@@ -238,11 +224,14 @@
 			</div>
 			<div class="col-sm-2"></div>
 
-
 		</div>
+		</div>
+		</form>
 		</section>
 		<%@ include file="../include/footer.jsp"%>
-	</div>
+		
+		</div>
+	
 </body>
 </html>
 
