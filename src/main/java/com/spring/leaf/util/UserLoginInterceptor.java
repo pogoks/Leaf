@@ -45,20 +45,17 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 		// 컨트롤러에서 보낸 model들을 ModelMap으로 받아내어 변수에 저장
 		ModelMap modelMap = modelAndView.getModelMap();
 		UserVO vo = (UserVO) modelMap.get("userLogin");
-		UserProfileVO pvo = (UserProfileVO) modelMap.get("userProfile");
 		String userPW = (String) modelMap.get("userPW");
 
 		
 		// 만약 불러온 정보가 null이 아니라면, 즉 로그인 화면에서 입력한 아이디로 사용자를 검색했을 때 null이 아니라면
-		if (vo != null) {
+		if(vo != null) {
 			// 로그인 화면에서 입력한 비밀번호와 해당 사용자의 비밀번호가 일치한지 비교한다.
-			if (encoder.matches(userPW, vo.getUserPW())) {
+			if(encoder.matches(userPW, vo.getUserPW())) {
 				logger.info("UserLoginInterceptor : Login 성공");
 
 				// 로그인에 성공한 후 사용자 정보를 user 라는 세션에 담아 저장한다.
 				session.setAttribute("user", vo);
-				// 로그인에 성공한 후 사용자의 프로필 사진 정보를 userProfile 이라는 세션에 담아 저장한다.
-				session.setAttribute("userProfile", pvo);
 
 				response.sendRedirect("/");
 
@@ -67,7 +64,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
 				// class 파일에서 자바스크립트 경고창을 띄우기 위한 PrintWriter 사용
 				PrintWriter writer = response.getWriter();
-				writer.print("<script>" + "alert('아이디와 비밀번호를 확인해주세요.');" + "history.back();" + "</script>");
+				writer.print("<script>" + "alert('아이디와 비밀번호를 확인해주세요.');" + "location.replace('/');" + "</script>");
 				writer.flush();
 				writer.close();
 			}
@@ -76,7 +73,7 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
 			// class 파일에서 자바스크립트 경고창을 띄우기 위한 PrintWriter 사용
 			PrintWriter writer = response.getWriter();
-			writer.print("<script>" + "alert('아이디와 비밀번호를 확인해주세요.');" + "history.back();" + "</script>");
+			writer.print("<script>" + "alert('아이디와 비밀번호를 확인해주세요.');" + "location.replace('/');" + "</script>");
 			writer.flush();
 			writer.close();
 		}

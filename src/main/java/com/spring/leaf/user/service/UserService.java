@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.spring.leaf.user.command.ResumeVO;
 import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.user.mapper.IUserMapper;
@@ -81,8 +82,23 @@ public class UserService implements IUserService {
 	}
 	
 	
+	// 사용자 프로필사진 불러오기 요청
 	@Override
 	public UserProfileVO userProfileGet(int userNO) {
 		return mapper.userProfileGet(userNO);
+	}
+	
+	
+	// 사용자 이력서파일 등록 요청
+	@Override
+	public void userResume(ResumeVO vo) {
+		mapper.userResume(vo);
+	}
+	
+	
+	// 사용자 이력서파일 얻어오기 요청
+	@Override
+	public ResumeVO userResumeGet(int userNO) {
+		return mapper.userResumeGet(userNO);
 	}
 }

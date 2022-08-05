@@ -32,17 +32,7 @@
 		                          <ul class="nav navbar-nav navbar-right">
 		                            <ul class="nav navbar-nav">
 		                            	<li style="margin-right: 40px; background: #A6CAEE;">
-		                            	
-			                            	<c:choose>
-			                            		<c:when test="${userProfile.userProfileFilename != null}">
-			                            			<img alt="프로필사진" src="<c:url value='/user/userProfileGet?uploadPath=${userProfile.userProfileUploadpath}&fileName=${userProfile.userProfileFilename}' />" width="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
-			                            		</c:when>
-			                            	
-			                            		<c:otherwise>
-			                            			<img alt="프로필사진" src="${pageContext.request.contextPath}/resources/img/profile.png" width="30px" height="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px; max-width: 30px; max-height: 30px">
-			                            		</c:otherwise>
-			                            	</c:choose>
-		                            		
+			                            	<img alt="프로필사진" src="<c:url value='/user/userProfileGet?userNO=${user.userNO}' />" width="30px" height="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
 		                            		<a id="header-user-profile" style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif;">${user.userID}</a>
 		                            	</li>
 		                               <li><a id="btn-user-logout" style="cursor: pointer; font-family: sans-serif;">로그아웃</a></li>
@@ -136,7 +126,7 @@
 			<!-- 기업회원 상단바 / 메뉴 -->
 			<div id="navbar-wrapper">
 		        <header>
-		            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background: #6BB656;">
 		                <div class="container-fluid">
 		                    <div class="navbar-header">
 		                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
@@ -145,7 +135,7 @@
 		                            <span class="icon-bar"></span>
 		                            <span class="icon-bar"></span>
 		                        </button>
-		                        <a class="navbar-brand" href="<c:url value='/' />"><img class="header-img-logo" alt="로고" src="${pageContext.request.contextPath}/resources/img/RunWith.png"></a>
+		                        <a class="navbar-brand" href="<c:url value='/' />"><img class="header-img-logo" alt="로고" src="${pageContext.request.contextPath}/resources/img/RunWith4.png"></a>
 		                    </div>
 		                    <div id="navbar-collapse" class="collapse navbar-collapse">
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
@@ -159,8 +149,8 @@
 		                        <ul class="nav navbar-nav navbar-right">
 		                          <ul class="nav navbar-nav navbar-right">
 		                            <ul class="nav navbar-nav">
-		                            	<li style="margin-right: 40px; background: #A6CAEE;">
-		                            		<img alt="로고사진" src="${pageContext.request.contextPath}/resources/img/profile.png" width="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
+		                            	<li style="margin-right: 40px; background: #84C272;">
+		                            		<img alt="로고사진" src="<c:url value='/company/companyLogoGet?companyNO=${company.companyNO}' />" width="30px" height="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
 		                            		<a id="header-user-profile" style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif;">${company.companyID}</a>
 		                            	</li>
 		                               <li><a id="btn-company-logout" style="cursor: pointer; font-family: sans-serif;">로그아웃</a></li>
@@ -193,23 +183,23 @@
 		        </header>
 		    </div>
 		    <div id="wrapper">
-		        <div id="sidebar-wrapper">
+		        <div id="sidebar-wrapper" style="background: #648F5A;">
 		            <aside id="sidebar">
 		                <ul id="sidemenu" class="sidebar-nav">
 		                    <li>
-		                        <a id="mainmenu" class="dropdown-toggle">
+		                        <a id="mainmenu" class="dropdown-toggle" style="background: #89C578;">
 		                            <span class="sidebar-icon"><i class="fa fa-list"></i></span>
 		                            <span class="sidebar-title">전체 메뉴</span>
 		                        </a>
 		                    </li>
 		                    
 		                    <li class="dropdown">
-		                        <a id="mainmenu-1" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" role="button" href="#submenu-1">
+		                        <a id="mainmenu-1" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" role="button" href="#submenu-1" style="background: #5FA949;">
 		                            <span class="sidebar-icon"><i class="fa fa-book"></i></span>
 		                            <span class="sidebar-title">프로젝트</span>
 		                            <b class="caret"></b>
 		                        </a>
-		                        <ul id="submenu-1" class="panel-collapse collapse panel-switch" role="menu">
+		                        <ul id="submenu-1" class="panel-collapse collapse panel-switch" role="menu" style="background: #5FA949;">
 		                            <li class="sidebar-contents1"><a href="#" class="sidebar-contents2"><i class="fa fa-caret-right"></i>프로젝트 목록</a></li>
 		                            <li class="sidebar-contents1"><a href="#" class="sidebar-contents2"><i class="fa fa-caret-right"></i>프로젝트 등록</a></li>
 		                            <li class="sidebar-contents1"><a href="#" class="sidebar-contents2"><i class="fa fa-caret-right"></i>개발자 목록</a></li>
@@ -217,24 +207,24 @@
 		                    </li>
 		                    
 		                    <li>
-			                    <a id="mainmenu-2" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-2">
+			                    <a id="mainmenu-2" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-2" style="background: #4A8639;">
 			                        <span class="sidebar-icon"><i class="fa fa-users"></i></span>
 			                        <span class="sidebar-title">게시판</span>
 			                        <b class="caret"></b>
 			                    </a>
-			                    <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu">
+			                    <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu" style="background: #4A8639;">
 			                        <li><a href="#"><i class="fa fa-caret-right"></i>공지사항</a></li>
 			                        <li><a href="#"><i class="fa fa-caret-right"></i>자유게시판</a></li>
 			                        <li><a href="#"><i class="fa fa-caret-right"></i>자료실</a></li>
 			                    </ul>
 		                    </li>
 		                    <li>
-		                        <a id="mainmenu-3" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+		                        <a id="mainmenu-3" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3" style="background: #3C6C2D;">
 		                            <span class="sidebar-icon"><i class="fa fa-newspaper-o"></i></span>
 		                            <span class="sidebar-title">기업페이지</span>
 		                            <b class="caret"></b>
 		                        </a>
-		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu" style="background: #3C6C2D;">
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>기업 정보</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>쪽지함</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 현황</a></li>
@@ -278,8 +268,8 @@
 		                        <ul class="nav navbar-nav navbar-right">
 		                          <ul class="nav navbar-nav navbar-right">
 		                            <ul class="nav navbar-nav">
-		                            	<li style="margin-right: 40px; background: #F2CE00;">
-		                            		<img alt="프로필사진" src="${pageContext.request.contextPath}/resources/img/profile.png" width="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
+		                            	<li style="margin-right: 40px; background: #E1BF00;">
+		                            		<img alt="프로필사진" src="<c:url value='/user/userProfileGet?userNO=${user.userNO}' />" width="30px" height="30px" style="border-radius: 15px; margin-left: 12px; margin-right: -5px;">
 		                            		<a id="header-user-profile" style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif;">${user.userID}</a>
 		                            	</li>
 		                               <li><a id="btn-user-logout" style="cursor: pointer; font-family: sans-serif;">로그아웃</a></li>
@@ -313,7 +303,7 @@
 		        </header>
 		    </div>
 		    <div id="wrapper">
-		        <div id="sidebar-wrapper" style="background: #E6D796;">
+		        <div id="sidebar-wrapper" style="background: #BDAE68;">
 		            <aside id="sidebar">
 		                <ul id="sidemenu" class="sidebar-nav">
 		                    <li>
@@ -357,6 +347,18 @@
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>Q&A 관리</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>자유게시판 관리</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>자료실 관리</a></li>
+		                        </ul>
+		                    </li>
+		                    <li>
+		                        <a id="mainmenu-4" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-4" style="background: #574D00; color: white;">
+		                            <span class="sidebar-icon"><i class="fa fa-bar-chart"></i></span>
+		                            <span class="sidebar-title">통계</span>
+		                            <b class="caret"></b>
+		                        </a>
+		                        <ul id="submenu-4" class="panel-collapse collapse panel-switch" role="menu" style="background: #574D00;">
+		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>개발자 통계</a></li>
+		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>기업 통계</a></li>
+		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>프로젝트 통계</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
