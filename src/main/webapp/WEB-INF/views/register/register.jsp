@@ -793,7 +793,6 @@
 					return;
 				}
 				
-				/*
 				// 이메일 인증 여부 체크 1
 				if(!$('#user-email1').attr('readonly')) {
 					alert('이메일 인증이 필요합니다.');
@@ -813,7 +812,6 @@
 					$('#user-email-check-num').focus();
 					return;
 				}
-				*/
 				
 				// 전화번호 가운데 칸 입력 여부 체크
 				if($('#user-phone2').val() == '') {
@@ -1318,7 +1316,6 @@
 					return;
 				}
 				
-				/*
 				// 이메일 인증 여부 체크 1
 				if(!$('#company-email1').attr('readonly')) {
 					alert('이메일 인증이 필요합니다.');
@@ -1338,7 +1335,6 @@
 					$('#company-email-check-num').focus();
 					return;
 				}
-				*/
 				
 				// 전화번호 가운데 칸 입력 여부 체크
 				if($('#company-phone2').val() == '') {
