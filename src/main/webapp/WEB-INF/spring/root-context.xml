@@ -51,5 +51,10 @@
 	<!-- 공지사항 INoticeMapper 연결 -->
 	<mybatis-spring:scan base-package="com.spring.leaf.notice.mapper"/>
 	
+	<mybatis-spring:scan base-package="com.spring.leaf.project.mapper"/>
+	
+	
+	
+	<mybatis-spring:scan base-package="com.spring.leaf.projectapply.mapper"/>
 	
 </beans>
