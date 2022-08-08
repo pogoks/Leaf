@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-// 프로젝트 이미지 VO : 2022-08-01 생성
+// 프로젝트 좋아요 VO : 2022-08-01 생성
 
 @Getter
 @Setter

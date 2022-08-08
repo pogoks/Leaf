@@ -40,6 +40,15 @@
 .projectFont {
 	font-weight: bold;
 }
+
+input.form-control {
+    width: 100%;
+    display: inline-block;
+}
+
+.img-circle {
+    padding: 0px;
+}
 </style>
 </head>
 <body>

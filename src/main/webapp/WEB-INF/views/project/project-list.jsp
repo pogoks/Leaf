@@ -88,7 +88,7 @@
           <div class="project-list-col-md-8" >
             <div class="project-listbox">
               <div class="image-intro"> 
-                <a href="#"><img src="../resources/img/main4.jpg" alt="사진"></a>
+                <a href="#"><img src="../resources/img/main4.jpg" alt="사진" style="width: 200px; height: 100px; object-fit: cover; vertical-align: text-bottom;"></a>
                 </div>
               <div class="project-form">
                 <div class="project-title" id="project-view-icon${index.index}" style="cursor: pointer;">

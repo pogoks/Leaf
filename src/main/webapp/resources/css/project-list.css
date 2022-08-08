@@ -144,13 +144,6 @@
     margin-left: 348px;
 }
 
-img {
-    width: 200px;
-    height: 100px;
-    object-fit: cover;
-    vertical-align: text-bottom;
-}
-
 .project-form .project-title {
     height: 40px;
 }

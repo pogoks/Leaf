@@ -39,13 +39,13 @@
     <div class="container-top-icons">
       <div class="project-name">
       <p>2022년 환경 푸르미 프로젝트 개발자 모집 </p>
-      <input type="hidden" value="${project.projectNO}" name="projectNO">
+      <input type="hidden" >
       </div>
       <div class="project-user">
         <p>신청자 : 3명 </p>
       </div>
       <div class="project-heart">
-        <a href="#"><span href="#" class="fa fa-heart"></a>3</span>
+        <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
       </div>
       <div class="project-seen">
         <p>조회수 : 12</p>
@@ -57,18 +57,21 @@
     <br>
     </div>
 
+	<form action="<c:url value='/project/projectapply'/>" method="post">
+
     <div class="user-profile-intro">
-        <form action="<c:url value='/project/projectapply'/>" method="post">
+        
             <div class="username-input-box">
                 <div class="project-user-name">
-                    <p>이름</p>
+                    <p>이름</p> 
+                    <input type="hidden" value="${projectNO}" id="project-list-content2" name="projectNO">
                     <input type="hidden" value="${user.userNO}" name="userNO">
                     <input type="search" id="project-user-name" class="input-all input1" placeholder="이름을 입력해 주세요." maxlength="40" value="${user.userName}" readonly>
                     <span id="span-name"></span>
                 </div>
                 <div class="project-e-mail">
                     <p>이메일</p>
-                    <input type="search" id="project-user-email" class="input-all input2" placeholder="이메일을 입력해 주세요." maxlength="40" value="${user.userEmail1} @ ${user.userEmail2}", readonly>
+                    <input type="search" id="project-user-email" class="input-all input2" placeholder="이메일을 입력해 주세요." maxlength="40" value="${user.userEmail1} @ ${user.userEmail2}" readonly>
                     <span id="span-email"></span>
                 </div>
                 <div class="project-phone">
@@ -96,10 +99,10 @@
         <div class="jechul-button">
             <div class="project-container-bottom">
                 <button type="submit" id="jiwon-btn" class="btn btn-success">제출하기</button>
-                <button type="button" id="chwiso-btn" class="btn btn-danger">취소</button>
+                <button type="button" id="chwiso-btn"  class="btn btn-danger">취소</button>
               </div>
         </div>
-        </form>
+        
         <div class="user-check-box">
           <label>
             <input type="checkbox"> 개인정보 제공 동의
@@ -110,18 +113,25 @@
 
 
   </div>
-
+	</form>
 
   <%@ include file="../include/footer.jsp" %>
   </div>
+  
 </body>
-</div>
+
 </html>
 <script>
 $(function() {
 	$('#chwiso-btn').click(function() {
-		location.href='<c:url value="/project/projectview" />';
+		const projectNO = $('#project-list-content2').val();
+		
+		console.log(projectNO);
+		
+		location.href='<c:url value="/project/projectview?projectNO=" />' + projectNO;
 	})
 	
 });
+
+
 </script> 

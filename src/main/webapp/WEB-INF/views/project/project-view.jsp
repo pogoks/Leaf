@@ -27,6 +27,11 @@
 
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpage-style.css">
   
+  
+  <style type="text/css">
+  
+  
+  </style>
 
 
 </head>
@@ -51,7 +56,8 @@
         <p>신청자 : 3명 </p>
       </div>
       <div class="project-heart">
-        <a href="#"><span href="#" class="fa fa-heart"></a>3</span>
+      <input type="hidden" value=""${projectLike.projectLikeNO} name="projectLikeNO">
+       <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
       </div>
       <div class="project-seen">
         <p>조회수 : 12</p>
@@ -73,7 +79,7 @@
       </div> <br>
       <div class="project-myeng">
         프로젝트 명
-        <input type="hidden" value="${projectview.projectNO}" name="projectNO">
+        <input type="hidden" value="${projectview.projectNO}" id="hidden-project-no" name="projectNO">
       </div>
       <div class="project-myeng1">
         <p>${projectview.projectName}</p>
@@ -105,9 +111,12 @@
         <p>${projectview.companyAddress1} ${projectview.companyAddress2} ${projectview.companyAddress3}</p> 
       </div>
       <div class="project-container-right">
-        <button type="button" class="btn btn-primary" href="../project-map.html" onclick="window.open(this.href, '_blank', 'width=600px, height=400px,toolbars=no,scrollbars=no');">
+      <a href="project-map.html" onclick="window.open(this.href, '_blank', 'width=600px, height=400px,toolbars=no,scrollbars=no'); return false;">
+        <button type="button" class="btn btn-primary">
           지도
           </button>
+          </a>
+        
       </div> <br>
       
       
@@ -193,18 +202,57 @@ $(function() {
 });
 
 $(function() {
+	
+	const projectNO = $('#hidden-project-no').val();
+	
 	$('#jiwon-btn').click(function() {
-		location.href='<c:url value="/project/projectapply" />';
+		location.href='<c:url value="/project/projectapply?projectNO=" />' + projectNO;
 	})
 	
 });
 
 $(function() {
+	
+	const projectNO = $('#hidden-project-no').val();
+	
 	$('#jiwon-btn1').click(function() {
-		location.href='<c:url value="/project/projectapply" />';
+		location.href='<c:url value="/project/projectapply?projectNO=" />' + projectNO;
 	})
 	
 });
+
+
+function getListLike(isReset) {
+	let deferred = $.Deferred();
+	console.log('먼저 실행되어야 합니다!');
+	const userNO = '${user.userNO}';
+	console.log(userNO);
+	
+	if(userNO !== '') {
+		$.ajax({
+			type: 'post',
+			url: '<c:url value="/project/projectview" />',
+			data: userNO,
+			contentType: 'application/json',
+			success: function(result) {
+				console.log('result: ' + result); //게시글 번호들
+				if(isReset) {
+					deferred.resolve(result, page, true);								
+				} else {
+					deferred.resolve(result, page, false);
+				}
+			}
+		}); //end ajax
+	} else {
+		if(isReset) {
+			deferred.resolve(null, page, true);								
+		} else {
+			deferred.resolve(null, page, false);
+		}
+	}
+	
+	return deferred.promise();
+}
 </script> 
                  
 

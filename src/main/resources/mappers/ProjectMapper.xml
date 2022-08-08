@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="commonValue" column="common_value"/>
 	</resultMap>
 	
-	
+	<!-- 프로젝트 등록하기 -->
 	<insert id="projectputin">
 		INSERT INTO project(project_name, project_desc, project_manager, project_manager_phone, project_manager_email, project_require_license
 		, project_require_role, project_require_people, project_require_date1, project_require_date2, company_NO)
@@ -52,11 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, #{projectRequireRole}, #{projectRequirePeople}, #{projectRequireDate1}, #{projectRequireDate2}, #{companyNO})
 	</insert>
 	
-
+    <!-- 프로젝트 등록하기 -->
 	<select id="project-put">
 		SELECT * FROM project; 
 	</select>
 	
+	<!-- 프로젝트 상세보기 -->
 	<select id="getContent" resultMap="ProjectContentMap">
 		SELECT
 			p.project_NO, p.project_name, p.project_desc, p.project_manager, p.project_manager_phone, p.project_manager_email, p.project_views, p.project_require_license, p.project_require_people, p.project_require_date1, p.project_require_date2, p.company_NO, c.company_name, c.company_phone1, c.company_phone2, c.company_phone3, c.company_address1, c.company_address2, c.company_address3, p.common_CODE, cd.common_value
@@ -68,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE p.project_NO = #{projectNO}
 	</select>
 	
+	<!-- 프로젝트 목록 -->
 	<select id="projectlist" resultMap="ProjectListMap">
 		SELECT
    			p.project_NO, p.project_name, p.project_require_license, p.project_require_date1, p.project_require_date2, p.company_NO, c.company_name, p.common_CODE, cd.common_value
@@ -80,6 +82,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
+	<!-- 좋아요 검색 -->
+	<select id="searchLike" resultType="int">
+		SELECT COUNT(*) FROM project_like
+		WHERE project_NO=#{projectNO} AND user_NO=#{userNO}
+	</select>
+	
+	<!-- 좋아요 등록 -->
+	<insert id="createLike">
+		INSERT INTO project_like
+		(projectLikeNO, userNO, projectNO)
+		VALUES(#{projectLikeNO}, #{userNO}, snslike_seq.NEXTVAL)
+	</insert>
+	
+	<!-- 좋아요 삭제 -->
+	<delete id="deleteLike">
+		DELETE FROM project_like
+		WHERE projectLikeNO=#{projectLikeNO} AND userNO=#{userNO}
+	</delete>
 
 </mapper>
 
