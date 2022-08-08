@@ -1,4 +1,4 @@
-package com.spring.leaf.archivefile.controller;
+package com.spring.leaf.archive.controller;
 
 import org.springframework.stereotype.Controller;
 

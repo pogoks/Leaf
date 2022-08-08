@@ -30,15 +30,16 @@
    <!-- 여기다가 나만의 새로운 css 만들기 -->
    <style>
 
- 	.tbody {
- 		width: 100%;
- 	
+ 	.boardReplyWrap {
+ 		position:relative;
+ 		overflow:hidden;
+ 		width:100%;
+ 		height: 40px;
+ 		float: none;
+ 		text-align:center;
+ 		line-height: 40px;
+ 		
  	}
-
-    .td{
-        
-        height:350px;
-    }
     
     .freetitle {
     
@@ -69,7 +70,7 @@
 	                        	<div class="free_content" >
 	                                   <div class="free_content_up" style="margin-left:30px;" >
 			                                        <div class="free_title_up" scope="col" style="width: 100%;  margin-top:10px;">
-			                                        	<input type="hidden" name="boardNo" value="${board.boardNo}">
+			                                        	<input type="hidden" id="hidden-boardNo" name="boardNo" value="${board.boardNo}">
 			                                        	<h4 style="display:inline-block;">${board.boardTitle}</h4>
 				                                        <a type="submit" id="btn-board-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
 			                                        </div>
@@ -99,7 +100,8 @@
 	                        </div>
                         </form>
                        
-                        <div  class="table table-borderless"  style="text-align: center; font-size:12px;">
+                      <!-- 댓글 보여지는 부분 -->
+                        <div  class="boardreply-List"  style="text-align: center; font-size:12px;">
 					                    <div>
 					                        <div style="background-color: #bbd0e7;" >
 					                            <div style=" text-align: left; margin-left:10px; padding-top:10px; ">전체댓글
@@ -107,8 +109,13 @@
 					                            </div>
 					                        </div> 
 					                    </div>
-					                    <div id="boardReplyList">
-					                    <!--tbody>
+					                    
+					                    <!-- 댓글 보기 모드 -->
+					                    <div id="boardReplyList" style="width=100%;">
+					                    
+					                 
+					                    <!-- 주석 
+					                    <tbody>
 					                    
 					                        <tr>
 					                            <td style="text-align: left;">${boardreply.boardReplyWriter}</td>
@@ -118,8 +125,13 @@
 												<td><a class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
 					                        </tr>
 					
-					                    </tbody-->  
-					                    </div>     
+					                    </tbody>  
+					                    
+					                    -->
+					                   
+					                    </div> 
+	   
+					                   
 			                 		</div>
 			               
 			                <div class="text-center">
@@ -133,11 +145,12 @@
 						                    <li><a href="#">>></a></li>
 						                </ul>
 						                
-						                
+						                <!-- 댓글 입력 부분 -->
 						                <div style="background-color:#bbd0e7; height: 120px; ">
 				                        		<div style="text-align:left; margin: 10px 10px 10px 10px; padding-top:10px;">회원만 댓글 작성이 가능합니다.</div>
 				                        		<div>
 				                        			<div>
+				                        				<input type="hidden" id="boardNo" name="boardNo" value="${board.boardNo}">
 				                        				<input type="hidden" id="boardReplyWriter" name="boardReplyWriter" value="${user.userID}" >
 						                        		<textarea id="boardReplyContent" type="text" class="form-control col-md-8 col-sm-10" placeholder="댓글을 입력하세요." name="boardReplyContent" maxlength="2048" style="float:left; width:85%;  margin-left:30px;"></textarea>
 													</div>
@@ -195,17 +208,19 @@
 		
 			$('#btn-boardreply-write').click(function(){
 				
-				const boardNo = '${board.boardNo}'; //컨트롤러에서 넘어온 글 번호
+				const boardNo = $('#hidden-boardNo').val(); //컨트롤러에서 넘어온 글 번호
 				const boardReplyContent = $('#boardReplyContent').val(); //댓글 내용
+				
+				console.log(boardReplyContent);
+				
 				const boardReplyWriter = $('#boardReplyWriter').val();//작성자
 				
-				if(boardReplyContent === '') {
+				if($('#boardReplyContent').val() == '') {
 					alert('내용을 입력하세요 !');
 					return;
 				}
 				
-				
-				
+
 				$.ajax({
 					type: 'post',
 					url: '<c:url value="/boardreply/boardReplyWrite" />',
@@ -226,82 +241,95 @@
 						alert('댓글 등록이 완료되었습니다.');
 						
 						$('#boardReplyContent').val('');
-						//$('#boardReplyWriter').val('');
 					
 						boardReplyList(1,true);
 					},
 					
 					error: function() {
 						alert('댓글 등록이 실패하였습니다.');
-						return;
 					}
 				
 					
 				}); //end ajax
 			}); //댓글 등록 이벤트 끝
-		});
+	
 		
+	
 		//댓글 목록 조회
 		
-		let strAdd = '';
+		let strAdd = ''; //화면에 넣을 태그를 문자열 형태로 추가할 변수
 		
-		boardReplyList(1, true); //댓글 리스트 불러오기
+		boardReplyList(1, true); //상세보기 화면에 처음 진입 시 댓글 리스트 불러오기
 		
-		const boardNo = '${board.boardNo}'; //게시글 번호
 		
-		$.getJSON(
-			"<c:url value='/boardreply/boardReplyList'/>" + boardNo,
-			function(result) {
-				console.log(result);
-				
-				let boardReplyList = result.list; //댓글 리스트
-				
-				if(reset === true) {
-					strAdd = '';
-				}
-				
-				if(boardReplyList.length <= 0) {
-					return; //함수 종료
-				}
-				
-				for(let i=0; i<boardReplyList.length; i++) {
-					strAdd += 
-					
-                    `<div class='boardReplyContent'>
-                        <div class='boardReply-group'>
-	                        <div style="text-align: left;">`${boardreply.boardReplyWriter}`</div>
-	                        <div style="text-align: left;">`${boardreply.boardReplyContent}`</div>
-	                        <div>`${boardreply.boardReplyDate}`</div>
-                            <div><a class="glyphicon glyphicon-ok" aria-hidden="true"></a></div>
-                            <div><a class="glyphicon glyphicon-remove" aria-hidden="true"></a></div>
-                        </div>
-                        <p class='clearfix'>` + boardReplyList[i].reply + `</p>
-                  
-                	</div>`;
-				}
-				
-				<!--  table  class="table table-borderless"  style="text-align: center; font-size:12px;">
-            
-                
-                <tbody>
-                
-                    <tr>
-                        <td style="text-align: left;">${boardreply.boardReplyWriter}</td>
-                        <td style="text-align: left;">${boardreply.boardReplyContent}</td>
-                        <td>${boardreply.boardReplyDate}</td>
-                        <td><a class="glyphicon glyphicon-ok" aria-hidden="true"></a></td>
-						<td><a class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
-                    </tr>
+		//목록 불러오기
+		function boardReplyList() {
+		
+			const boardNo = '${board.boardNo}';
 
-                </tbody>       
-     		</table-->
+			
+			$.getJSON(
+				"<c:url value='/boardreply/boardReplyList/'/>" + boardNo,
 				
+				function(result){
+					
+					let boardReplyList = result.boardReplyList; //댓글 리스트
+					
+					if(boardReplyList.length <= 0) {
+						return; //함수 종료
+					}
+					
+					for(let i=0; i<boardReplyList.length; i++) {
+						strAdd += 
+							`<div class='boardReplyWrap'>
+		                        <div id='boardReply-Writer' style="text-align: left; float:left; width:15%; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`</div>
+		                        <div id='boardReply-Content' style="text-align: left; float:left; width:15%;">&nbsp;` + boardReplyList[i].boardReplyContent +`</div>
+		                        <div style="float:left; width:50%;">`+ boardReplyList[i].boardReplyDate+`</div>
+	                            <div style="float:left; width:10%; padding-top:10px;"><a href='` + boardReplyList[i].boardReplyNo +`' class="glyphicon glyphicon-ok" aria-hidden="true"></a></div>
+	                            <div style="float:left; width:10%; padding-top:10px;"><a href='` + boardReplyList[i].boardReplyNo +`' class="glyphicon glyphicon-remove" aria-hidden="true"></a></div>
+	                        </div>`;
+					}
 				
-				$('boardReplyList').html(strAdd);
-				
-			}
-		)
+					
+					
+					$('#boardReplyList').html(strAdd);
+					
+					
+			
+						
+					
+					
+				}
+			); //end getJSON
+			
+		}//end boardReplyList()
+		
+		//댓글 수정
 		
 		
+		//삭제 함수
+		$('.glyphicon-remove').click(function () {
+		
+			const boardReplyNo = $('.glyphicon-remove').val();
+			
+			$.ajax({
+				type: 'post',
+				url: '<c:url value="/boardreply/boardReplyDelete"/>',
+				data: JSON.stringify({
+					"boardReplyNo": boardReplyNo
+				}),
+				contentType: 'application/json',
+			    function (result) {
+					alert('댓글이 삭제완료되었습니다.')
+					boardReplyList(1, true);
+				},
+				error: function () {
+					alert('댓글 삭제에 실패하였습니다.')
+					
+				}
+			}); //삭제 비동기 통신 끝.
+		}); //삭제 이벤트 끝.
+		
+	});//end jquery
 
 </script>
