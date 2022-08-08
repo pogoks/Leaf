@@ -334,7 +334,7 @@
 			                    </a>
 			                    <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu" style="background: #A48E00;">
 			                        <li><a href="#"><i class="fa fa-caret-right"></i>기업 가입 관리</a></li>
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>공통코드 관리</a></li>
+			                        <li><a href="<c:url value='/admin/commonCODE' />"><i class="fa fa-caret-right"></i>공통코드 관리</a></li>
 			                    </ul>
 		                    </li>
 		                    <li>
