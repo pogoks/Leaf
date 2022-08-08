@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!-- 글 내용 줄 개행 처리를 위해 추가 -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 
 <html>
 <head>
@@ -79,15 +82,15 @@
                 	 
 				
                      <div class="container my-1">
-						<form action"<c:url value='/notice/noticeDelete'/>" method="post" name="noticeContentForm" >
+						<form action="<c:url value='/notice/noticeDelete'/>" method="post" name="noticeDeleteForm">
                         <div class="row" >
                       		<!-- 공지사항 글 상세보기  -->
                             <div class="notice_content" >
                             	<div class="notice_content_up" style="margin-left:30px;" >
 		                                        <div class="notice_title" scope="col" style="width: 100%;  margin-top:10px;">
-		                                        	<input type="hidden" value="${notice.noticeNo}">
-		                                        	<h4 style="display:inline-block;">${notice.noticeTitle}</h4>
-			                                        <button type="submit" id="btn-notice-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</button>
+		                                        	<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
+		                                        	<h4 style="display:inline-block;" >${notice.noticeTitle}</h4>
+			                                        <button type="button" id="btn-notice-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</button>
 		                                        </div>
 		                                        
 		                                        <div style="margin-top:30px;">
@@ -107,7 +110,8 @@
 
                                     <div class="notice_content_down" style="margin-top:30px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
                                         
-                                        	${notice.noticeContent}
+                                        	${fn:replace(notice.noticeContent, newLineChar, '<br/>')}
+
                                            
                                     </div>
 	                 		</div>
@@ -144,20 +148,15 @@
 	});
  	
  	//삭제 버튼 처리
- 	$('btn-notice-delete').click(function() {
- 		
- 		if(confirm('정말 삭제하시겠습니까?')) {
-			$('form[name=updateForm]').attr('action', '<c:url value="/notice/noticeDelete"/>');
-			//document.updateForm.setAttribute('action', ~~~~);
-			$('form[name=updateForm]').submit();
-		}
+ 	$(function(){
+	 	$('#btn-notice-delete').click(function() {
+	 		
+	 		if(confirm('정말 삭제하시겠습니까?')) {
+				document.noticeDeleteForm.submit();
+			}
+	 	})
 	});
  		
-		location.href='<c:url value="/notice/noticeDelete"/>';
-	})
-	
-	});
- 	
 
 
 </script>

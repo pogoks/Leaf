@@ -43,7 +43,7 @@
 			            	<span class="main-notice-title">공지사항</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
-						<form action="<c:url value='/notice/noticeWrite'/>" method="post" name="noticeWriteform">
+						<form action="<c:url value='/notice/noticeWrite'/>" method="post" name="noticeWriteForm">
 			    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 				    	    	<thead>
 					    	    	<tr>
@@ -60,7 +60,7 @@
 					    	    		<th colspan= "2">공지사항 내용</th>
 					    	    	</tr>
 						    		<tr>
-						    			<td><textarea class="form-control" name="noticeContent" placeholder="내용을 입력하세요." maxlength="2048" style= "height:350px" ></textarea></td>
+						    			<td><textarea wrap="hard" class="form-control" name="noticeContent" placeholder="내용을 입력하세요." maxlength="2048" style= "height:350px" ></textarea></td>
 						    		</tr>
 						    	</tbody>
 			    	    	</table>
