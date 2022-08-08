@@ -1,4 +1,4 @@
-package com.spring.leaf.archivefile.command;
+package com.spring.leaf.archive.command;
 
 import lombok.Getter;
 import lombok.Setter;
