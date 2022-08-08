@@ -37,6 +37,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER BY company_message_NO DESC
 		</select>
 		
+		<!-- 기업이 관리자로부터 받은 쪽지 상세보기 -->
+		<select id="companyMessageContent" resultMap="CompanyMessageMap">
+			SELECT * FROM company_message
+			WHERE company_NO=#{companyNO}
+		</select>
+		
+		
 		<!-- 기업이 관리자로부터 받은 쪽지 삭제하기 -->
 		<delete id="companyMessageDelete">
 		DELETE FROM company_message

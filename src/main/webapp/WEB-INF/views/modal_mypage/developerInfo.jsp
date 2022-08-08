@@ -18,12 +18,11 @@
 							<div class="row">
 								<div class="col-md-5">
 									<div style="background: #fff; height: 250px;">
-										<img src="" alt="profile"
+										<img src="<c:url value='/user/userProfileGet?userNO=${user.userNO}' />" alt="profile"
 											width="140px" style="transform: translate(60px, 35px);">
 										<div style="margin-top: 60px;">
 											<h3 id="modal-user-id" style="text-align: center;"></h3>
-											<ul id="modal-user-name" style="text-align: center; padding-left: 0px;">
-											</ul>
+											<ul id="modal-user-name" style="text-align: center; padding-left: 0px;"></ul>
 										</div>
 									</div>
 								</div>
@@ -31,27 +30,27 @@
 								<div class="col-md-7">
 									<div style="margin-bottom:7px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">ID</div>
-										<div style="display:inline-block; width:100px;">${user.userName}</div>
+										<div id="modal-user-id" style="display:inline-block; width:100px;"></div>
 									</div>
 									<div style="margin-bottom:7px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">이름</div>
-										<div style="display:inline-block; width:100px;">${user.userName}</div>
+										<div id="modal-user-name" style="display:inline-block; width:100px;"></div>
 									</div>
 									<div style="margin-bottom:7px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">이메일</div>
-										<div style="display:inline-block; width:100px;">${user.userEmail1}@${user.userEmail2}</div>
+										<div id="modal-user-email" style="display:inline-block; width:100px;"></div>
 									</div>
 									<div style="margin-bottom:9px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">Phone</div>
-										<div style="display:inline-block; width:200px;">${user.userPhone1} - ${user.userPhone2} - ${user.userPhone3}</div>
+										<div id="modal-user-phone" style="display:inline-block; width:200px;"></div>
 									</div>
 									<div style="margin-bottom:15px;">
 										<div style="font-weight:bold; display:inline-block; width:30%; float:left;">소개</div>
-										<div style="display:inline-block; width:260px;">${user.userIntro}</div>
+										<div id="modal-user-intro" style="display:inline-block; width:260px;"></div>
 									</div>
 									<div style="margin-bottom:7px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">이력서</div>
-										<div style="display:inline-block; width:150px;">최준영 이력서.hwp</div>
+										<div id="modal-user-resume" style="display:inline-block; width:150px;"></div>
 									</div>
 									<div style="margin-bottom:7px;">
 										<div style="font-weight:bold; display:inline-block; width:30%;">회원구분</div>

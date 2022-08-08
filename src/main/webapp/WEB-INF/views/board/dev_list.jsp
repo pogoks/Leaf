@@ -104,35 +104,43 @@
                             <td></td>
                         </tr>
                         
-                        <%@ include file="../modal_mypage/developerInfo.jsp" %>
+                         <%@ include file="../modal_mypage/developerInfo.jsp" %>
+                  
+                  <script>
+                     
+                     $(function() {
                         
-                        <script>
-                        	
-                        	$(function() {
-                        		$('#userListContent${index.index}').click(function() {
-                        			$.ajax({
-                        				type: 'GET',
-                        				url: '<c:url value="/userList/userListContent/" />' + ${userlist.userNO},
-                        				
-                        				success: function(user) {
-                        					console.log(user);
-                        					$('#modal-user-id').text(user.userID);
-                        					$('#modal-user-name').text(user.userName);
-                        				},
-                        				
-                        				error: function() {
-                        					alert('error');
-                        					return;
-                        				}
-                        			});
-                        			
-                        			$('#myModal').modal('show');
-                        		});
-                        	});
+                        $('#userListContent${index.index}').click(function() {
+                           
+                           $.ajax({
+                              type: 'GET',
+                              url: '<c:url value="/userList/userListContent?userNO=" />' + '${userList.userNO}',
+                              
+                              success: function(user) {
+                                 $('#modal-user-id').text(user.userID);
+                                 $('#modal-user-name').text(user.userName);
+                                 $('#modal-user-email').text(user.userEmail1);
+                                 $('#modal-user-phone').text(user.userPhone1);
+                                 $('#modal-user-intro').text(user.userIntro);
+                               
+                                 
+                                
+                              },
+                              
+                              error: function() {
+                                 alert('개발자 목록 상세 보기 요청 처리 중 서버오류가 발생했습니다.');
+                                 return;
+                              }
+                           });
+                           
+                           $('#myModal').modal('show');
+                        });
                         
-                        </script>
-                        
-                    </c:forEach>
+                     });
+                  
+                  </script>
+                  
+               </c:forEach>
                    
                        
                     </tbody>

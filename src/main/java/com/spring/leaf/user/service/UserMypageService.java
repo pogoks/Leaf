@@ -13,9 +13,21 @@ public class UserMypageService implements IUserMypageService {
 	@Autowired
 	private IUserMypageMapper mapper;
 	
+	
 	@Override
-	public void userUpdate(UserVO vo) {
-		mapper.userUpdate(vo);
+	public UserVO getInfo(int UserNO) {
+		return mapper.getInfo(UserNO);
+	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		mapper.updateUser(vo);
+	}
+
+	@Override
+	public void deleteUser(String id, String pw) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

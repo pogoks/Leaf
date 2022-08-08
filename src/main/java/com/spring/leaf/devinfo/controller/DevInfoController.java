@@ -21,9 +21,13 @@ public class DevInfoController {
 	private IDevInfoService service; 
 	
 	// 일반회원 목록 상세보기
-	@GetMapping("/userListContent/{userNO}")
+	@GetMapping("/userListContent")
 	@ResponseBody
 	public DevInfoVO userListContent(Model model, @PathVariable int userNO) {
 		return service.userListContent(userNO);
 	}
 }
+
+
+
+

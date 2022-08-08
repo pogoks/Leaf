@@ -15,9 +15,9 @@ public interface ICompanyMessageMapper {
 	List<CompanyMessageVO> companyMessageList();
 	
 	//쪽지 상세보기 (쪽지목록 상세보기)
-	CompanyMessageVO companyMessageContent(int companyMessageNo);
+	CompanyMessageVO companyMessageContent(int companyMessageNO);
 
 	//쪽지 삭제하기 (관리자로부터 받은 쪽지를 CompanyMessage 테이블에서 삭제하기)
-	void companyMessageDelete(int companyMessageNo);
+	void companyMessageDelete(int companyMessageNO);
 }
 

@@ -2,6 +2,7 @@ package com.spring.leaf.userlist.service;
 
 import java.util.List;
 
+import com.spring.leaf.devinfo.command.DevInfoVO;
 import com.spring.leaf.notice.command.NoticeVO;
 import com.spring.leaf.userlist.command.UserListVO;
 
@@ -11,5 +12,4 @@ public interface IUserListService {
 	
 	// 개발자 목록
 	List<UserListVO> userList();
-
 }

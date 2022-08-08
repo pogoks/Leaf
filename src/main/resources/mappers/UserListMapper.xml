@@ -15,7 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userPhone1" column="user_phone1" />
 		<result property="userPhone2" column="user_phone2" />
 		<result property="userPhone3" column="user_phone3" />
-		<result property="userIntro" column="user_intro" />
 		
 	</resultMap>
 	
@@ -24,8 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM user
 		ORDER BY user_NO DESC
 	</select>
-
-
-
+	
 
 </mapper>

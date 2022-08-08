@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.leaf.notice.command.NoticeVO;
 import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.user.service.IUserMypageService;
 import com.spring.leaf.util.MailService;
@@ -34,27 +36,26 @@ public class UserMypageController {
 	@Autowired
 	private IUserMypageService service;
 
-	// 마이페이지(내정보) 이동 요청
-	@GetMapping("/userprofile")
-	public String userprofile() {
-		logger.info("/usermypage/userprofile : GET (내 정보 페이지 이동)");
+	
+	//마이페이지 이동 요청
+		@GetMapping("/usermypage")
+		public String userMyPage() {
+			return "/user_mypage/user_profile";
+		}
+		
 
-		return "/user_mypage/user_profile";
-	}
-
-	// 마이페이지(내정보) 수정페이지 이동
-	@GetMapping("/userupdatemod")
-	public String userupdatemod() {
-		logger.info("/usermypage/userupdatemod : GET (내 정보 수정페이지 이동)");
-
-		return "/user_mypage/user_profileMod";
-	}
+		
+	//수정페이지 이동 요청
+		@GetMapping("/usermypagemod")
+		public String userMyPageMod() {
+			return "/user_mypage/user_profileMod";
+		}
+	
 
 	// 수정 로직
 	@PostMapping("/userUpdate")
 	public String userUpdate(UserVO vo, RedirectAttributes ra) {
-		System.out.println("param: " + vo);
-		service.userUpdate(vo);
+		service.updateUser(vo);
 
 		ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
 		return "redirect:/user_mypage/user_profile";

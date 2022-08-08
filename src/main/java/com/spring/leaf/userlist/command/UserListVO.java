@@ -19,5 +19,4 @@ public class UserListVO {
 	private String userPhone1;
 	private String userPhone2;
 	private String userPhone3;
-	
 }

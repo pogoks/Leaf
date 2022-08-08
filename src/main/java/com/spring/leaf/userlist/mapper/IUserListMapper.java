@@ -11,7 +11,6 @@ public interface IUserListMapper {
 	// 개발자 목록
 	List<UserListVO> userList();
 
-	// 개발자 목록 상세보기
-	UserListVO userListContent(int userNO);
+	
 
 }

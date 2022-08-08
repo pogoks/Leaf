@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.leaf.devinfo.command.DevInfoVO;
 import com.spring.leaf.notice.mapper.INoticeMapper;
 import com.spring.leaf.userlist.command.UserListVO;
 import com.spring.leaf.userlist.mapper.IUserListMapper;
@@ -24,6 +25,8 @@ public class UserListService implements IUserListService {
 		List<UserListVO> list = mapper.userList();
 		return list;
 	}
+	
+	
 	
 
 }

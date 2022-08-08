@@ -62,10 +62,9 @@ input.form-control {
 							</a>
 
 							<div class="card"
-								style="width: 20%; transform: translate(0, -100px);">
-								<img src="resources/img/profile.png" alt="profile"
-									class="img-circle" style="height:250px;">
-								<div class="container1" style="margin-top:35px;">
+								style="width: 20%; transform: translate(0, -70px);">
+								<img src="<c:url value='/user/userProfileGet?userNO=${user.userNO}' />" alt="profile" class="img-circle" style="height:250px;">
+								<div class="container1">
 									<h3>
 										<b class="card-title">${user.userID} </b>
 									</h3>
@@ -142,7 +141,7 @@ input.form-control {
 									<div class="col-sm-9">
 										<div class="form-group btn-profile">
 											<button type="button" class="btn btn-success"
-												onclick="location.href='/user_profileMod'">정보수정</button>
+												onclick="location.href='/usermypage/usermypagemod'">정보수정</button>
 											<button type="button" class="btn btn-primary"
 												data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
 										</div>
@@ -205,8 +204,8 @@ input.form-control {
 							</a>
 
 							<div class="com_card"
-								style="width: 20%; transform: translate(0, -510px);">
-								<img src="resources/img/logo2.png" alt="profile"
+								style="width: 20%; transform: translate(0, -490px);">
+								<img src="<c:url value='/company/companyLogoGet?companyNO=${company.companyNO}' />" alt="profile"
 									class="img-circle">
 								<div class="container1">
 									<h3>
@@ -344,7 +343,7 @@ input.form-control {
 									<div class="col-sm-3"></div>
 									<div class="col-sm-9">
 										<div class="form-group btn-profile">
-											<button type="button" class="btn btn-success">정보수정</button>
+											<button type="submit" class="btn btn-success">정보수정</button>
 											<button type="button" class="btn btn-primary">비밀번호변경</button>
 										</div>
 									</div>
@@ -367,5 +366,7 @@ input.form-control {
 
 
 <script>
-	
+
+
+
 </script>
