@@ -79,16 +79,16 @@
                 	 
 				
                      <div class="container my-1">
-						<form action"<c:url value='/notice/noticeDelete'/>" method="post" name="noticeContentForm" >
+						<form action="<c:url value='/notice/noticeDelete'/>" method="post" name="noticeDeleteForm" >
                         <div class="row" >
                       		<!-- 공지사항 글 상세보기  -->
                             <div class="notice_content" >
                             	<div class="notice_content_up" style="margin-left:30px;" >
 		                                        <div class="notice_title" scope="col" style="width: 100%;  margin-top:10px;">
-		                                        	<input type="hidden" value="${notice.noticeNo}">
+		                                        	<input type="hidden" value="${notice.noticeNo}" name="noticeNo">
 		                                        	<h4 style="display:inline-block;">${notice.noticeTitle}</h4>
 		                                        	<c:if test="${notice.noticeWriter eq user.userID }">
-				                                        <button type="submit" id="btn-notice-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</button>
+				                                        <button type="button" id="btn-notice-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</button>
 		                                        	</c:if>
 		                                        </div>
 		                                        
@@ -144,29 +144,24 @@
 
 <script>
 
+	const msg = '${msg}';
+	if(msg !== '') {
+		alert(msg);
+	}
 
  	// 목록 이동 버튼
 	$(function() {
 		$('#btn-notice-list').click(function() {
 			location.href='<c:url value="/notice/noticeList"/>';
 		})
-	});
- 	
- 	
-//jQuery 시작 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	const msg = '${msg}';
-	if(msg !== '') {
-		alert(msg);
-	}
 		
- 	//삭제 버튼 처리
- 	$('#btn-notice-delete').click(function() {
- 		if(confirm('정말 삭제하시겠습니까?')) { //예.
-			alert(msg);
-		} else { return false; } //아니요
- 		//location.href='<c:url value="/notice/noticeList"/>';
+		$('#btn-notice-delete').click(function() {
+			if(confirm('정말 삭제하시겠습니까?')) {
+				document.noticeDeleteForm.submit();
+			} else {
+				return false;
+			}
+		});
 	});
  	
-//jQuery끝 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 </script>

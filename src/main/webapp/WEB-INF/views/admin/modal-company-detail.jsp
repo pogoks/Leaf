@@ -39,7 +39,7 @@
 					  </div>
 					  <div class="form-group">
 					    <label for="inputEmail3" class="col-sm-5 control-label">기업 이메일</label>
-					    <p id="modal-company-email" class="col-sm-7" style="font-size: 13px;">&nbsp;</p>
+					    <p id="modal-company-email" class="col-sm-7" style="font-size: 13px;o">&nbsp;</p>
 					    
 					  </div>
 					  <div class="form-group">
