@@ -115,7 +115,7 @@
                              <a type="submit" class=" mb-2" style="margin-left:20px;">신고하기</a>
                              <button type="button" id="btn-question-list" class="btn btn-info mb-2 pull-right">목록 </button>
                              <button type="button" class="btn btn-primary mb-2 pull-right" onclick="location.href='qna_modify'">수정 </button>
-                             <button type="button" id="btn-go-answer" class="btn btn-success mb-2 pull-right" onclick="fn_answer_form('${contextPath}/question/answerForm.do',${question.questionNo})">답변하기 </button>
+                             <button type="button" class="btn btn-success mb-2 pull-right">답변하기 </button>
                            
                         </div>
                       </form>  
@@ -154,16 +154,6 @@
 			}
 	 	});
 	});
-	
-	//답변 게시글 작성 페이지로 이동 버튼
-	$(function() {
-		$('#btn-go-answer').click(function() {
-			location.href='<c:url value="/question/answerWrite/${questionNo}"/>';
-		});
-		
-	});	
-	
-	
 
 
 
