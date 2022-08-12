@@ -33,47 +33,40 @@
 
 <%@ include file="../include/header.jsp" %>
 	   
-	   
 	<div class="mainbox">
 	
 		<section>
 			<div class="container">
 				<div class="row">
-					 <!-- 메인화면 공지사항 상단 -->
+					 <!-- 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
-			            	<span class="main-notice-title">자료실</span>
+			            	<span class="main-notice-title">Q&A - 답변 등록</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
-					  <form action="<c:url value='/archive/archiveUpdate'/>" method="post" name="archiveUpdateForm">
+					  <form action="<c:url value='/question/answerWrite'/>" method="post" name="answerWriteForm">
+		    			<input type="hidden" name="questionNo" value="${questionNo}">
 		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	    	<thead>
 				    	    	<tr>
-				    	    		<th colspan= "2">게시글 제목</th>
-				    	    		<th><input type="hidden" name="archiveNo" id="archiveNo" value="${archive.archiveNo}"></th>
+				    	    		<th colspan= "2">답변 제목</th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
+					    			<td><input type="text" name="answerTitle" class="form-control" placeholder="질문 제목을 입력하세요." maxlength="50" ></td>
+					    			<td><input type="hidden" name="answerWriter" value="${user.userID}"></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>
 					    		<tr>
-				    	    		<th colspan= "2">게시글 내용</th>
+				    	    		<th colspan= "2">답변 내용</th>
 				    	    	</tr>
 					    		<tr>
-					    			<td><textarea class="form-control" name="archiveContent" maxlength="2048" style= "height:350px" >${archive.archiveContent}
-					    			</textarea></td>
+					    			<td><textarea class="form-control" name="answerContent" placeholder="질문 내용을 입력하세요." maxlength="2048" style= "height:350px" ></textarea></td>
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
-		    	    	
-		    	    		<div class="filebox pull-left">
-						    		<label for="file">파일업로드</label>
-									<input type="file" id="archive-file" class="archive-file-upload">${archive.archiveFileRealname}	
-							</div>
-		    	       </form>
-		    	    <button type="submit" id="btn-archive-update" class="btn btn-primary pull-right" >수정하기</button>
-    	    		<input type="button" class="btn btn-info pull-right" onclick="location.href='<c:url value="/archive/archiveList"/>'" value="목록">
-					 
+    	    			<input type="submit" class="btn btn-success pull-right" value="답변하기">
+    	    			<button type="button" id="#btn-question-list" class="btn btn-primary pull-right" >목록</button>
+					  </form>
 					</div>
 				</div>
 			</div>		   
@@ -90,6 +83,12 @@
 
 <script>
 
-
+	//목록 이동 버튼
+	$(function() {
+		$('#btn-question-list').click(function() {
+			location.href='<c:url value="/question/questionList" />';
+		})
+		
+	});
 
 </script>
