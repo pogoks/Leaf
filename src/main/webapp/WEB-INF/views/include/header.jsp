@@ -439,7 +439,7 @@
 		                            <b class="caret"></b>
 		                        </a>
 		                        <ul id="submenu-1" class="panel-collapse collapse panel-switch" role="menu">
-		                            <li class="sidebar-contents1"><a href="#" class="sidebar-contents2"><i class="fa fa-caret-right"></i>프로젝트 목록</a></li>
+		                            <li class="sidebar-contents1"><a href="<c:url value='/project/project' />" class="sidebar-contents2"><i class="fa fa-caret-right"></i>프로젝트 목록</a></li>
 		                        </ul>
 		                    </li>
 		                    
@@ -450,10 +450,10 @@
 			                        <b class="caret"></b>
 			                    </a>
 			                    <ul id="submenu-2" class="panel-collapse collapse panel-switch" role="menu">
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>공지사항</a></li>
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>Q&A</a></li>
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>자유게시판</a></li>
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>자료실</a></li>
+			                        <li><a href="<c:url value='/notice/noticeList' />"><i class="fa fa-caret-right"></i>공지사항</a></li>
+			                        <li><a href="<c:url value='/question/questionList' />"><i class="fa fa-caret-right"></i>Q&A</a></li>
+			                        <li><a href="<c:url value='/board/boardList' />"><i class="fa fa-caret-right"></i>자유게시판</a></li>
+			                        <li><a href="<c:url value='/archive/archiveList' />"><i class="fa fa-caret-right"></i>자료실</a></li>
 			                    </ul>
 		                    </li>
 		                    <li>
