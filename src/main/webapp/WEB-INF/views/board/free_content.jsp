@@ -42,8 +42,14 @@
  		
  	}
     
-    .freetitle {
+    #btn-boardReply-Modify {
+    	background-color:transparent; 
+    	border: none;
+    }
     
+    #btn-boardReply-Delete {
+    	background-color:transparent; 
+    	border: none;
     }
  
    </style>
@@ -135,7 +141,7 @@
 							</form>
 					     </div> 
 					</div>
-			               
+
 					<div class="text-center">
 						
 						<!-- 댓글 페이징 --> ${pc.beginPage }/${pc.endPage }
@@ -175,6 +181,7 @@
 								<div style=" margin-bottom:10px; float:right; margin-right: 40px; width:5%;">
 									<input type="button" id="btn-boardreply-write" class="btn" value="댓글입력" style="height:54px;">
 								</div>
+
 							</div>
 						</div>
 						
@@ -374,20 +381,15 @@
 					
 						
 						$('#boardReplyList').html(strAdd);	
-						
-						
-						
-					}
 
-					
-						
-					
-					
+					}	
+
 				}
 			); //end getJSON
 			
 		}//end boardReplyList()
 		
+
 
 		//댓글 수정/삭제 버튼 처리
 		$('#boardReplyList').on('click', 'a', function(e) {
@@ -413,6 +415,7 @@
 				$('#replyModal').modal('show');
 			}
 		}); //수정 or 삭제 버튼 클릭 이벤트 처리 끝.
+
 		
 		//댓글 수정
 		$('#modalModBtn').click(function () {
@@ -423,10 +426,12 @@
 		//삭제 함수
 		$('#modalDelBtn').click(function () {
 			const boardReplyNO = $('#hidden-modal-replyno').val();
+
 			
 			$.ajax({
-				type: 'post',
+				type: 'POST',
 				url: '<c:url value="/boardreply/boardReplyDelete"/>',
+
 				
 				dataType: 'text',
 				data: {
@@ -445,6 +450,7 @@
 				},
 				error: function () {
 					alert('error: 댓글 삭제에 실패하였습니다.')
+
 				}
 			}); //삭제 비동기 통신 끝.
 		}); //삭제 이벤트 끝.

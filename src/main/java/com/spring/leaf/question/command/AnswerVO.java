@@ -1,4 +1,4 @@
-package com.spring.leaf.answer.command;
+package com.spring.leaf.question.command;
 
 import java.sql.Timestamp;
 
@@ -19,6 +19,8 @@ public class AnswerVO {
 	private String answerContent;
 	private Timestamp answerDate;
 	private int answerViews;
+	
+	private int questionNo;
 	
 
 }
