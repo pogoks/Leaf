@@ -287,12 +287,12 @@
 					
 					for(let i=0; i<boardReplyList.length; i++) {
 						strAdd += 
-							`<div class='boardReplyWrap'>
-		                        <div id='boardReply-Writer' style="text-align: left; float:left; width:15%; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`</div>
-		                        <div class='boardReply-Content' id='boardReply-Content' style="text-align: left; float:left; width:15%;">&nbsp;` + boardReplyList[i].boardReplyContent +`</div>
-		                        <div style="float:left; width:60%;">`+ boardReplyList[i].boardReplyDate+`</div>
-	                            <div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Modify"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-ok" aria-hidden="true"></a></button></div>
-	                            <div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Delete"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-remove" aria-hidden="true"></a></button></div>
+							`<div class="boardReplyWrap" id="boardReplyNo` + i + `">
+		                        <div id="boardReply-Writer" style="text-align: left; float:left; width:15%; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`</div>
+		                        <div class="boardReply-Content" id='boardReply-Content_`+[i]+`' style="text-align: left; float:left; width:60%;">&nbsp;` + boardReplyList[i].boardReplyContent +`</div>
+		                        <div style="float:left; width:15%;">`+ boardReplyList[i].boardReplyDate+`</div>
+	                            <div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Modify[i]"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-ok" aria-hidden="true"></a></button></div>
+	                            <div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Delete[i]"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-remove" aria-hidden="true"></a></button></div>
 	                        </div>`;
 					}
 				
@@ -300,27 +300,39 @@
 					
 					$('#boardReplyList').html(strAdd);
 					
-					
-			
-						
-					
+
 					
 				}
 			); //end getJSON
 			
 		}//end boardReplyList()
 		
+	
+	
+		/*
+			$(replymodievent).children('#btn-boardReply-Modify').click(function(e){
+				$(replymodievent).parent().siblings(".boardReply-Content")
+					.html("<textarea class='boardreplymodi' name='boardreplymodi' style='text-align: left; float:left; width:15%;'></textarea>")
+					.append("<div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Modify"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-ok" aria-hidden="true"></a></button></div>");
+			})
+		*/
 		
 		
 		//댓글 수정
 	
 		$('#btn-boardReply-Modify').click(function() {
 			
-			$(replymodievent).children('#btn-boardReply-Modify').click(function(e){
-				$(replymodievent).parent().siblings(".boardReply-Content")
-					.html("<textarea class='boardreplymodi' name='boardreplymodi' style='text-align: left; float:left; width:15%;'></textarea>")
-					.append("<div style="float:left; width:5%; padding-top:10px;"><button id="btn-boardReply-Modify"><a href='` + boardReplyList[i].boardReplyNo +`'class="glyphicon glyphicon-ok" aria-hidden="true"></a></button></div>");
-			})
+			let id = $(this).attr('id');
+			let txt = $('#boardReply-Content_'+id).text();
+			
+		
+		
+			
+			/*
+			$('#boardReply-Content').html("<div class="boardReply-Content" style="text-align: left; float:left; width:15%;" id='boardReply-Modi"+[i]+"'>"&nbsp;+txt+"</textarea></div>");
+		
+			
+			
 		
 			const boardReplyNo = $('#boardReplyNo').val();
 			const boardReplyModi = $('#boardReplyModi').val();
@@ -359,28 +371,35 @@
 				}
 				
 			})//end ajax
-			
+		
+			*/
 		});// 수정 처리 이벤트 끝
-		*/
+		
+		
 		
 		//삭제 함수
-		$('btn-boardReply-Delete').click(function () {
+		$('#btn-boardReply-Delete').click(function () {
 		
 			const boardReplyNo = $('#boardReplyNo').val();
 			
 			$.ajax({
-				type: 'post',
+				type: 'POST',
 				url: '<c:url value="/boardreply/boardReplyDelete"/>',
 				data: JSON.stringify({
-					"boardReplyNo": boardReplyNo
+					'boardReplyNo': boardReplyNo
 				}),
 				contentType: 'application/json',
-			    function (result) {
+				
+			    success:function (result) {
+			    	if(result === 'delSuccess') {
+			    		
 					alert('댓글이 삭제완료되었습니다.')
-					boardReplyList(1, true);
+					
+			    	}
+			    	boardReplyList(1, true);
 				},
 				error: function () {
-					alert('댓글 삭제에 실패하였습니다.')
+					alert('댓글 삭제에 실패하였습니다.');
 					
 				}
 			}); //삭제 비동기 통신 끝.
