@@ -91,46 +91,6 @@
 							
 						</tr>
 						
-				<%@ include file="../modal_mypage/developerInfo.jsp" %>
-						
-						<script>
-							
-							$(function() {
-								
-								$('#userListDetail${index.index}').click(function() {
-									
-									$.ajax({
-										type: 'GET',
-										url: '<c:url value="/userList/userListDetail?userNO=" />' + '${userList.userNO}',
-										
-										success: function(user) {
-											console.log(user.userNO);
-											
-											$('#modal-user-id').text(user.userID);
-											$('#modal-user-name').text(user.userName);
-											$('#modal-user-phone').text(user.userPhone);
-											$('#modal-user-email').text(user.userEmail);
-											$('#modal-user-intro').text(user.userIntro);
-											$('#modal-user-resume-realname').text(user.resumeRealname);
-											$('#modal-user-logo').attr('src', '<c:url value="/user/userProfileGet?userNO=" />' + user.userNO);
-											$('#hidden-user-no').val(user.userNO);
-											$('#modal-main-user-id').text(user.userID);
-											$('#modal-main-user-name').text(user.userName);
-										},
-										
-										error: function() {
-											alert('개발자 목록 상세보기 요청 처리 중 서버오류가 발생했습니다.');
-											return;
-										}
-									});
-									
-									$('#modal-user-detail').modal('show');
-								});
-								
-							});
-						
-						</script>
-						
 					</c:forEach>
 
 				</tbody>
@@ -148,20 +108,5 @@
 
 <script>
 
-	//특정 메시지 표현을 위한 스크립트
-	const msg = '${msg}';
 	
-	if(msg != '') {
-		alert(msg);
-	}
-	
-	
-	$(function() {
-		
-		$('#btn-common-regist').click(function() {
-			$('#modal-common-regist').modal('show');
-		});
-		
-	});
-
 </script>
