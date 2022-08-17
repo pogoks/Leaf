@@ -52,6 +52,7 @@
 				    	    	<tr>
 					    			<td><input type="text" name="boardTitle" id="boardTitle" class="form-control" placeholder="제목을 입력하세요." maxlength="45" ></td>
 					    			<td><input type="hidden" name="boardWriter" value="${user.userID}"></td>
+					    			
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>
@@ -63,8 +64,8 @@
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
-    	    			<input type="submit" id="btn-board-write"  class="btn btn-success pull-right" onclick="location.href='free_list'" value="등록">
-    	    			<button type="button" id="btn-board-list" class="btn btn-primary pull-right">목록</button>
+    	    			<input type="submit" id="btn-board-write"  class="btn btn-success pull-right" style="margin-right:20px;" onclick="location.href='free_list'" value="등록">
+    	    			<button type="button" id="btn-board-list" class="btn btn-primary pull-right" style="margin-right:10px;">목록</button>
     	    		  </form>
 					</div>
 				</div>
