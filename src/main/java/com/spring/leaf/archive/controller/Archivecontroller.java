@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -35,6 +36,8 @@ import com.spring.leaf.archive.command.ArchiveFileVO;
 import com.spring.leaf.archive.command.ArchiveVO;
 import com.spring.leaf.archive.service.IArchiveService;
 import com.spring.leaf.user.controller.UserController;
+import com.spring.leaf.util.PageCreator;
+import com.spring.leaf.util.PageVO;
 
 
 //data 컨트롤러 : 2022-08-01 생성
@@ -53,9 +56,23 @@ public class Archivecontroller {
 	
 	//자료실 목록 페이지로 이동 요청
 	@GetMapping("/archiveList")
-	public String archiveList(Model model) {
+	public String archiveList(PageVO vo ,Model model) {
+		//페이징
+		System.out.println(vo);
+		PageCreator pc = new PageCreator();
+		pc.setPaging(vo);
+		pc.setArticleTotalCount(service.archiveTotal(vo));
+		System.out.println(pc);
 		
-		model.addAttribute("archiveList", service.archiveList());
+		//현재시간 구하기 (뉴마크) https://mingbocho.tistory.com/11참고
+	    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	    Calendar cal = Calendar.getInstance();
+	    cal.add(Calendar.DAY_OF_MONTH, -1); //게시글 등록 후 1일간 뉴마크 표시.
+	    String nowday = format.format(cal.getTime());
+	    
+	    model.addAttribute("nowday",nowday);
+		model.addAttribute("pc", pc);
+		model.addAttribute("archiveList", service.archiveList(vo));
 		
 		return "/board/archive_list";
 	}
