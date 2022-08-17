@@ -23,7 +23,7 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
    
    <!-- 여기다가 나만의 새로운 css 만들기 -->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/project-view-fix.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/project-view-company.css">
 
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpage-style.css">
   
@@ -46,11 +46,11 @@
    
    
     <div class="first-box">
-      <p>(주) 성진하이텍</p>
+      <p>${projectview.companyName}</p>
     </div> <br>
     <div class="container-top-icons">
       <div class="project-name">
-      	<input type="text" value="${projectview.projectName}" name="projectName">
+      <p>${projectview.projectName} </p>
       </div>
       <div class="project-user">
         <p>신청자 : 3명 </p>
@@ -62,58 +62,47 @@
       <div class="project-seen">
         <p>조회수 : 12</p>
       </div>
-      <div class="project-jiwon">
-        <label>
-          <input type="checkbox"> <i style="color: red;">마감 임박</i>
-        </label>
-        <label>
-          <input type="checkbox"> <i style="color: green;">현재 모집중</i>
-        </label>
+      <div class="mojibjung">
+        <p>현재 모집중</p>
       </div>
     </div>
   </div>
   
-  <form action="<c:url value='/project/projectviewfix'/>"  method="post" name="projectViewFix">
+  <form action="<c:url value='/project/projectviewcompany'/>"  method="post">
   
   <div class="project-img-box">
     <div class="image-intro"> 
       <img src="../resources/img/main4.jpg" alt="사진">
       </div> <br>
       <div class="project-myeng">
-        	프로젝트 명
+        프로젝트 명
         <input type="hidden" value="${projectview.projectNO}" id="hidden-project-no" name="projectNO">
       </div>
       <div class="project-myeng1">
-        <p><input type="text" id="project-myeng1" value="${projectview.projectName}" name="projectName" style="width: 335px;"></p>
+        <p>${projectview.projectName}</p>
       </div>
       <div class="project-dt">
-     		프로젝트 기간
+        프로젝트 기간
       </div>
       <div class="project-dt1">
-       <label for="exampleInputdate"></label>
-                <input type="date" class="form-control" id="exampleInputdate" placeholder="0000/00/00" style="height: 21px; padding-bottom: 5px;">
-              <div class="date12">
-                ~
-              </div>
-                <input type="date" class="form-control" id="exampleInputdate" placeholder="0000/00/00" style="height: 21px; padding-bottom: 5px;">
-      	<!--<c:set var="date1" value="${projectview.projectRequireDate1}" />
+      	<c:set var="date1" value="${projectview.projectRequireDate1}" />
       	<c:set var="date2" value="${projectview.projectRequireDate2}" />
-        <p>${fn:substring(date1, 0, 10)} ~ ${fn:substring(date2, 0, 10)}</p>-->
+        <p>${fn:substring(date1, 0, 10)} ~ ${fn:substring(date2, 0, 10)}</p>
       </div>
       <div class="project-friend">
-       		협력사 
+       협력사 
       </div>
       <div class="project-friend1">
         <p>${projectview.companyName}</p> 
       </div>
       <div class="project-phone">
-       		협력사 전화번호 
+       협력사 전화번호 
       </div>
       <div class="project-phone1">
         <p>${projectview.companyPhone1} - ${projectview.companyPhone2} - ${projectview.companyPhone3}</p> 
       </div>
       <div class="project-fr-lo">
-        	협력사 위치 
+        협력사 위치 
       </div>
       <div class="project-fr-lo1">
         <p>${projectview.companyAddress1} ${projectview.companyAddress2} ${projectview.companyAddress3}</p> 
@@ -121,7 +110,7 @@
       <div class="project-container-right">
       <a href="project-map.html" onclick="window.open(this.href, '_blank', 'width=600px, height=400px,toolbars=no,scrollbars=no'); return false;">
         <button type="button" class="btn btn-primary">
-          	지도
+          지도
           </button>
           </a>
         
@@ -130,53 +119,53 @@
       
       
       <div class="project-int">
-        	프로젝트 설명 
+        프로젝트 설명 
       </div>
       <div class="project-int1">
-       <p><input type="text" id="project-int1" value="${projectview.projectDesc}" name="projectDesc" style="width: 750px; height: 240px;">
+       <p>${projectview.projectDesc}
         </p>
       </div>
         <div class="damdang-master">
           <div class="damdang">
-           	담당자 
+           담당자 
           </div>
           <div class="damdang1">
-            <p><input type="text" id="damdang1" value="${projectview.projectManager}" name="projectManager" style="width: 335px;"></p> 
+            <p>${projectview.projectManager}</p> 
           </div>
           <div class="damdang-phone">
-           	담당자 번호 
+           담당자 번호 
           </div>
           <div class="damdang-phone1">
-           <p><input type="text" id="damdang-phone1" value="${projectview.projectManagerPhone}" name="projectManagerPhone" style="width: 335px;"></p> 
+           <p>${projectview.projectManagerPhone}</p> 
           </div>
       </div>
       <div class="damdang-email">
-        	담당자 이메일 
+        담당자 이메일 
       </div>
       <div class="damdang-email1">
-        <p><input type="text" id="damdang-email1" value="${projectview.projectManagerEmail}" name="projectManagerEmail" style="width: 750px;"></p> 
+        <p>${projectview.projectManagerEmail}</p> 
       </div>
       <div class="skills">
-        	지원 자격
+        지원 자격
       </div>
       <div class="skills1">
         <p>
-          <input type="text" id="skills1" value="${projectview.projectRequireLicense}" name="projectRequireLicense" style="width: 750px; height: 78px;">
+          ${projectview.projectRequireLicense}
         </p>
       </div>
       <div class="mojib-master">
         <div class="mojib">
-          	모집 역할
+          모집 역할
         </div>
         <div class="mojib1">
-         <p><input type="text" id="mojib1" value="${projectview.projectRequireRole}" name="projectRequireRole" style="width: 335px;"></p> 
+         <p>${projectview.projectRequireRole}</p> 
         </div>
         <div class="mojib-user">
-          	모집 인원
+          모집 인원
         </div>
         <div class="mojib-user1">
           <p>
-            <input type="text" id="mojib-user1" value="${projectview.projectRequirePeople}" name="projectRequirePeople" style="width: 335px;">
+            ${projectview.projectRequirePeople}
           </p>
         </div>
       </div> <br>
@@ -193,6 +182,7 @@
 
     
     </form>
+    
  
 	<%@ include file="../include/footer.jsp" %>
 </div>
@@ -202,14 +192,19 @@
 </html>
 <script>
 $(function() {
+	$('#jiwon-btn').click(function() {
+		
+		var projectNO = $('#hidden-project-no${index.index}').val();
+		
+		location.href='<c:url value="/project/projectviewfix?projectNO=" />' + projectNO;
+	})
+});
+
+$(function() {
 	$('#mokrok-btn').click(function() {
 		location.href='<c:url value="/project/projectadmin" />';
 	})
-	doc.projectViewFix.submit();	
 });
-
-
-
 </script> 
                  
 

@@ -87,5 +87,14 @@ public class ProjectController {
 			
 			return "project/project-view-fix";
 		}
+		
+	// 기업 프로젝트 목록 상세보기 창 
+		@GetMapping("/projectviewcompany")
+		public String project5(@RequestParam int projectNO, Model model) {
+			
+			model.addAttribute("projectview", service.getContent(projectNO));
+			
+			return "project/project-view-company";
+		}
 	
 }

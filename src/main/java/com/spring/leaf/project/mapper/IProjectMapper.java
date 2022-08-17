@@ -21,4 +21,6 @@ public interface IProjectMapper {
 	
 	void deleteLike(ProjectLikeVO vo);
 	
+	void deleteProject(ProjectVO vo);
+	
 }
