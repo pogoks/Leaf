@@ -89,8 +89,8 @@
 			                                        
 			                                        <div class="free_title_down" style="margin-top:30px;">
 				                                        <div class="free_writer" style="display: inline-block;">
-				                                            <img src="resources/img/logo2.png" width="50px" >
-				                                            <span>&nbsp; ${board.boardWriter} &nbsp;</span>
+				                                            <img src="<c:url value='/user/userProfileGet?userNO=${user.userNO}'/>" width="40px" height="40px" style="border-radius: 30px; margin-left: 10px; margin-right: -5px;" >
+				                                            <span style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif; margin-left:15px;">&nbsp; ${board.boardWriter} &nbsp;</span>
 				                                            <c:if test="${board.boardWriter eq user.userID }">
 			                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
 			                                            	</c:if>
@@ -109,7 +109,7 @@
 			                                        </div>
 	                                    </div>
 	
-	                                    <div class="free_content_down" style="margin-top:30px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
+	                                    <div class="free_content_down" style="min-height:300px; margin-top:50px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
 	                                        
 	                                        	${fn:replace(board.boardContent, newLineChar, '<br/>')}
 	                                           
@@ -181,8 +181,10 @@
 						
 						<br>
 						<div style="margin-top:20px;">
+            
 							<button type="submit" class=" mb-2 pull-left">신고하기 </button>
 							<c:if test="${board.boardWriter eq user.userID || board.boardWriter eq company.companyID}">
+
 								<button type="button" id="btn-board-modify" class="btn btn-info mb-2 pull-right" onclick="location.href='<c:url value="/board/boardModify?boardNo=${board.boardNo}"/>'" style="margin-left:10px;">수정하기</button>
 							</c:if>
 							<button type="button" id="btn-board-list" class="btn btn-primary mb-2 pull-right" onclick="location.href='free_list'">목록 </button>

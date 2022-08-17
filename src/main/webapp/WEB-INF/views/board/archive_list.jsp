@@ -69,12 +69,13 @@
        
         
         
-        <div class="container">
+        <div class="container" style="width: 90%;">
             <div class="row">
 				<!-- 메인화면 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">자료실</span>
 			            </a>
+                  
                 <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="head-control mx-sm-3 mb-2" style="float:left;">
 			        <option value="10" <c:if test="${pc.paging.cpp == 10}">selected</c:if>>10개씩 보기</option>
 			        <option value="15" <c:if test="${pc.paging.cpp == 15}">selected</c:if>>15개씩 보기</option>
@@ -87,11 +88,11 @@
                 <table class="table table-bordered"  style="text-align: center;">
                     <thead>
                         <tr>
-                            <th style="background-color: #bbd0e7; text-align: center;">번호</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">제목</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">작성자</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">등록일자</th>
-                            <th style="background-color: #bbd0e7; text-align: center;">조회수</th>
+                            <th style="background-color: #bbd0e7; text-align: center; width:5%">번호</th>
+                            <th style="background-color: #bbd0e7; text-align: center; width:62%">제목</th>
+                            <th style="background-color: #bbd0e7; text-align: center; width:10%">작성자</th>
+                            <th style="background-color: #bbd0e7; text-align: center; width:15%">등록일자</th>
+                            <th style="background-color: #bbd0e7; text-align: center; width:8%">조회수</th>
                             
                         </tr>
                     </thead>
