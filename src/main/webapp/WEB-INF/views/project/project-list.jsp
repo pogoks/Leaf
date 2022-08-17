@@ -207,7 +207,7 @@
               </div>
               <div class="project-source">
                 <div class="project-content">
-                  <p>${project.companyName}</p>
+                  <p style="width: 116px; text-align: center; ">${project.companyName}</p>
                 </div>
               </div>
               <div class="project-in">

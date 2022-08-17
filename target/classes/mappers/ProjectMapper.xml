@@ -130,6 +130,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM project_like
 		WHERE projectLikeNO=#{projectLikeNO} AND userNO=#{userNO}
 	</delete>
+	
+	<delete id="deleteProject">
+		DELETE FROM project
+		WHERE projectNO=#{projectNO} AND companyNO=#{companyNO}
+	
+	</delete>
+	
 
 </mapper>
 

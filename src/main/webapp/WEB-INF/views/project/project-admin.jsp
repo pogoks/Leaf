@@ -97,7 +97,7 @@
 				$('#project-view-icon3${index.index}').click(function() {
 					var projectNO = $('#project-list-content${index.index}').val();
 					
-					location.href='<c:url value="/project/projectview?projectNO=" />' + projectNO;
+					location.href='<c:url value="/project/projectviewcompany?projectNO=" />' + projectNO;
 				})
 				
 			});

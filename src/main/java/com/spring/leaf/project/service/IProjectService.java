@@ -27,4 +27,6 @@ public interface IProjectService {
 	
 	void deleteLike(ProjectLikeVO vo);
 	
+	void deleteProject(ProjectVO vo);
+	
 }

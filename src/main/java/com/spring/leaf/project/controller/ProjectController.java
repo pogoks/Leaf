@@ -120,6 +120,16 @@ public class ProjectController {
 		return projectNO;
 	}
 	
+  
+  // 기업 프로젝트 목록 상세보기 창 
+	@GetMapping("/projectviewcompany")
+	public String project5(@RequestParam int projectNO, Model model) {
+			
+		model.addAttribute("projectview", service.getContent(projectNO));
+			
+		return "project/project-view-company";
+	}
+  
 	
 	// 사용자 프로필사진 등록 요청
 	@PostMapping("/projectImage/{projectNO}")
@@ -233,7 +243,7 @@ public class ProjectController {
 
 		return "YesImage";
 	}
-	
+
 	
 	// 프로젝트 사진 불러오기 요청
 	@GetMapping("/projectImageGet")

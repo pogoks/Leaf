@@ -64,7 +64,7 @@ public class ProjectService implements IProjectService {
 	public void createLike(ProjectLikeVO vo) {
 		mapper.createLike(vo);
 	}
-	//좋아요 등록
+	//좋아요 삭제
 	@Override
 	public void deleteLike(ProjectLikeVO vo) {
 		mapper.deleteLike(vo);
@@ -73,5 +73,11 @@ public class ProjectService implements IProjectService {
 	@Override
 	public int searchLike(ProjectLikeVO vo) {
 		return mapper.searchLike(vo);
+	}
+	
+	@Override
+	public void deleteProject(ProjectVO vo) {
+		mapper.deleteProject(vo);
+		
 	}
 }
