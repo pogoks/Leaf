@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<% pageContext.setAttribute("replaceChar", "\n"); %>
 
 <html>
 <head>
@@ -24,7 +23,7 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainstyle.css">
    
    <!-- 여기다가 나만의 새로운 css 만들기 -->
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/project-view.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/project-view-company.css">
 
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainpage-style.css">
   
@@ -63,25 +62,17 @@
       <div class="project-seen">
         <p>조회수 : 12</p>
       </div>
-      <div class="project-jiwon">
-      	
-      	<c:if test="${company != null}">
-      		<button type="button" id="jiwon-btn1" class="btn btn-success" style="display: none;">지원하기</button>
-      	</c:if>
-      
-        
-      </div>
       <div class="mojibjung">
         <p>현재 모집중</p>
       </div>
     </div>
   </div>
   
-  <form action="<c:url value='/project/projectview'/>"  method="post">
+  <form action="<c:url value='/project/projectviewcompany'/>"  method="post">
   
   <div class="project-img-box">
     <div class="image-intro"> 
-      <img src="<c:url value='/project/projectImageGet?projectNO=${projectview.projectNO}' />" alt="사진" style="object-fit: fill;">
+      <img src="../resources/img/main4.jpg" alt="사진">
       </div> <br>
       <div class="project-myeng">
         프로젝트 명
@@ -131,8 +122,7 @@
         프로젝트 설명 
       </div>
       <div class="project-int1">
-      	<c:set var="desc" value="${projectview.projectDesc}" />
-       <p>${fn:replace(desc, replaceChar, "<br/>")}
+       <p>${projectview.projectDesc}
         </p>
       </div>
         <div class="damdang-master">
@@ -184,8 +174,8 @@
         <a href="#" id="singo-modal">신고하기</a>
       </div>
       <div class="project-container-bottom">
-        <button type="button" id="jiwon-btn" class="btn btn-success">지원하기</button>
-        <button type="button" id="mokrok-btn" class="btn btn-primary">목록</button>
+        <button type="button" id="jiwon-btn" class="btn btn-success">수정하기</button>
+        <button type="button" id="mokrok-btn" class="btn btn-danger">돌아가기</button>
       </div>
       </div>
     </div>
@@ -202,64 +192,19 @@
 </html>
 <script>
 $(function() {
-	$('#mokrok-btn').click(function() {
-		location.href='<c:url value="/project/project" />';
-	})
-	
-});
-
-$(function() {
-	
-	const projectNO = $('#hidden-project-no').val();
-	
 	$('#jiwon-btn').click(function() {
-		location.href='<c:url value="/project/projectapply?projectNO=" />' + projectNO;
+		
+		var projectNO = $('#hidden-project-no${index.index}').val();
+		
+		location.href='<c:url value="/project/projectviewfix?projectNO=" />' + projectNO;
 	})
-	
 });
 
 $(function() {
-	
-	const projectNO = $('#hidden-project-no').val();
-	
-	$('#jiwon-btn1').click(function() {
-		location.href='<c:url value="/project/projectapply?projectNO=" />' + projectNO;
+	$('#mokrok-btn').click(function() {
+		location.href='<c:url value="/project/projectadmin" />';
 	})
-	
 });
-
-
-function getListLike(isReset) {
-	let deferred = $.Deferred();
-	console.log('먼저 실행되어야 합니다!');
-	const userNO = '${user.userNO}';
-	console.log(userNO);
-	
-	if(userNO !== '') {
-		$.ajax({
-			type: 'post',
-			url: '<c:url value="/project/projectview" />',
-			data: userNO,
-			contentType: 'application/json',
-			success: function(result) {
-				console.log('result: ' + result); //게시글 번호들
-				if(isReset) {
-					deferred.resolve(result, page, true);								
-				} else {
-					deferred.resolve(result, page, false);
-				}
-			}
-		}); //end ajax
-	} else {
-		if(isReset) {
-			deferred.resolve(null, page, true);								
-		} else {
-			deferred.resolve(null, page, false);
-		}
-	}
-	
-	return deferred.promise();
-}
 </script> 
                  
 
