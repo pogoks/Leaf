@@ -145,8 +145,7 @@ input.form-control {
 									<div class="col-sm-9">
 										<div class="form-group btn-profile">
 											<button type="button" class="btn btn-success" id="btn-mypage-user-modify">정보수정</button>
-											<button type="button" class="btn btn-primary"
-												data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">비밀번호 변경</button>
 										</div>
 									</div>
 								</div>
@@ -184,9 +183,7 @@ input.form-control {
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-primary">변경하기</button>
-
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">취소하기</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
 											</div>
 										</div>
 									</div>
@@ -380,8 +377,8 @@ input.form-control {
 	if(msg != '') {
 		alert(msg);
 	}
-
-
+	
+	
 	$(function() {
 		
 		$('#btn-mypage-user-modify').click(function() {
