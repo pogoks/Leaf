@@ -6,15 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
-@Getter
 @ToString
-public class UserApplyResultVO {
+@Getter
+@Setter
+public class UserApplyStatusVO {
 	private int applyNO;
 	private String projectName;
-	private Timestamp applyDate;
+	private String projectRequireRole;
 	private Timestamp projectRequireDate1;
 	private Timestamp projectRequireDate2;
+	private int projectNO;
+	private String companyName;
 	private String commonValue;
-	
 }

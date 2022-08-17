@@ -152,6 +152,44 @@ input.form-control {
 									</div>
 								</div>
 
+								<!-- Modal -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+									aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header" style="background: #92bce0;">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h5 class="modal-title" id="myModalLabel"
+													style="font-weight: bold;">비밀번호 변경</h5>
+											</div>
+											<div class="modal-body" style="width: 900px;">
+												<div class="form-group" style="text-align: left;">
+													<label for="exampleInputPassword1"
+														style="text-align: left;">기존 비밀번호</label><br> <input
+														type="password" class="form-control"
+														id="exampleInputPassword1" placeholder="기존 비밀번호를 입력하세요."
+														style="margin-bottom: 30px;"><br> <label
+														for="exampleInputPassword1">신규 비밀번호</label><br> <input
+														type="password" class="form-control"
+														id="exampleInputPassword1" placeholder="신규 비밀번호를 입력하세요."
+														style="margin-bottom: 30px;"><br> <label
+														for="exampleInputPassword1">신규 비밀번호 확인</label><br> <input
+														type="password" class="form-control"
+														id="exampleInputPassword1"
+														placeholder="신규 비밀번호를 다시 입력하세요.">
+												</div>
+
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary">변경하기</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 
@@ -344,8 +382,8 @@ input.form-control {
 	if(msg != '') {
 		alert(msg);
 	}
-
-
+	
+	
 	$(function() {
 		
 		// 일반회원 정보수정 버튼 클릭 시 수정 페이지로 이동
