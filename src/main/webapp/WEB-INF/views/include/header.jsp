@@ -227,7 +227,7 @@
 		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu" style="background: #3C6C2D;">
 		                            <li><a href="<c:url value='/usermypage/usermypage' />"><i class="fa fa-caret-right"></i>기업 정보</a></li>
 		                            <li><a href="#" id="company-send-message"><i class="fa fa-caret-right"></i>쪽지함</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 현황</a></li>
+		                            <li><a href="<c:url value='/project/projectMyApply' />"><i class="fa fa-caret-right"></i>지원 현황</a></li>
 		                            <li><a href="<c:url value='/project/projectadmin' />"><i class="fa fa-caret-right"></i>프로젝트 관리</a></li>
 		                        </ul>
 		                    </li>

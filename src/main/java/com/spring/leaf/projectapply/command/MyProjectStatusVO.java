@@ -1,4 +1,4 @@
-package com.spring.leaf.project.command;
+package com.spring.leaf.projectapply.command;
 
 import java.sql.Timestamp;
 
@@ -9,14 +9,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ProjectListVO {
+public class MyProjectStatusVO {
+
 	private int projectNO;
 	private String projectName;
 	private String projectRequireRole;
 	private Timestamp projectRequireDate1;
 	private Timestamp projectRequireDate2;
-	private int companyNO;
 	private String companyName;
-	private String commonCODE;
-	private String commonValue;
+	private int applyCount;
+
 }
