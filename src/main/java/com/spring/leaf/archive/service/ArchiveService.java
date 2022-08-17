@@ -9,6 +9,7 @@ import com.spring.leaf.archive.command.ArchiveContentVO;
 import com.spring.leaf.archive.command.ArchiveFileVO;
 import com.spring.leaf.archive.command.ArchiveVO;
 import com.spring.leaf.archive.mapper.IArchiveMapper;
+import com.spring.leaf.util.PageVO;
 
 //자료실 서비스 : 2022-08-03 생성
 
@@ -26,11 +27,16 @@ public class ArchiveService implements IArchiveService {
 	
 	//자료실 글 목록
 	@Override
-	public List<ArchiveVO> archiveList() {
+	public List<ArchiveVO> archiveList(PageVO vo) {
 		
-		List<ArchiveVO> list = mapper.archiveList();
+		List<ArchiveVO> list = mapper.archiveList(vo);
 
 		return list;
+	}
+	
+	@Override
+	public int archiveTotal(PageVO vo) {
+		return mapper.archiveTotal(vo);
 	}
 
 	//자료실 상세보기
