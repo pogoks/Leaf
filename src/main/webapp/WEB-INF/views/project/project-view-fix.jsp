@@ -202,9 +202,14 @@
 </html>
 <script>
 $(function() {
+	
+	
 	$('#mokrok-btn').click(function() {
 		location.href='<c:url value="/project/projectadmin" />';
-	})
+	});
+	
+	
+	
 	//수정완료 버튼 클릭 시 
 	$('#btn-project-content-update').click(function() {
 			
@@ -260,6 +265,8 @@ $(function() {
 			
 			
 			document.projectUpdateForm.submit();
+			
+	});
 });
 
 
