@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 
 <html>
 <head>
@@ -63,7 +64,7 @@
         <p>조회수 : 12</p>
       </div>
       <div class="mojibjung">
-        <p>현재 모집중</p>
+        <p>${projectview.commonValue}</p>
       </div>
     </div>
   </div>
@@ -122,8 +123,8 @@
         프로젝트 설명 
       </div>
       <div class="project-int1">
-       <p>${projectview.projectDesc}
-        </p>
+      	<c:set var="desc" value="${projectview.projectDesc}" />
+       <p>${fn:replace(desc, replaceChar, "<br/>")}
       </div>
         <div class="damdang-master">
           <div class="damdang">
@@ -149,9 +150,8 @@
         지원 자격
       </div>
       <div class="skills1">
-        <p>
-          ${projectview.projectRequireLicense}
-        </p>
+        <c:set var="License" value="${projectview.projectRequireLicense}" />
+       <p>${fn:replace(License, replaceChar, "<br/>")}
       </div>
       <div class="mojib-master">
         <div class="mojib">

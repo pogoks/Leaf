@@ -52,6 +52,14 @@ public class ArchiveService implements IArchiveService {
 
 		mapper.archiveModify(vo);
 	}
+	
+	//자료실 파일 수정
+	@Override
+	public void archiveFileModify(ArchiveFileVO fvo) {
+		
+		mapper.archiveFileModify(fvo);
+		
+	}
 
 	//자료실 삭제
 	@Override
@@ -60,6 +68,7 @@ public class ArchiveService implements IArchiveService {
 		mapper.archiveDelete(archiveNo);
 	}
 	
+	//자료실 파일 삭제
 	@Override
 	public void archiveFileDelete(int archiveNo) {
 		mapper.archiveFileDelete(archiveNo);

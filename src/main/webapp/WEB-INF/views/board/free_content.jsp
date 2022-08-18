@@ -219,7 +219,7 @@
 					</div>
 				</div>
 			</div><!-- 댓글 수정 모달 끝. -->
-			
+		
 	   
 	   
 	    <%@ include file="../include/footer.jsp" %>
