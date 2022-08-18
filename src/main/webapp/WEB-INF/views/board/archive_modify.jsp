@@ -44,35 +44,35 @@
 			            	<span class="main-notice-title">자료실</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
-					  <form action="<c:url value='/archive/archiveUpdate'/>" method="post" name="archiveUpdateForm">
-		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
-			    	    	<thead>
-				    	    	<tr>
-				    	    		<th colspan= "2">게시글 제목</th>
-				    	    		<th><input type="hidden" name="archiveNo" id="archiveNo" value="${archive.archiveNo}"></th>
-				    	    	</tr>
-				    	    	<tr>
-					    			<td><input type="text" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
-					    		</tr>
-			    	    	</thead>
-					    	<tbody>
-					    		<tr>
-				    	    		<th colspan= "2">게시글 내용</th>
-				    	    	</tr>
-					    		<tr>
-					    			<td><textarea class="form-control" name="archiveContent" maxlength="2048" style= "height:350px" >${archive.archiveContent}
-					    			</textarea></td>
-					    		</tr>
-					    	</tbody>
-		    	    	</table>
+						<form action="<c:url value='/archive/archiveUpdate'/>" method="post" name="archiveUpdateForm">
+							<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
+							<thead>
+								<tr>
+									<th colspan= "2">게시글 제목</th>
+									<th><input type="hidden" name="archiveNo" id="archiveNo" value="${archive.archiveNo}"></th>
+							</tr>
+							<tr>
+							<td><input type="text" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
+								</tr>
+							  	</thead>
+							<tbody>
+								<tr>
+							   		<th colspan= "2">게시글 내용</th>
+							   	</tr>
+								<tr>
+									<td><textarea class="form-control" name="archiveContent" maxlength="2048" style= "height:350px" >${archive.archiveContent}
+									</textarea></td>
+								</tr>
+							</tbody>
+							</table>
 		    	    	
 		    	    		<div class="filebox pull-left">
-						    		<label for="file">파일업로드</label>
-									<input type="file" id="archive-file" class="archive-file-upload">${archive.archiveFileRealname}	
+					    		<label for="file">파일업로드</label>
+								<input type="file" id="archive-file" class="archive-file-upload">${archive.archiveFileRealname}	
 							</div>
-		    	       </form>
-		    	    <button type="submit" id="btn-archive-update" class="btn btn-primary pull-right" >수정하기</button>
-    	    		<input type="button" class="btn btn-info pull-right" onclick="location.href='<c:url value="/archive/archiveList"/>'" value="목록">
+							<button type="submit" id="btn-archive-update" class="btn btn-primary pull-right" style="margin-left:10px;">수정하기</button>
+							<input type="button" class="btn btn-info pull-right" onclick="location.href='<c:url value="/archive/archiveList"/>'" value="목록">
+						</form>
 					 
 					</div>
 				</div>
@@ -80,10 +80,9 @@
 		</section>
 	    <%@ include file="../include/footer.jsp" %>
 	</div>
-	
-   
-   
-  
+
+
+
 </body>
 </html>
 
