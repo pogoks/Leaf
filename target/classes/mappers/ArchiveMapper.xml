@@ -126,6 +126,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE archive_NO=#{archiveNo}
 	</update>
 	
+	<!-- 자료실 파일 수정하기 UPDATE 쿼리 -->
+	<update id="archiveFileModify">
+		UPDATE archive_file
+		SET archive_file_filename=#{archiveFileFilename}, archive_file_uploadpath=#{archiveFileUploadpath}, archive_file_realname=#{archiveFileRealname}
+		WHERE archive_NO=#{archiveNo}
+	</update>
+	
 	<!-- 자료실 글 삭제하기 UPDATE 쿼리 -->
 	<update id="archiveDelete">
 		UPDATE archive 
@@ -133,6 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE archive_NO=#{archiveNo}
 	</update>
 	
+	<!-- 자료실 파일 삭제하기 UPDATE 쿼리 -->
 	<update id="archiveFileDelete">
 		UPDATE archive_file
 		SET archive_file_filename=null, archive_file_uploadpath=null, archive_file_realname=null

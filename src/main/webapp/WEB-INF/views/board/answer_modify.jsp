@@ -40,26 +40,26 @@
 				<div class="row">
 					 <!-- 메인화면 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
-			            	<span class="main-notice-title">Q&A - 질문 수정</span>
+			            	<span class="main-notice-title">Q&A - 답변 수정</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
-					  <form action="<c:url value='/question/questionUpdate' />" method="post" name="boardUpdateForm">
+					  <form action="<c:url value='/question/answerUpdate' />" method="post" name="boardUpdateForm">
 		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	    	<thead>
 				    	    	<tr>
-				    	    		<th colspan= "2">질문 제목</th>
-				    	    		<th><input type="hidden" name="questionNo" id="questionNo" value="${question.questionNo}"></th>
+				    	    		<th colspan= "2">답변 제목</th>
+				    	    		<th><input type="hidden" name="questionNo" id="questionNo" value="${answerContent.answerNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" name="questionTitle" class="form-control" value="${question.questionTitle}" maxlength="50" ></td>
+					    			<td><input type="text" name="questionTitle" class="form-control" value="${answerContent.answerTitle}" maxlength="50" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>
 					    		<tr>
-				    	    		<th colspan= "2">질문 내용</th>
+				    	    		<th colspan= "2">답변 내용</th>
 				    	    	</tr>
 					    		<tr>
-					    			<td><textarea class="form-control" name="questionContent" maxlength="2048" style= "height:350px">${question.questionContent}</textarea></td>
+					    			<td><textarea class="form-control" name="questionContent" maxlength="2048" style= "height:350px">${answerContent.answerContent}</textarea></td>
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
