@@ -25,6 +25,8 @@ public interface IArchiveService {
 			
 	//자료실 수정
 	void archiveModify(ArchiveVO vo);
+	void archiveFileModify(ArchiveFileVO fvo);
+	
 			
 	//자료실 삭제
 	void archiveDelete(int archiveNo);
@@ -38,5 +40,6 @@ public interface IArchiveService {
 	
 	//자료실 번호 끌어오기
 	int archiveNoGet ();
+
 
 }
