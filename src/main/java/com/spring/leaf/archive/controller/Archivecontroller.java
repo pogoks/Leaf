@@ -35,6 +35,7 @@ import com.jcraft.jsch.Session;
 import com.spring.leaf.archive.command.ArchiveFileVO;
 import com.spring.leaf.archive.command.ArchiveVO;
 import com.spring.leaf.archive.service.IArchiveService;
+import com.spring.leaf.archivereply.service.IArchiveReplyService;
 import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.controller.UserController;
 import com.spring.leaf.util.PageCreator;
@@ -53,6 +54,10 @@ public class Archivecontroller {
 	//자료실 서비스 연결
 	@Autowired
 	private IArchiveService service;
+	
+	//자료실 전체댓글 수 불러오기위해 사용
+	@Autowired
+	private IArchiveReplyService rservice;
 	
 	
 	//자료실 목록 페이지로 이동 요청
@@ -97,6 +102,13 @@ public class Archivecontroller {
 	public String archiveContent(@PathVariable int archiveNo, Model model) {
 		
 		model.addAttribute("archive", service.archiveContent(archiveNo));
+		
+		//전체 댓글 수
+		//int tt = rservice.archiveReplyTotal(archiveNo);
+		//model.addAttribute("archiveReplyCount", tt);
+		
+		//조회수 증가
+		service.archiveViews(archiveNo);
 		
 		return "board/archive_content";
 	}

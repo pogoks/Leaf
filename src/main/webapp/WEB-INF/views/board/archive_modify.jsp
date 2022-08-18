@@ -44,6 +44,7 @@
 			            	<span class="main-notice-title">자료실</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
+
 					  <form action="<c:url value='/archive/archiveUpdate'/>" method="post" name="archiveUpdateForm">
 		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	    	<thead>
@@ -79,10 +80,9 @@
 		</section>
 	    <%@ include file="../include/footer.jsp" %>
 	</div>
-	
-   
-   
-  
+
+
+
 </body>
 </html>
 
