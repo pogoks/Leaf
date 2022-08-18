@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="projectNO" column="project_NO" />
 		<result property="commonCODE" column="common_CODE" />
 		<result property="commonValue" column="common_value" />
+		<result property="applyMsg" column="apply_msg" />
 	</resultMap>
 	
 	
@@ -118,7 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    CONCAT(u.user_phone1, '-', u.user_phone2, '-', u.user_phone3) AS user_phone,
 		    CONCAT(u.user_email1, '@', u.user_email2) AS user_email,
 		    u.user_intro, r.resume_realname,
-		    a.project_NO, a.common_CODE, c.common_value
+		    a.project_NO, a.common_CODE, c.common_value, a.apply_msg
 		FROM
 			user u LEFT OUTER JOIN resume r
 			ON u.user_NO = r.user_NO

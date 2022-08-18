@@ -82,7 +82,7 @@
 			        <option value="20" <c:if test="${pc.paging.cpp == 20}">selected</c:if>>20개씩 보기</option>
 				</select>
 			    <c:if test="${user.userID != null || company.companyID != null }">
-					<button type="submit" class="btn btn-success mb-2 pull-right" id="btn-notice-write">글쓰기</button>
+					<button type="submit" class="btn btn-success mb-2 pull-right" id="btn-archive-write">글쓰기</button>
 	            </c:if>
                  
                 <table class="table table-bordered"  style="text-align: center;">

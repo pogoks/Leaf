@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
+
 
 <html>
 <head>
@@ -89,7 +92,7 @@
 			          <div class="project-list-col-md-8" >
 			            <div class="project-listbox">
 			              <div class="image-intro"> 
-			                <a href="#"><img src="../resources/img/main4.jpg" alt="사진" style="width: 200px; height: 100px; object-fit: cover; vertical-align: text-bottom; margin-left: 20px; margin-top: 16px;"></a>
+			                <a href="#"><img src="<c:url value='/project/projectImageGet?projectNO=${myProject.projectNO}' />" alt="사진" style="width: 200px; height: 100px; object-fit: cover; vertical-align: text-bottom; margin-left: 20px; margin-top: 16px;"></a>
 			                </div>
 			              <div class="project-form" style="margin-left: 30px;">
 			                <div class="project-title" id="" style="cursor: pointer;">
@@ -322,6 +325,8 @@
 						$('#btn-modal-apply-accept-2').css('display', 'none');
 						$('#btn-modal-apply-accept-yes').css('display', 'none');
 					}	
+					
+					$('#modal-user-apply-msg').empty().append(apply.applyMsg);
 					
 					$('#modal-apply-detail').modal('show');
 				},

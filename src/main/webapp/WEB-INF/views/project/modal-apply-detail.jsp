@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 
 <style>
 
@@ -66,6 +68,11 @@
 					    <p id="modal-user-common-value" style="font-size: 13px; display: inline-block; vertical-align: top;">&nbsp;</p>
 					    
 					  </div>
+				</div>
+				
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label" style="display: block;">담당자에게 전할 말</label>
+					    <div id="modal-user-apply-msg" style="height: 120px; border: 1px solid #C7C7C7; padding: 10px;"></div>
 				</div>
 			
 		    </div>

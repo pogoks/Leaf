@@ -65,9 +65,7 @@
       </div>
       <div class="project-jiwon">
       	
-      	<c:if test="${company != null}">
-      		<button type="button" id="jiwon-btn1" class="btn btn-success" style="display: none;">지원하기</button>
-      	</c:if>
+      	<button type="button" id="jiwon-btn1" class="btn btn-success" >지원하기</button>
       
         
       </div>

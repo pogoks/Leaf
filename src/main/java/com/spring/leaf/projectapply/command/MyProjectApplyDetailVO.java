@@ -20,5 +20,6 @@ public class MyProjectApplyDetailVO {
 	private int projectNO;
 	private String commonCODE;
 	private String commonValue;
+	private String applyMsg;
 	
 }

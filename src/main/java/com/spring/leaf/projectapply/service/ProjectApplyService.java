@@ -26,6 +26,8 @@ public class ProjectApplyService implements IProjectApplyService {
 	
 	@Override
 	public void projectapply(ApplyVO vo) {
+		vo.setApplyMsg(vo.getApplyMsg().replace("\n", "<br>"));
+		
 		mapper.projectapply(vo);
 	}
 	

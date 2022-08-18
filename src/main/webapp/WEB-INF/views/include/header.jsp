@@ -463,7 +463,7 @@
 		                        </a>
 		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
 		                            <li><a href="<c:url value='/usermypage/usermypage' />"><i class="fa fa-caret-right"></i>내 정보</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>쪽지함</a></li>
+		                            <li><a href="#" onclick="alert('로그인이 필요한 서비스입니다.');"><i class="fa fa-caret-right"></i>쪽지함</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 현황</a></li>
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 결과 조회</a></li>
 		                        </ul>
