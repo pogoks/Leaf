@@ -120,7 +120,7 @@ public class ProjectController {
 		service.updateProjectContent(vo);
 		
 		ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
-		return "redirect:/project/projectviewcompany";
+		return "redirect:/project/projectview";
 		
 	}
 
