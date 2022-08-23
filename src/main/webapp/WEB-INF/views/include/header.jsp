@@ -55,7 +55,7 @@
 		                               </a>
 		                               <ul class="dropdown-menu" role="menu">
 		                                  <li class="dropdown-header">쪽지</li>
-		                                  <li><a href="#" id="user-receive-message2">받은 쪽지함</a></li>
+		                                  <li><a href="#">받은 쪽지함</a></li>
 		                               </ul>
 		                              </li>
 		                    </div>
@@ -411,8 +411,7 @@
 		                               </a>
 		                               <ul class="dropdown-menu" role="menu">
 		                                  <li class="dropdown-header">쪽지</li>
-		                                  <li><a href="#">받은 쪽지함</a></li>
-		                                  <li><a href="#">쪽지 쓰기</a></li>
+		                                  <li><a href="#" onclick="alert('로그인이 필요한 서비스입니다.');">받은 쪽지함</a></li>
 		                               </ul>
 		                              </li>
 		                    </div>
@@ -464,8 +463,8 @@
 		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
 		                            <li><a href="<c:url value='/usermypage/usermypage' />"><i class="fa fa-caret-right"></i>내 정보</a></li>
 		                            <li><a href="#" onclick="alert('로그인이 필요한 서비스입니다.');"><i class="fa fa-caret-right"></i>쪽지함</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 현황</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>지원 결과 조회</a></li>
+		                            <li><a href="<c:url value='/userapply/applystatus' />"><i class="fa fa-caret-right"></i>지원 현황</a></li>
+		                            <li><a href="<c:url value='/userapply/applyresult' />"><i class="fa fa-caret-right"></i>지원 결과 조회</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
@@ -485,6 +484,10 @@
     <%@ include file="../modal_mypage/receiveMailList.jsp" %>
     <%@ include file="../modal_mypage/sendMailList.jsp" %>
     <%@ include file="../modal_mypage/userMessageContent.jsp" %>
+    <%@ include file="../login/modal-ID-PW-find.jsp" %>
+    <%@ include file="../login/modal-ID-PW-find-company.jsp" %>
+    <%@ include file="../login/modal-password-new.jsp" %>
+    <%@ include file="../login/modal-password-new-company.jsp" %>
       
     
     <script>
@@ -495,6 +498,16 @@
     		// 로그인 버튼 클릭 시 로그인 모달 창 오픈
     		$('#btn-login').click(function() {
     			$('#modal-login').modal('show');
+    		});
+    		
+    		// 일반회원 ID/PW 찾기 버튼 클릭 시 찾기 모달 창 오픈
+    		$('#btn-modal-id-pw-find').click(function() {
+    			$('#modal-ID-PW-find').modal('show');
+    		});
+    		
+    		// 기업회원 ID/PW 찾기 버튼 클릭 시 찾기 모달 창 오픈
+    		$('#btn-modal-company-id-pw-find').click(function() {
+    			$('#modal-ID-PW-find-company').modal('show');
     		});
     		
     		// 유저 쪽지함 버튼 클릭 시 받은 쪽지함 모달 창 오픈
