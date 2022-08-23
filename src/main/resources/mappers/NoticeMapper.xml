@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="noticeViews">
 		UPDATE notice
 		SET notice_views = notice_views + 1
-		WHERE notice_no = #{noticeNo}
+		WHERE notice_NO = #{noticeNo}
 	</update>
 	
 	<select id="noticeContent" resultMap="NoticeMap">
