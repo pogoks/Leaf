@@ -62,7 +62,7 @@
 
 <%@ include file="../include/header.jsp" %>
 
-
+	
 	   
 	<div class="mainbox">
 	
@@ -167,24 +167,20 @@
 						<div>
 						    <div style="background-color: #bbd0e7;" >
 								<div style=" text-align: left; margin-left:10px; padding-top:10px; ">전체댓글
-									<p style="color:red; display:inline-block; ">
-										${boardReplyCount}
-									</p>
+									<p id="p-reply-count" style="color:red; display:inline-block; "></p>
 						        </div>
 						    </div> 
 						</div>
 					
 						<!-- 댓글 보기 모드 (여기에 댓글 반복이 들어감) -->
 						<div id="boardReplyList" style="width=100%; background:#FAFAFA; padding:5px 15px 5px 15px;">
-							<!-- 주석 <tbody>
-								<tr>
-									<td style="text-align: left;">${boardreply.boardReplyWriter}</td>
-									<td style="text-align: left;">${boardreply.boardReplyContent}</td>
-									<td>${boardreply.boardReplyDate}</td>
-									<td><a class="glyphicon glyphicon-ok" aria-hidden="true"></a></td>
-									<td><a class="glyphicon glyphicon-remove" aria-hidden="true"></a></td>
-								</tr>
-							</tbody>-->
+														
+							<!-- ------------------------댓글이 반복됨---------------------------- -->
+							<!-- ------------------------댓글이 반복됨---------------------------- -->
+							<!-- ------------------------댓글이 반복됨---------------------------- -->
+							<!-- ------------------------댓글이 반복됨---------------------------- -->
+							<!-- ------------------------댓글이 반복됨---------------------------- -->
+							
 					     </div>
 					     <button class="form-control" id="moreList">댓글 더보기</button>
 					</div>
@@ -209,7 +205,7 @@
 	        </section> 
 	        
 	        
-	        <!-- 댓글 수정 모달 -->
+	        <!-- 댓글 수정/삭제 모달 -->
 	        <div class="modal fade" id="replyModal" role="dialog">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
@@ -219,11 +215,11 @@
 						</div>
 						<div class="modal-body">
 							<!-- 수정폼 id값을 확인하세요-->
-							<input type="hidden" id="hidden-modal-replyno">
-							<div class="reply-content">
-								<textarea class="form-control" rows="4" id="modalReply" placeholder="내용입력" style="resize: none;"></textarea>
+							<input type="hidden" id="hidden-modal-replyno" name="">
+							<div class="reply-content" >
+								<textarea class="form-control" rows="4" id="modalReply" placeholder="내용입력" style="resize: none;">${boardContent.boardContent }</textarea>
 								<div class="reply-group">
-									<button class="right btn btn-info" id="modalModBtn">수정하기</button>
+									<button class="right btn btn-info" id="modalModBtn" style="margin-top:10px;">수정하기</button>
 									<button class="right btn btn-info" id="modalDelBtn">삭제하기</button>
 								</div>
 							</div>
@@ -245,87 +241,97 @@
 
 
 <script language="javaScript">
-		
-		const msg = '${msg}';
-		if(msg !== '') {
-			alert(msg);
-		}
-		
-		//목록 이동 버튼
-		$(function() {
-			$('#btn-board-list').click(function() {
-				location.href='<c:url value="/board/boardList"/>';
-			});
+	
+	const msg = '${msg}';
+	if(msg !== '') {
+		alert(msg);
+	}
+	
+	//목록 이동 버튼
+	$(function() {
+		$('#btn-board-list').click(function() {
+			location.href='<c:url value="/board/boardList"/>';
+		});
+	});
+	
+	//삭제 버튼 처리
+	$(function(){
+	 	$('#btn-board-delete').click(function() {
+	 		if(confirm('정말 삭제하시겠습니까?')) {
+				document.boardDeleteForm.submit();
+			}
+	 	});
+	});
+	
+	
+	//댓글 등록
+	$(document).ready(function () {
+	
+		$('#btn-boardreply-write').click(function(){
 			
+			const boardNo = $('#hidden-boardNo').val(); //컨트롤러에서 넘어온 글 번호
+			const boardReplyContent = $('#boardReplyContent').val(); //댓글 내용
+			
+			console.log(boardReplyContent);
+			
+			const boardReplyWriter = $('#boardReplyWriter').val();//작성자
+			
+			if($('#boardReplyContent').val() == '') {
+				alert('내용을 입력하세요 !');
+				return;
+			}
+			
+			$.ajax({
+				type: 'post',
+				url: '<c:url value="/boardreply/boardReplyWrite" />',
+				contentType: 'application/json',
+				data: JSON.stringify(
+					{
+						"boardReplyWriter": boardReplyWriter,
+						"boardReplyContent": boardReplyContent,
+						"boardNo": boardNo
+					}		
+				),
+				
+				dataType: 'text',
+				
+				success: function(result) {
+					console.log('통신 성공' + result);
+					//alert('댓글 등록이 완료되었습니다.');
+					$('#boardReplyContent').val('');
+					boardReplyList(1,true);
+				},
+				
+				error: function() {
+					alert('error: 댓글 등록이 실패하였습니다. 관리자에게 문의해주세요!');
+				}
+			
+				
+			}); //end ajax
+		}); //댓글 등록 이벤트 끝
+	
+		
+		//더보기 버튼 처리(클릭 시 전역 변수 page에 +1 한 값을 전달)
+		$('#moreList').click(function() {
+			//왜 false를 주었죠?, 더보기잖아요. 누적해야 하지 않을까요?
+			//1페이지의 댓글 내용 밑에다가 2페이지를 줘야지, 1페이지를 없애고 2페이지를 보여주자 는 게 아니니까요.
+			boardReplyList(++page, false);
 		});
 		
-		//삭제 버튼 처리
-		$(function(){
-		 	$('#btn-board-delete').click(function() {
-		 		if(confirm('정말 삭제하시겠습니까?')) {
-					document.boardDeleteForm.submit();
-				}
-		 	});
+		
+		//연속클릭 방지
+		var timer; 
+		$("#btn-boardreply-write").click(function () {
+		    if(alert("댓글을 등록하였습니다.")){
+		        if(timer){
+		            clearTimeout(timer);
+		        }
+		        timer = setTimeout(function(){
+		            //수행될 프로세스를 입력하는 곳
+		        },200); //2초 동안 재 수행되는 것을 방지
+		    }
 		});
-		
-		
-		//댓글 등록
-		$(document).ready(function () {
-		
-			$('#btn-boardreply-write').click(function(){
-				
-				const boardNo = $('#hidden-boardNo').val(); //컨트롤러에서 넘어온 글 번호
-				const boardReplyContent = $('#boardReplyContent').val(); //댓글 내용
-				
-				console.log(boardReplyContent);
-				
-				const boardReplyWriter = $('#boardReplyWriter').val();//작성자
-				
-				if($('#boardReplyContent').val() == '') {
-					alert('내용을 입력하세요 !');
-					return;
-				}
-				
-				
-				
-				$.ajax({
-					type: 'post',
-					url: '<c:url value="/boardreply/boardReplyWrite" />',
-					contentType: 'application/json',
-					data: JSON.stringify(
-						{
-							"boardReplyWriter": boardReplyWriter,
-							"boardReplyContent": boardReplyContent,
-							"boardNo": boardNo
-						}		
-					),
-					
-					dataType: 'text',
-					
-					success: function(result) {
-						console.log('통신 성공' + result);
-						
-						alert('댓글 등록이 완료되었습니다.');
-						
-						$('#boardReplyContent').val('');
-					
-						boardReplyList(1,true);
-					},
-					
-					error: function() {
-						alert('error: 댓글 등록이 실패하였습니다. 관리자에게 문의해주세요!');
-					}
-				
-					
-				}); //end ajax
-			}); //댓글 등록 이벤트 끝
-		
-			//더보기 버튼 처리(클릭 시 전역 변수 page에 +1 한 값을 전달)
-			$('#moreList').click(function() {
-				//왜 false를 주었죠?, 더보기잖아요. 누적해야 하지 않을까요?
-				//1페이지의 댓글 내용 밑에다가 2페이지를 줘야지, 1페이지를 없애고 2페이지를 보여주자 는 게 아니니까요.
-				boardReplyList(++page, false);
-			});
+	
 	
 		//댓글 목록 조회
 		let page = 1; //페이지 번호
@@ -346,6 +352,9 @@
 					
 					let boardReplyTotal = result.boardReplyTotal; //총 댓글 수
 					let boardReplyList = result.boardReplyList; //댓글 리스트
+					
+					//댓글수 빨간글씨
+					$('#p-reply-count').text(boardReplyTotal);
 					
 					if(reset === true) {
 						strAdd = '';
@@ -373,7 +382,7 @@
 						var replyReader = '';
 						
 						var memberNo = '';
-						
+
 						if(boardReplyList[i].userNo != '') {
 							memberNo = boardReplyList[i].userNo;
 							
@@ -465,26 +474,14 @@
 		}//end boardReplyList()
 		
 		
-		//연속클릭방지
-		/*
-		var bbw = document.querySelector("#btn-boardreply-write");
-		bbw.addEventListener("click", function (e) {
-		    this.setAttribute("disabled", true);
-		});
-		*/
-
-		
 		//댓글 수정/삭제 버튼 처리
 		$('#boardReplyList').on('click', 'a', function(e) {
 			e.preventDefault();
 			const target = e.target.getAttribute('data-value');
-			
-			console.log(target);
-			
 			if($(this).hasClass('replyModify')) {
 				//수정 버튼을 눌렀으므로 수정 모달 형식으로 꾸며주겠다.
-				
 				$('.modal-title').html('댓글 수정');
+				$('#hidden-modal-replyno').val(target);
 				$('#modalReply').css('display', 'inline');
 				$('#modalModBtn').css('display', 'inline'); //수정버튼 보이기
 				$('#modalDelBtn').css('display', 'none'); 
@@ -504,16 +501,22 @@
 		//댓글 수정   (https://rsorry.tistory.com/m/282참고)
 		$('#modalModBtn').click(function () {
 			const boardReplyNO = $('#hidden-modal-replyno').val();
+			const modalReply = $('#modalReply').val();
+			
+			console.log(boardReplyNO);
+			console.log(modalReply);
+			
 			$.ajax({
 				type: 'POST',
 				url: '<c:url value="/boardreply/boardReplyUpdate"/>',
 				dataType:'text',
 				data: {
-					'boardReplyNO': boardReplyNO
+					'boardReplyNo': boardReplyNO,
+					'boardReplyContent': modalReply
 				},
 				success: function(result) {
 					if(result === 'UpdateSuccess') {
-						alert('ㅎㅎ');
+						alert('댓글이 수정되었습니다.');
 						$('#modalReply').val('');
 						$('#replyModal').modal('hide');
 						location.reload();
@@ -526,6 +529,7 @@
 				}
 			});//ajax 끝.
 		});//댓글 수정 끝.
+		
 		
 		//삭제 함수
 		$('#modalDelBtn').click(function () {

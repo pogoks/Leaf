@@ -25,6 +25,7 @@
    
    <!-- 여기다가 나만의 새로운 css 만들기 -->
    <style>
+   .container { min-height: 500px; }
    
    .mainbox .hr .headline {
    	text-align: left;
@@ -50,10 +51,6 @@
     margin-top: 1px;
     border-radius: 5px;
    }
-
- 
-
-
    
    </style>
    
@@ -104,8 +101,13 @@
                             <td style="text-align: left;">
                             	<a href="<c:url value='/archive/archiveContent/${archive.archiveNo}${pc.makeURI(pc.paging.pageNum)}'/>">
                             		${archive.archiveTitle}
+                            		<!-- new마크 -->
                             		<c:if test="${archive.archiveDate>=nowday }">
 	                            		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">
+									</c:if>
+									<!-- 댓글수 -->
+									<c:if test="${archive.archiveReplyCount >= 1}">
+										<span style="color:red; font-size:15px;">[${archive.archiveReplyCount}]</span>
 									</c:if>
                             	</a>
                             	<a class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></a>

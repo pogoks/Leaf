@@ -1,6 +1,7 @@
 package com.spring.leaf.archivereply.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.leaf.archivereply.command.ArchiveReplyVO;
 
@@ -13,13 +14,13 @@ public interface IArchiveReplyMapper {
 	void archiveReplyWrite(ArchiveReplyVO vo);
 	
 	//댓글 목록
-	List<ArchiveReplyVO> archiveReplyList(int archiveReplyNo);
+	List<ArchiveReplyVO> archiveReplyList(Map<String, Object> data);
 	
 	//댓글 개수
-	int archiveReplyTotal(int archvieReplyNo);
+	int archiveReplyTotal(int archvieNo);
 	
 	//댓글 수정
-	void archiveReplyUpdate(int archiveReplyNo);
+	void archiveReplyUpdate(ArchiveReplyVO vo);
 	
 	//댓글 삭제
 	void archiveReplyDelete(int archiveReplyNo);

@@ -129,7 +129,6 @@
 
 	                            <c:if test="${notice.noticeWriter eq user.userID }">
 		                            <button type="button" id="btn-notice-modify" class="btn btn-info pull-right" onclick="location.href='<c:url value="/notice/noticeModify?noticeNo=${notice.noticeNo}"/>'" style="margin-left:10px;">수정하기</button>
-
 	                            </c:if>
 	                            <button type="button" id="btn-notice-list" class="btn btn-primary mb-2 pull-right" onclick="location.href='<c:url value="/notice/noticeList"/>'" style="margin-left:10px;">목록</button>
                        	</form>

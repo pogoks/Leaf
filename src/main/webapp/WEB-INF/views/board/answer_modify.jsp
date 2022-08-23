@@ -43,6 +43,7 @@
 			            	<span class="main-notice-title">Q&A - 답변 수정</span>
 			            </a>
 					<div class="col-lg-8 col-md-10 col-sm-12">
+
 					  <form action="<c:url value='/question/answerUpdate' />" method="post" name="answerUpdateForm">
 		    			<table class= "table table-stripped" style= "text-align: center; boarder: 1px solid #dddddd">
 			    	    	<thead>
@@ -63,8 +64,10 @@
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
+
 		    	    	<input type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/question/questionList"/>'" value="목록">
     	    			<button type="submit" class="btn btn-info pull-right" id="btn-answer-update">수정하기</button>
+
 					  </form>
 					</div>
 				</div>

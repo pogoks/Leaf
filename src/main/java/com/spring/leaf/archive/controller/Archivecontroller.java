@@ -111,8 +111,8 @@ public class Archivecontroller {
 		model.addAttribute("archiveWriterNumbers", writerNumbers);
 		
 		//전체 댓글 수
-		//int tt = rservice.archiveReplyTotal(archiveNo);
-		//model.addAttribute("archiveReplyCount", tt);
+		int tt = rservice.archiveReplyTotal(archiveNo);
+		model.addAttribute("archiveReplyCount", tt);
 		
 		//조회수 증가
 		service.archiveViews(archiveNo);
