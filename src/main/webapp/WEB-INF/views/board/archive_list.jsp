@@ -97,7 +97,7 @@
                     <tbody>
                       <c:forEach var="archive" items="${archiveList}">
                         <tr>
-                            <td>${archive.archiveNo}</td>
+                            <td>${archive.rn}</td>
                             <td style="text-align: left;">
                             	<a href="<c:url value='/archive/archiveContent/${archive.archiveNo}${pc.makeURI(pc.paging.pageNum)}'/>">
                             		${archive.archiveTitle}

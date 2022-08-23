@@ -21,5 +21,6 @@ public class BoardVO {
 	private int boardViews;
 	
 	private int boardReplyCount; //join으로 추가 (댓글수)
+	private int rn;//글번호
 	
 }

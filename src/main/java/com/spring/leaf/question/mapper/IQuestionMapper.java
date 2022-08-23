@@ -1,6 +1,7 @@
 package com.spring.leaf.question.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.leaf.question.command.AnswerVO;
 import com.spring.leaf.question.command.QuestionVO;
@@ -18,6 +19,9 @@ public interface IQuestionMapper {
 	
 	//질문글 상세보기
 	QuestionVO questionContent(int questionNo);
+	
+	//질문글 글쓴이 프로필사진 불러오기 요청
+	int questionwriterProfile(Map<String, Object> questionInfo);
 	
 	//질문글 수정
 	void questionModify(QuestionVO vo);
@@ -46,6 +50,10 @@ public interface IQuestionMapper {
 	
 	//답변글 삭제하기
 	void answerDelete(int answerNo);
+	
+	// 사용자 프로필사진 불러오기 요청
+	int answerwriterProfile(Map<String, Object> answerInfo);
+
 	
 
 

@@ -16,6 +16,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="boardReplyCount" column="board_reply_count" />
 	</resultMap>
 	
+	
+	<!-- BoardWriterVO와 데이터베이스 컬럼명을 일치시켜주는 resultMap인 BoardWriterMap 선언 -->
+	<resultMap type="com.spring.leaf.board.command.BoardWriterVO" id="BoardWriterMap">
+		<result property="userNo" column="user_NO" />
+		<result property="companyNo" column="company_NO" />
+	</resultMap>
+	
 	<sql id="search">
 		<if test="condition == 'title'">
 			WHERE board_title LIKE concat('%', #{keyword}, '%')
@@ -36,9 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 자유게시판 글 목록 SELECT 쿼리 -->
 	<select id="boardList" resultMap="BoardMap">
+		
 		SELECT * FROM
-			(
+			( 
 			SELECT @ROWNUM:=@ROWNUM+1 AS rn, A.* FROM
+
 				(	
 				SELECT 
 					b.board_NO, b.board_title, b.board_writer, b.board_content, b.board_date, b.board_views, 
@@ -54,7 +63,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE rn > (#{pageNum}-1) * #{cpp}
 		AND rn <= #{pageNum} * #{cpp}
 		]]>
+
 	</select>
+	
+	<!-- 자유게시판 프로필 사진 불러오기 SELECT 쿼리 -->
+	<select id="boardwriterProfile" resultMap="BoardWriterMap">		
+		SELECT u.user_NO, c.company_NO
+	      FROM 
+	         board b LEFT OUTER JOIN user u
+	         ON b.board_writer = u.user_ID
+	            LEFT OUTER JOIN company c
+	            ON b.board_writer = c.company_ID
+	      WHERE b.board_writer = #{boardWriter}
+	      AND b.board_NO = #{boardNo}
+	</select> 
 	
 	<!-- 자유게시판 총 게시글 수 -->
 	<select id="getTotal" resultType="int">

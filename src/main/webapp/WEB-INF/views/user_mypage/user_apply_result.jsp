@@ -68,7 +68,7 @@
 
 
 			<table class="table table-bordered" style="margin-top: 20px;">
-				<thead style="width: 10px; font-size: 13px; background: #89C578;">
+				<thead style="width: 10px; font-size: 13px; background: #A6CAEE;">
 					<tr style="font-family: sans-serif;">
 						<th style="width: 6%;">번호</th>
 						<th style="width: 40%;">프로젝트명</th>
