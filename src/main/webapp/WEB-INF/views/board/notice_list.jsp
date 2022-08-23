@@ -95,7 +95,7 @@
                     <!-- 공지사항 목록 -->
                     <c:forEach var="notice" items="${noticeList}">
                         <tr>
-                            <td>${notice.noticeNo}</td>
+                            <td>${notice.rn}</td>
                             <td style="text-align: left;">
                             	<a href="<c:url value='/notice/noticeContent/${notice.noticeNo}${pc.makeURI(pc.paging.pageNum)}'/>">
                             		${notice.noticeTitle}

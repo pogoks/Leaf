@@ -19,5 +19,7 @@ public class ArchiveVO {
 	private String archiveContent;
 	private Timestamp archiveDate;
 	private int archiveViews; //자료실 조회수
+	
+	private int rn;//글번호
 
 }

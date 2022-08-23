@@ -63,7 +63,12 @@ public class QuestionController {
 	@GetMapping("/questionContent/{questionNo}")
 	public String questionContent(@PathVariable int questionNo, Model model) {
 		
-		model.addAttribute("question", service.questionContent(questionNo));
+		QuestionVO vo = service.questionContent(questionNo);
+		
+		int questionWriterNo = service.questionwriterProfile(vo.getQuestionWriter(), questionNo);
+		
+		model.addAttribute("question", vo);
+		model.addAttribute("questionWriterNo", questionWriterNo);
 		
 		return "board/qna_content";
 		
@@ -114,6 +119,23 @@ public class QuestionController {
 				
 	return "redirect:/question/questionList";
 	}
+	
+	//답변글 상세보기(목록)프로필사진용
+	@PostMapping("/answerList/{answerNo}")
+	public String answerList(@PathVariable int answerNo, Model model) {		
+
+		
+		AnswerVO vo = service.answerContent(answerNo);
+		
+		int answerWriterNo = service.answerwriterProfile(vo.getAnswerWriter(), answerNo);
+		
+		model.addAttribute("answer", vo);
+		model.addAttribute("answerWriterNo", answerWriterNo);
+		
+		
+		
+		return "redirect:/question/answerList" ;
+	}
 
 	
 	//답변글 상세보기(목록)
@@ -137,19 +159,19 @@ public class QuestionController {
 		return "board/answer_modify";
 	}
 	
-	//글 수정 처리
+	//답변글 수정 처리
 		@PostMapping("/answerUpdate")
 		public String answerUpdate(AnswerVO vo, RedirectAttributes ra) {
 				
 			service.answerModify(vo);
-			ra.addFlashAttribute("msg", "updateSuccess");
-			return "redirect:/question/questionContent/" + vo.getQuestionNo();
+			ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
+			return "redirect:/question/questionList";
 		}
 	
 	//답변글 삭제
-	@PostMapping("/answerDelete/{answerNo}")
+	@PostMapping("/answerDelete")
 	@ResponseBody
-	public String answerDelete(@PathVariable int answerNo) {
+	public String answerDelete(@RequestParam int answerNo) {
 		service.answerDelete(answerNo);
 		
 		return "deleteSuccess";

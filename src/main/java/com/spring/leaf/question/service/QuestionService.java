@@ -1,6 +1,8 @@
 package com.spring.leaf.question.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,19 @@ public class QuestionService implements IQuestionService {
 
 		return mapper.questionContent(questionNo);
 	}
+	
+	//질문글 글쓴이 프로필사진 불러오기 요청
+	@Override
+	public int questionwriterProfile(String questionWriter, int questionNo) {
+		
+		Map<String, Object> questionInfo = new HashMap<>();
+		
+		questionInfo.put("questionWriter", questionWriter);
+		questionInfo.put("questionNo", questionNo);
+		
+		return mapper.questionwriterProfile(questionInfo);
+	}
+	
 
 	//질문글 수정하기
 	@Override
@@ -70,9 +85,22 @@ public class QuestionService implements IQuestionService {
 		return mapper.answerList(questionNo);
 	}
 	
+	//답변글 목록
 	@Override
 	public AnswerVO answerContent(int answerNo) {
 		return mapper.answerContent(answerNo);
+	}
+	
+	//답변글 프로필 사진 불러오기
+	@Override
+	public int answerwriterProfile(String answerWriter, int answerNo) {
+		
+		Map<String, Object> answerInfo = new HashMap<>();
+		
+		answerInfo.put("answerWriter", answerWriter);
+		answerInfo.put("answerNo", answerNo);
+		
+		return mapper.answerwriterProfile(answerInfo);
 	}
 	
 	//답변글 수정하기
