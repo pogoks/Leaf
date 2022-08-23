@@ -1,5 +1,7 @@
 package com.spring.leaf.question.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.spring.leaf.question.command.AnswerVO;
 import com.spring.leaf.question.command.QuestionVO;
 import com.spring.leaf.question.service.IQuestionService;
+import com.spring.leaf.util.PageCreator;
+import com.spring.leaf.util.PageVO;
 
 //Question 컨트롤러 : 2022-07-30 생성
 
@@ -37,9 +41,23 @@ public class QuestionController {
 	
 	//질문글 목록 페이지로 이동 요청
 	@GetMapping("/questionList")
-	public String questionList(Model model) {
+	public String questionList(Model model, PageVO vo) {
+		//페이징
+		System.out.println(vo);
+		PageCreator pc = new PageCreator();
+		pc.setPaging(vo);
+		pc.setArticleTotalCount(service.questionTotal(vo));
+		System.out.println(pc);
 		
-		model.addAttribute("questionList", service.questionList());
+		//현재시간 구하기 (뉴마크) https://mingbocho.tistory.com/11참고
+	    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	    Calendar cal = Calendar.getInstance();
+	    cal.add(Calendar.DAY_OF_MONTH, -1); //게시글 등록 후 1일간 뉴마크 표시.
+	    String nowday = format.format(cal.getTime());
+		
+	    model.addAttribute("pc", pc);
+	    model.addAttribute("nowday", nowday);
+		model.addAttribute("questionList", service.questionList(vo));
 		
 		return "/board/qna_list";
 	}
@@ -62,6 +80,9 @@ public class QuestionController {
 	//질문글 상세보기
 	@GetMapping("/questionContent/{questionNo}")
 	public String questionContent(@PathVariable int questionNo, Model model) {
+		
+		//조회수 증가
+		service.questionViews(questionNo);
 		
 		model.addAttribute("question", service.questionContent(questionNo));
 		
@@ -138,13 +159,13 @@ public class QuestionController {
 	}
 	
 	//글 수정 처리
-		@PostMapping("/answerUpdate")
-		public String answerUpdate(AnswerVO vo, RedirectAttributes ra) {
-				
-			service.answerModify(vo);
-			ra.addFlashAttribute("msg", "updateSuccess");
-			return "redirect:/question/questionContent/" + vo.getQuestionNo();
-		}
+	@PostMapping("/answerUpdate")
+	public String answerUpdate(AnswerVO vo, RedirectAttributes ra) {
+			
+		service.answerModify(vo);
+		ra.addFlashAttribute("msg", "updateSuccess");
+		return "redirect:/question/questionContent/" + vo.getQuestionNo();
+	}
 	
 	//답변글 삭제
 	@PostMapping("/answerDelete/{answerNo}")

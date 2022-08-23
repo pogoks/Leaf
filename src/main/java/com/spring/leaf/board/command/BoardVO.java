@@ -20,4 +20,6 @@ public class BoardVO {
 	private Timestamp boardDate;
 	private int boardViews;
 	
+	private int boardReplyCount; //join으로 추가 (댓글수)
+	
 }

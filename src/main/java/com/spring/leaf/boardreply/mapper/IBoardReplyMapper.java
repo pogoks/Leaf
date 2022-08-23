@@ -21,10 +21,11 @@ public interface IBoardReplyMapper {
 	int boardReplyTotal(int boardNo);
 	
 	//댓글 수정
-	void boardReplyUpdate(int boardReplyNo);
+	void boardReplyUpdate(BoardReplyVO vo);
 	
 	//댓글 삭제
 	void boardReplyDelete(int boardReplyNo);
+	
 	
 
 }

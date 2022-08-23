@@ -18,6 +18,8 @@ public class ArchiveVO {
 	private String archiveWriter;
 	private String archiveContent;
 	private Timestamp archiveDate;
-	private int archiveViews; //자료실 조회수
-
+	private int archiveViews; 
+	
+	private int archiveReplyCount; //join으로 추가 (댓글수)
+	
 }

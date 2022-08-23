@@ -96,14 +96,19 @@
 			                                        <div class="qa_writer" style="display: inline-block;">
 			                                            <img src="<c:url value='/user/userProfileGet?userNO=${user.userNO}'/>" width="40px" height="40px" style="border-radius: 30px; margin-left: 10px; margin-right: -5px;" > 
 			                                            <div style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif; margin-left:15px;">${question.questionWriter}</div>
-			                                            
+			                                            <c:if test="${question.questionWriter eq user.userID }">
+		                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+		                                            	</c:if>
+			                                            <c:if test="${question.questionWriter eq company.companyID }">
+		                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+		                                            	</c:if>
 		                                       		</div>
 		                                       		<div style="display:inline-block; float:right; margin-top:10px; margin-right:40px; color:gray;">
 				                                        <div style="display:inline-block;" >
 				                                            <fmt:formatDate value="${question.questionDate}" pattern="yyyy-MM-dd HH:mm" />
 				                                        </div>
 				                                        <div style="display:inline-block;">
-				                                        	조회수 : 2
+				                                        	조회수 : ${question.questionViews }
 				                                        </div>
 			                                        </div>
 		                                        </div>
@@ -118,7 +123,9 @@
                              <hr class="borderline" style="margin-bottom:40px;" />
                              <button type="submit" class="btn btn-light mb-2 pull-left">신고하기 </button>
                              <button type="button" id="btn-question-list" class="btn btn-info mb-2 pull-right" style="margin-left:10px;">목록 </button>
-                             <button type="button" class="btn btn-primary mb-2 pull-right"  style="margin-left:10px;" onclick="location.href='<c:url value="/question/questionModify?questionNo=${question.questionNo}"/>'">수정 </button>
+                             <c:if test="${question.questionWriter eq user.userID || question.questionWriter eq company.companyID }">
+                             	<button type="button" class="btn btn-primary mb-2 pull-right"  style="margin-left:10px;" onclick="location.href='<c:url value="/question/questionModify?questionNo=${question.questionNo}"/>'">수정 </button>
+                             </c:if>
                              <button type="button" id="btn-go-answer" class="btn btn-success mb-2 pull-right"  style="margin-left:10px;">답변하기 </button>
                            
                         </div>
@@ -127,8 +134,8 @@
                     
                     <form action="<c:url value='/question/answerModify' />" method="post" name="answerDetailForm">
                     	<div id="answerList">
-                    
                     	
+                    		<!-- ----------------답변 목록---------------- -->
                     
                     	</div>
                     </form>

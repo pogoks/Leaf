@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="archiveReplyWriter" column="archive_reply_writer"/>
 		<result property="archiveReplyContent" column="archive_reply_content"/>
 		<result property="archiveReplyDate" column="archive_reply_date"/>
+		<result property="archiveNo" column="archive_NO"/>
 	</resultMap>
 	
 	<!-- ArchiveReplyVO와 데이터베이스 컬럼명을 일치시켜주는 resultMap인 ArchiveReplyMap 선언 (id는 ArchiveReplyListMap인데 줄임)-->
@@ -30,15 +31,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 자료실 댓글 리스트 -->
 	<select id="archiveReplyList" resultMap="ArchiveReplyListMap"> 
+		<!-- 
 		SELECT * FROM archive_reply
-		WHERE archive_NO=#{archiveNo}
+		WHERE archive_NO = #{archiveNo}
+		-->
+		SELECT * FROM	
+			(
+			SELECT @ROWNUM:=@ROWNUM+1 AS rn, A.* FROM
+				(
+				SELECT * FROM archive_reply
+				WHERE archive_NO = #{archiveNo}
+				ORDER BY archive_reply_NO DESC
+				) A,(SELECT @ROWNUM := 0)B
+			) B
+		<![CDATA[
+		WHERE rn > 0
+		AND rn <= #{paging.pageNum} * #{paging.cpp}
+		]]>
 	</select>
 	
 	<!-- 자료실 댓글 갯수 확인 -->
 	<select id="archiveReplyTotal" resultType="int">
 		SELECT COUNT(*)
 		FROM archive_reply
-		WHERE archive_reply_NO = ${archiveReplyNo}
+		WHERE archive_NO = #{archiveNo}
 	</select>
 	
 	<!-- 자료실 댓글 수정 -->

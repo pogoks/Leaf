@@ -25,6 +25,7 @@
    
    <!-- 여기다가 나만의 새로운 css 만들기 -->
    <style>
+   .container { min-height: 500px; }
    
    .mainbox .hr .headline {
    	text-align: left;
@@ -49,11 +50,7 @@
     margin-top: 1px;
     border-radius: 5px;
    }
-
- 
-
-
-   
+	
    </style>
    
 </head>
@@ -106,8 +103,9 @@
 									<c:if test="${board.boardDate>=nowday }">
 		                           		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">
 									</c:if>
-									<c:if test="${boardReplyCount} >= 1">
-										<span style="color:red; font-weight:bold; font-size:10px;">[${boardReplyCount}]</span>
+									<!-- 댓글수 -->
+									<c:if test="${board.boardReplyCount >= 1}">
+										<span style="color:red; font-size:15px;">[${board.boardReplyCount}]</span>
 									</c:if>
 								</a>
                             </td>
@@ -217,5 +215,5 @@
 	        location.href="${path}/board/boardList?pageIndex="+pagenum+"&cpp="+nowPaging;    
 	    }
 	}
-
+	
 </script>

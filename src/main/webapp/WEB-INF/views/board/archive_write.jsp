@@ -97,6 +97,13 @@
 
 
 <script>
+	
+	//등록버튼 연속클릭 방지
+	var bbw = document.querySelector("#btn-archive-write");
+	bbw.addEventListener("click", function (e) {
+	    this.setAttribute("disabled", true);
+	});
+	
 
 	//목록 이동 버튼
 	$(function() {
