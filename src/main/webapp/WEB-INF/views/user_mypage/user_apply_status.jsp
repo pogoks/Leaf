@@ -51,9 +51,6 @@
 			<a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;"> 
 				<span class="main-board-title" style="color: #2C4F22;">지원현황</span>
 			</a>
-			<div style="float:right;">
-				<span class="main-board-title" style="color: #2C4F22; font-size:12px;">내가 지원한 프로젝트 목록: #건</span>
-			</div>
 			
 			<div>
 			<form class="navbar-form navbar-left navbar-main-top pull-left" role="search" style="padding: 0; margin-left: 0;">
@@ -72,6 +69,10 @@
 			</div>
 
 			<div style="clear: both;">
+			
+				<br>
+				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px;">지원한 프로젝트<span style="color: red;">&nbsp;&nbsp;${projectApplyCount}</span></p>
+				<hr>
 					
 				<c:forEach var="applyStatusList" items="${applyStatusList}" varStatus="index">
               
