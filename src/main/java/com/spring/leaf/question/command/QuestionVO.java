@@ -19,5 +19,7 @@ public class QuestionVO {
 	private String questionContent;
 	private Timestamp questionDate;
 	private int questionViews;
+	
+	private int rn;//글번호
 
 }
