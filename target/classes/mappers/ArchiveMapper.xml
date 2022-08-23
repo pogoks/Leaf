@@ -88,17 +88,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 				SELECT @ROWNUM:=@ROWNUM+1 AS rn, A.* FROM
 				(
-				SELECT 
-					a.archive_NO, a.archive_title, a.archive_writer, a.archive_content, a.archive_date, a.archive_views, 
-					COUNT(ar.archive_reply_NO) AS archive_reply_count
-				FROM archive a LEFT OUTER JOIN archive_reply ar
-				ON a.archive_NO = ar.archive_NO
-				WHERE a.archive_title IS NOT NULL
-		            AND a.archive_NO != 1
-		            <include refid="search" />
-				GROUP BY a.archive_NO	
-				ORDER BY a.archive_NO DESC
-
+            SELECT 
+              a.archive_NO, a.archive_title, a.archive_writer, a.archive_content, a.archive_date, a.archive_views, 
+              COUNT(ar.archive_reply_NO) AS archive_reply_count
+            FROM archive a LEFT OUTER JOIN archive_reply ar
+            ON a.archive_NO = ar.archive_NO
+            WHERE a.archive_title IS NOT NULL
+                    AND a.archive_NO != 1
+                    <include refid="search" />
+            GROUP BY a.archive_NO	
+            ORDER BY a.archive_NO ASC
 				) A,(SELECT @ROWNUM := 0)B
 				ORDER BY rn DESC
 			) B

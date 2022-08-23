@@ -56,13 +56,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 ON b.board_NO = br.board_NO
                 <include refid="search" />
                 GROUP BY b.board_NO				
-                ORDER BY board_NO DESC
+                ORDER BY board_NO
 				) A,(SELECT @ROWNUM := 0)B
+				ORDER BY rn DESC
 			) B
-		<![CDATA[ 
-		WHERE rn > (#{pageNum}-1) * #{cpp}
-		AND rn <= #{pageNum} * #{cpp}
-		]]>
+		LIMIT ${cpp}
+		OFFSET ${skip}
 
 	</select>
 	

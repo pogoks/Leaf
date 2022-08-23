@@ -136,7 +136,7 @@ public class Archivecontroller {
 		service.archiveModify(vo);
 		ra.addFlashAttribute("msg", "updateSuccess");
 		return "redirect:/archive/archiveContent/" + vo.getArchiveNo();
-	}/*
+	}
 	
 	//글 수정 처리
 	@PostMapping("/archiveUpdate/{archiveNo}")
@@ -229,7 +229,7 @@ public class Archivecontroller {
 			// 로컬에 저장된 파일과 동일한 파일을 서버 /home/leaf/project 디렉토리 경로로 보낸다.
 			// 앞에는 로컬에서 보낼 파일, 뒤에는 서버에서 받을 디렉토리 위치 경로
 			ChannelSftp channelSftp = (ChannelSftp) channel;
-			channelSftp.put(uploadPath + "\\" + name, "/home/leaf/userProfile");
+			channelSftp.put(uploadPath + "\\" + name, "/home/leaf/archiveFile");
 
 			// 이건 다운로드, 나중에 프로필사진 불러오기 할 때 참고해서
 			// 사용하자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -332,7 +332,7 @@ public class Archivecontroller {
 
 			return "YesArchiveFileDelete";
 		}
-		*/
+
 	//글 삭제 처리
 	@PostMapping("/archiveDelete")
 	public String archiveDelete(ArchiveVO vo, RedirectAttributes ra) throws Exception {

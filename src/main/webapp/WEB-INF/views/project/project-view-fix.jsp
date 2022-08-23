@@ -8,7 +8,7 @@
 
    <meta charset="UTF-8">
 
-   <title>나뭇잎 홈페이지</title>
+   <title>RunWith</title>
    
    <!-- jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -289,7 +289,7 @@ $(function() {
 
    <meta charset="UTF-8">
 
-   <title>나뭇잎 홈페이지</title>
+   <title>RunWith</title>
    
    <!-- jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -407,9 +407,9 @@ $(function() {
 				<table class="table table-bordered" style="margin-top: 10px; font-size: 14px; font-family: sans-serif; border-collapse: unset; border-spacing: 0;">
 					<tr>
 						<td style="width: 12%; text-align: center; font-weight: 700; background: #EBF3ED;">프로젝트 명</td>
-						<td style="width: 38%; background-color: #e8e3e3;">${projectview.projectName}</td>
+						<td style="width: 38%; background-color: #EEEEEE;">${projectview.projectName}</td>
 						<td style="width: 12%; text-align: center; font-weight: 700; background: #EBF3ED;">프로젝트 기간</td>
-						<td style="width: 38%; background-color: #e8e3e3;">
+						<td style="width: 38%; background-color: #EEEEEE;">
 							<c:set var="date1" value="${projectview.projectRequireDate1}" />
 				      		<c:set var="date2" value="${projectview.projectRequireDate2}" />
 				        	${fn:substring(date1, 0, 10)} &nbsp; ~ &nbsp; ${fn:substring(date2, 0, 10)}
@@ -417,13 +417,13 @@ $(function() {
 					</tr>
 					<tr>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">협력사</td>
-						<td style="width: 37%; background-color: #e8e3e3;">${projectview.companyName}</td>
+						<td style="width: 37%; background-color: #EEEEEE;">${projectview.companyName}</td>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">협력사 전화번호</td>
-						<td style="width: 37%; background-color: #e8e3e3;">${projectview.companyPhone1} - ${projectview.companyPhone2} - ${projectview.companyPhone3}</td>
+						<td style="width: 37%; background-color: #EEEEEE;">${projectview.companyPhone1} - ${projectview.companyPhone2} - ${projectview.companyPhone3}</td>
 					</tr>
 					<tr>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">협력사 위치</td>
-						<td colspan="3" style="width: 85%; background-color: #e8e3e3;">
+						<td colspan="3" style="width: 85%; background-color: #EEEEEE;">
 							<input type="hidden" value="${projectview.companyAddress1}" id="address-no">
 							${projectview.companyAddress2} ${projectview.companyAddress3}
 							
@@ -435,7 +435,8 @@ $(function() {
 					<tr>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">프로젝트 설명</td>
 						<td colspan="3" style="width: 85%; height: 340px;">
-							<input type="text" style="width: 100%; height: 100%;" name="projectDesc" value="${projectview.projectDesc}"/>
+							<!-- <input type="text" style="width: 100%; height: 100%;" name="projectDesc" value="${projectview.projectDesc}"/>  -->
+							<textarea style="width: 100%; height: 100%; resize: none;" name="projectDesc">${projectview.projectDesc}</textarea>
 						</td>
 					</tr>
 					<tr>
@@ -450,14 +451,14 @@ $(function() {
 					</tr>
 					<tr>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">지원 자격</td>
-						<td colspan="3" style="width: 85%; height: 120px; background-color: #e8e3e3;">
+						<td colspan="3" style="width: 85%; height: 120px; background-color: #EEEEEE;">
 							<c:set var="License" value="${projectview.projectRequireLicense}" />
 				       		${fn:replace(License, replaceChar, "<br/>")}
 						</td>
 					</tr>
 					<tr>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">모집 역할</td>
-						<td style="width: 37%; background-color: #e8e3e3;">${projectview.projectRequireRole}</td>
+						<td style="width: 37%; background-color: #EEEEEE;">${projectview.projectRequireRole}</td>
 						<td style="width: 13%; text-align: center; font-weight: 700; background: #EBF3ED;">모집 인원</td>
 						<td style="width: 37%;"><input type="text" style="width:100%;" value="${projectview.projectRequirePeople}" name="projectRequirePeople"/></td>
 					</tr>
@@ -528,91 +529,10 @@ $(function() {
 	
 	$(function() {
 		
-		// 목록 버튼 클릭 시
-		$('#mokrok-btn').click(function() {
-			location.href='<c:url value="/project/projectadmin" />';
-		});
 		
-	
-		// 지원하기 윗 버튼 클릭 시
-		$('#jiwon-btn').click(function() {
-			document.projectUpdateForm.submit();
-		});
-		
-		// 지원 취소 버튼 클릭 시
-		$('#btn-apply-spt001').click(function() {
-			
-			if(confirm('지원을 취소하시겠습니까?')) {
-				
-				const userNO = $('#hidden-userNO').val();
-				const projectNO = $('#hidden-projectNO').val();
-	
-				$.ajax({
-					type: 'POST',
-					url: '<c:url value="/project/applyCancel" />',
-					
-					dataType: 'text',
-					data: {
-						'userNO': userNO,
-						'projectNO': projectNO
-					},
-					
-					success: function(result) {
-						if(result == 'YesApplyCancel') {
-							alert('지원이 취소되었습니다.');
-							location.replace('<c:url value="/project/projectview?projectNO=" />' + projectNO);
-						} else {
-							alert('지원 취소 중 오류가 발생했습니다.');
-							return;
-						}
-					},
-					
-					error: function() {
-						alert('지원 취소 중 서버오류가 발생했습니다.');
-						return;
-					}
-				});
-				
-			} else {
-				return false;
-			}
-			
-		});
 		
 	});
-	
-	
-	function getListLike(isReset) {
-		let deferred = $.Deferred();
-		console.log('먼저 실행되어야 합니다!');
-		const userNO = '${user.userNO}';
-		console.log(userNO);
-		
-		if(userNO !== '') {
-			$.ajax({
-				type: 'post',
-				url: '<c:url value="/project/projectview" />',
-				data: userNO,
-				contentType: 'application/json',
-				success: function(result) {
-					console.log('result: ' + result); //게시글 번호들
-					if(isReset) {
-						deferred.resolve(result, page, true);								
-					} else {
-						deferred.resolve(result, page, false);
-					}
-				}
-			}); //end ajax
-		} else {
-			if(isReset) {
-				deferred.resolve(null, page, true);								
-			} else {
-				deferred.resolve(null, page, false);
-			}
-		}
-		
-		return deferred.promise();
-	}
+
 </script> 
                  
 

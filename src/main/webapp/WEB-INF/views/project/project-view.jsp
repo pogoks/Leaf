@@ -9,7 +9,7 @@
 
    <meta charset="UTF-8">
 
-   <title>나뭇잎 홈페이지</title>
+   <title>RunWith</title>
    
    <!-- jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -279,6 +279,47 @@
 		
 		// 지원 취소 버튼 클릭 시
 		$('#btn-apply-spt001').click(function() {
+			
+			if(confirm('지원을 취소하시겠습니까?')) {
+				
+				const userNO = $('#hidden-userNO').val();
+				const projectNO = $('#hidden-projectNO').val();
+	
+				$.ajax({
+					type: 'POST',
+					url: '<c:url value="/project/applyCancel" />',
+					
+					dataType: 'text',
+					data: {
+						'userNO': userNO,
+						'projectNO': projectNO
+					},
+					
+					success: function(result) {
+						if(result == 'YesApplyCancel') {
+							alert('지원이 취소되었습니다.');
+							location.replace('<c:url value="/project/projectview?projectNO=" />' + projectNO);
+						} else {
+							alert('지원 취소 중 오류가 발생했습니다.');
+							return;
+						}
+					},
+					
+					error: function() {
+						alert('지원 취소 중 서버오류가 발생했습니다.');
+						return;
+					}
+				});
+				
+			} else {
+				return false;
+			}
+			
+		});
+		
+		
+		// 지원 취소 버튼 클릭 시
+		$('#btn-apply-spt001-2').click(function() {
 			
 			if(confirm('지원을 취소하시겠습니까?')) {
 				

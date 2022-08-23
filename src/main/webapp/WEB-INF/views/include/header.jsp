@@ -55,7 +55,7 @@
 		                               </a>
 		                               <ul class="dropdown-menu" role="menu">
 		                                  <li class="dropdown-header">쪽지</li>
-		                                  <li><a href="#">받은 쪽지함</a></li>
+		                                  <li><a href="#" id="user-receive-message2">받은 쪽지함</a></li>
 		                               </ul>
 		                              </li>
 		                    </div>

@@ -47,13 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				(
 				SELECT * FROM question
 				<include refid="search" />
-				ORDER BY question_NO DESC
+				ORDER BY question_NO
 				) A,(SELECT @ROWNUM := 0)B
+				ORDER BY rn DESC
 			) B
-		<![CDATA[
-		WHERE rn > (#{pageNum}-1) * #{cpp}
-		AND rn <= #{pageNum} * #{cpp}
-		]]>
+		LIMIT ${cpp}
+		OFFSET ${skip}
 	</select>
 	
 	<!-- 질문글 등록 INSERT 쿼리 -->
