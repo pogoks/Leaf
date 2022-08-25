@@ -54,17 +54,21 @@
 			
 			<div>
 			<form class="navbar-form navbar-left navbar-main-top pull-left" role="search" style="padding: 0; margin-left: 0;">
-				<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
-                            <option value="id">프로젝트명</option>
-                            <option value="name">회사명</option>
-                </select>
-			
-				<div class="input-group"> 
-					<input type="text" class="form-control" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
-					</span>
-				</div>
+				
+				<!-- 검색기능 -->
+				<form action="<c:url value='/userapply/applystatus'/>">
+					<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
+	                    <option value="id ${pc.paging.condition == 'id' ? 'selected' : ''}">프로젝트명</option>
+	                    <option value="name ${pc.paging.condition == 'name' ? 'selected' : ''}">회사명</option>
+	                </select>
+					<div class="input-group"> 
+						<input type="text" name="keyword"  value="${pc.paging.keyword}" class="form-control" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
+						</span>
+					</div>
+				</form>
+				
 			</form>
 			</div>
 

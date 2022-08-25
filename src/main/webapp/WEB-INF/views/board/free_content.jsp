@@ -82,7 +82,7 @@
 			                                        <div class="free_title_up" scope="col" style="width: 100%;  margin-top:10px;">
 			                                        	<input type="hidden" id="hidden-boardNo" name="boardNo" value="${board.boardNo}">
 			                                        	<h4 style="display:inline-block;">${board.boardTitle}</h4>
-			                                        	<c:if test="${board.boardWriter eq user.userID }">
+			                                        	<c:if test="${board.boardWriter eq user.userID || user.commonCODE == 'ADM002'}">
 				                                        	<a type="submit" id="btn-board-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
 				                                        </c:if>
 			                                        </div>
@@ -192,7 +192,7 @@
 						<div style="margin-top:20px;">
             
 							<button type="submit" class=" mb-2 pull-left">신고하기 </button>
-							<c:if test="${board.boardWriter eq user.userID || board.boardWriter eq company.companyID}">
+							<c:if test="${board.boardWriter eq user.userID || board.boardWriter eq company.companyID || user.commonCODE == 'ADM002'}">
 								<button type="button" id="btn-board-modify" class="btn btn-info mb-2 pull-right" onclick="location.href='<c:url value="/board/boardModify?boardNo=${board.boardNo}"/>'" style="margin-left:10px;">수정하기</button>
 							</c:if>
 							<button type="button" id="btn-board-list" class="btn btn-primary mb-2 pull-right" onclick="location.href='free_list'">목록 </button>
@@ -376,8 +376,8 @@
 					for(let i=0; i<boardReplyList.length; i++) {
 						
 						var timestamp = boardReplyList[i].boardReplyDate;
-						var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '');
 						
+						var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '');
 						var replyWriter = boardReplyList[i].boardReplyWriter;
 						var replyReader = '';
 						
@@ -388,7 +388,7 @@
 							
 							if(${user != null}) {
 								replyReader = '${user.userID}';
-							} else {
+							} else if(${company != null}) {
 								replyReader = '${company.companyID}';
 							}
 							
@@ -405,10 +405,11 @@
 				                        </div>
 			                            <div style="float:right; width:5%;">
 			                            	<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `"></a>
-			                            	<a class="glyphicon glyphicon-ok replyModify" aria-hidden="true"></a>
+			                            	<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `" aria-hidden="true"></a>
 			                            </div>
 			                        </div>`;
-							} else {
+							} //user.commonCODE == 'ADM002'
+							else if (replyWriter != replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
 										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
@@ -419,14 +420,20 @@
 				                        </div>
 				                        <div style="float:right; width:13%;">`+ date +`
 				                        </div>
+			                            <c:if test="${user.commonCODE == 'ADM002'}">
+				                            <div style="float:right; width:5%;">
+				                        		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `"></a>
+			                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `" aria-hidden="true"></a>
+					                        </div>
+			                            </c:if>
 			                        </div>`;
-							}
+							} 
 						} else {
 							memberNo = boardReplyList[i].companyNo;
 							
 							if(${user != null}) {
 								replyReader = '${user.userID}';
-							} else {
+							} else if(${company != null}) {
 								replyReader = '${company.companyID}';
 							}
 							
@@ -443,10 +450,11 @@
 				                        </div>
 			                            <div style="float:right; width:5%;">
 			                            	<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `"></a>
-			                            	<a class="glyphicon glyphicon-ok replyModify" aria-hidden="true"></a>
+			                            	<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `" aria-hidden="true"></a>
 			                            </div>
 			                        </div>`;
-							} else {
+							} 
+							else {
 								strAdd += 
 									`<div class='boardReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
 										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
@@ -457,6 +465,12 @@
 				                        </div>
 				                        <div style="float:right; width:13%;">`+ date +`
 				                        </div>
+			                            <c:if test="${user.commonCODE == 'ADM002'}">
+				                            <div style="float:right; width:5%;">
+				                        		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `"></a>
+			                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + boardReplyList[i].boardReplyNo + `" aria-hidden="true"></a>
+			                            	</div>
+			                            </c:if>
 			                        </div>`;
 							}
 						}

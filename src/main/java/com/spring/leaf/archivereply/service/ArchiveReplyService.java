@@ -19,7 +19,7 @@ public class ArchiveReplyService implements IArchiveReplyService {
 	@Autowired
 	private IArchiveReplyMapper mapper;
 	
-	//댓글 작성
+	//자료실 댓글 작성
 	public void archiveReplyWrite(ArchiveReplyVO vo) {
 		//댓글줄바꿈
 		vo.setArchiveReplyContent(vo.getArchiveReplyContent().replace("\n", "<br>"));
@@ -27,7 +27,7 @@ public class ArchiveReplyService implements IArchiveReplyService {
 		mapper.archiveReplyWrite(vo);
 	}
 
-	//댓글 목록
+	//자료실 댓글 목록
 	@Override
 	public List<ArchiveReplyVO> archiveReplyList(PageVO vo, int archiveNo) {
 		Map<String, Object> data = new HashMap<>();
@@ -36,12 +36,14 @@ public class ArchiveReplyService implements IArchiveReplyService {
 		
 		return mapper.archiveReplyList(data);
 	}
-
+	
+	//자료실 댓글 개수
 	@Override
-	public int archiveReplyTotal(int archvieReplyNo) {
-		return mapper.archiveReplyTotal(archvieReplyNo);
+	public int archiveReplyTotal(int archiveReplyNo) {
+		return mapper.archiveReplyTotal(archiveReplyNo);
 	}
-
+	
+	//자료실 댓글 수정
 	@Override
 	public void archiveReplyUpdate(int archiveReplyNo, String archiveReplyContent) {
 		ArchiveReplyVO vo = new ArchiveReplyVO();
@@ -53,7 +55,8 @@ public class ArchiveReplyService implements IArchiveReplyService {
 		
 		mapper.archiveReplyUpdate(vo);
 	}
-
+	
+	//자료실 댓글 삭제
 	@Override
 	public void archiveReplyDelete(int archiveReplyNo) {
 		mapper.archiveReplyDelete(archiveReplyNo);

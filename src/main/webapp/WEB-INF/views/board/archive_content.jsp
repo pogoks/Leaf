@@ -77,7 +77,7 @@
                                         <div class="archive_title_up" scope="col" style="width: 100%;  margin-top:10px;">
                                         	<input type="hidden" id="hidden-archiveNo" name="archiveNo" value="${archive.archiveNo}">
                                         	<h4 style="display:inline-block;">${archive.archiveTitle}</h4>
-                                        	<c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">
+                                        	<c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID || user.commonCODE == 'ADM002'}">
 	                                        	<a type="submit" id="btn-archive-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
 	                                        </c:if>
                                         </div>
@@ -191,7 +191,7 @@
 						<div class="text-center">
 							<div style="margin-top:20px;">
 								<button type="submit" class="btn btn-light mb-2 pull-left">신고하기 </button>
-								<c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">
+								<c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID || user.commonCODE == 'ADM002'}">
 									<button type="button" class="btn btn-info mb-2 pull-right btn-boardReply-Modify"  style="margin-left:10px;" onclick="location.href='<c:url value="/archive/archiveModify?archiveNo=${archive.archiveNo}"/>'">수정 </button>
 								</c:if>
 								<button type="button" id="btn-archive-list" class="btn btn-primary mb-2 pull-right"  style="margin-left:10px;">목록 </button>
@@ -387,41 +387,101 @@
 					var replyWriter = archiveReplyList[i].archiveReplyWriter;
 					var replyReader = ''; 
 					
-					if(${user != null}) {
-						replyReader = '${user.userID}';
-					} else {
-						replyReader = '${company.companyID}';
-					}
+					var memberNo = '';
 					
-					if(replyWriter == replyReader) {
-						strAdd +=
-							`<div class='archiveReplyWrap'>
-								<div><span><img src="resources/img/logo2.png" width="30px" style="float:left; border-radius:50px;"><span>
-								</div>
-								<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
-								</div>
-								<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
-								</div>
-								<div style="float:right; width:13%;">`+ date +`
-								</div>
-								<div style="float:right; width:5%;">
-                            		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
-                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
-								</div>
-							</div>`;
-					} else {
-						strAdd +=
-							`<div class='archiveReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
-								<div><span><img src="resources/img/logo2.png" width="30px" style="float:left; border-radius:50px;"><span>
-								</div>
-								<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
-								</div>
-								<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
-								</div>
-								<div style="float:right; width:13%;">`+ date +`
-								</div>
-							</div>`;
-					}
+					if(archiveReplyList[i].userNo != '') {
+						memberNo = archiveReplyList[i].userNo;
+						
+						if(${user != null}) {
+							replyReader = '${user.userID}';
+						} else {
+							replyReader = '${company.companyID}';
+						}
+						//
+						if(replyWriter == replyReader) {
+							strAdd += 
+								`<div class='archiveReplyWrap'>
+									<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin-right: 8px; float:left; border-radius:50%;"><span>
+									</div>
+			                        <div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+			                        </div>
+			                        <div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+			                        </div>
+			                        <div style="float:right; width:13%;">`+ date +`
+			                        </div>
+		                            <div style="float:right; width:5%;">
+		                            	<a id="btn-archive-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+		                            	<a id="btn-archive-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `" aria-hidden="true"></a>
+		                            </div>
+		                        </div>`;
+						} else {
+							strAdd += 
+								`<div class='archiveReplyWrap'> 
+									<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+			                        </div>
+									<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+			                        </div>
+			                        <div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+			                        </div>
+			                        <div style="float:right; width:13%;">`+ date +`
+			                        </div>
+		                            <c:if test="${user.commonCODE == 'ADM002'}">
+			                            <div style="float:right; width:5%;">
+			                        		<a id="btn-archive-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+		                            		<a id="btn-archive-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `" aria-hidden="true"></a>
+				                        </div>
+	                            	</c:if>
+		                        </div>`;
+						}
+						//
+					} else {//if(archiveReplyList[i].userNo != '') { 끝. 
+						memberNo = archiveReplyList[i].userNo;
+						
+						if(${user != null}) {
+							replyReader = '${user.userID}';
+						} else {
+							replyReader = '${company.companyID}';
+						}
+						//
+						if(replyWriter == replyReader) {
+								strAdd += 
+									`<div class='archiveReplyWrap' style="background-color:red;">
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+										</div>
+				                        <div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">
+				                        	&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+				                        </div>
+				                        <div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+				                        </div>
+				                        <div style="float:right; width:13%;">`+ date +`
+				                        </div>
+			                            <div style="float:right; width:5%;">
+			                            	<a id="btn-archive-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+			                            	<a id="btn-archive-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `" aria-hidden="true"></a>
+			                            </div>
+			                        </div>`;
+							} else {
+								strAdd += 
+									`<div class='archiveReplyWrap'> 
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+				                        </div>
+										<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+				                        </div>
+				                        <div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+				                        </div>
+				                        <div style="float:right; width:13%;">`+ date +`
+				                        </div>
+			                            <c:if test="${user.commonCODE == 'ADM002'}">
+				                            <div style="float:right; width:5%;">
+				                        		<a id="btn-archive-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+			                            		<a id="btn-archive-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `" aria-hidden="true"></a>
+					                        </div>
+		                            	</c:if>
+			                        </div>`;
+							}
+						//
+					}//if(archiveReplyList[i].userNo != '')의 else 끝. 
+					
 					$('#archiveReplyList').html(strAdd);
 					
 				}//for문 끝.
