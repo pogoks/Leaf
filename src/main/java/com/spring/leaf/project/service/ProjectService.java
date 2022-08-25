@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.leaf.project.command.ProjectContentVO;
+import com.spring.leaf.project.command.ProjectDateVO;
 import com.spring.leaf.project.command.ProjectImageVO;
 import com.spring.leaf.project.command.ProjectLikeVO;
 import com.spring.leaf.project.command.ProjectListVO;
+import com.spring.leaf.project.command.ProjectRegistCountVO;
 import com.spring.leaf.project.command.ProjectVO;
 import com.spring.leaf.project.mapper.IProjectMapper;
 
@@ -80,6 +82,18 @@ public class ProjectService implements IProjectService {
 		
 		mapper.projectImageDelete(projectNO);
 	}
+	
+	@Override
+	public ProjectRegistCountVO projectRegistCount(int companyNO) {
+		return mapper.projectRegistCount(companyNO);
+	}
+	
+	
+	@Override
+	public ProjectDateVO projectDate() {
+		return mapper.projectDate();
+	}
+	
 	
 	//좋아요 생성
 	@Override

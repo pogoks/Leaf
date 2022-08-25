@@ -6,6 +6,11 @@ import com.spring.leaf.admin.command.CommonListVO;
 import com.spring.leaf.admin.command.CommonVO;
 import com.spring.leaf.admin.command.CompanyAcceptListVO;
 import com.spring.leaf.admin.command.CompanyAcceptVO;
+import com.spring.leaf.admin.command.UserDateVO;
+import com.spring.leaf.admin.command.UserNewListVO;
+import com.spring.leaf.admin.command.UserProfileCountVO;
+import com.spring.leaf.admin.command.UserRegistCountVO;
+import com.spring.leaf.admin.command.UserResumeCountVO;
 
 public interface IAdminMapper {
 
@@ -47,5 +52,25 @@ public interface IAdminMapper {
 	
 	// 가입 승인
 	void companyAccept(int companyNO);
+	
+	
+	// 개발자 날짜 정보 중 6개월 간의 날짜 정보를 얻기 위한 요청
+	UserDateVO userDate();
+	
+	
+	// 6개월 동안 일반회원(개발자) 신규 가입 수를 얻기 위한 요청
+	UserRegistCountVO userRegistCount();
+	
+	
+	// 개발자 프로필사진 등록 현황을 얻기 위한 요청
+	UserProfileCountVO userProfileCount();
+	
+	
+	// 개발자 이력서 등록 현황을 얻기 위한 요청
+	UserResumeCountVO userResumeCount();
+	
+	
+	// 한 달 동안 일반회원 신규가입자 목록을 얻기 위한 요청
+	List<UserNewListVO> userNewList();
 	
 }

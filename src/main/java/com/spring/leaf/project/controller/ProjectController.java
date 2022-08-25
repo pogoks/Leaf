@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
@@ -124,7 +128,7 @@ public class ProjectController {
 	
 	//프로젝트 관리 창 
 	@GetMapping("/projectadmin")
-	public String project5(Model model, HttpSession session) {
+	public String project5(HttpSession session, Model model) {
 		
 		CompanyVO vo = (CompanyVO) session.getAttribute("company");
 		
@@ -132,6 +136,37 @@ public class ProjectController {
 		
 		return "project/project-admin";
 	}
+	
+	
+	// 프로젝트 관리 창 통계 데이터 얻어오는 요청
+	@PostMapping("/projectChart1")
+	@ResponseBody
+	public Map<String, Object> projectRegistCount(HttpSession session) {
+		
+		CompanyVO vo = (CompanyVO) session.getAttribute("company");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("projectRegistCount", service.projectRegistCount(vo.getCompanyNO()));
+		map.put("projectDate", service.projectDate());
+		
+		return map;
+	}
+	
+	
+	// 프로젝트 관리 창 통계 데이터 얻어오는 요청
+	@PostMapping("/projectChart2")
+	@ResponseBody
+	public Map<String, Object> projectApplyCount(HttpSession session) {
+		
+		CompanyVO vo = (CompanyVO) session.getAttribute("company");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("projectApplyCountList", aservice.projectApplyCount(vo.getCompanyNO()));
+		
+		return map;
+	}
+	
+	
 	
 	// 프로젝트 상세보기 수정하기 이동 요청
 	@GetMapping("/projectviewfix")

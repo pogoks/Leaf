@@ -85,7 +85,7 @@
 						<th style="width: 12%;">상위코드</th>
 					</tr>
 				</thead>
-				<tbody style="width: 10px; font-size: 13px; background: #F7F7F7;">
+				<tbody style="width: 10px; font-size: 13px; background: #FCFCFC;">
 					
 					<c:forEach var="commonList" items="${commonList}" varStatus="index">
 						<tr id="commonDetail${index.index}" style="cursor: pointer;">
