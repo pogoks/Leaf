@@ -13,9 +13,11 @@ public interface IProjectMapper {
 	void projectputin(ProjectVO vo);
 	
 	List<ProjectListVO> projectlist();
+	
+	List<ProjectListVO> projectadmin(int companyNO);
 
 	ProjectContentVO getContent(int projectNO);
-	
+	//프로젝트 수정
 	void updateProjectContent(ProjectContentVO vo);
 	
 	int projectNOGet();
@@ -23,6 +25,10 @@ public interface IProjectMapper {
 	void projectImage(ProjectImageVO vo);
 	
 	ProjectImageVO projectImageGet(int projectNO);
+	
+	void projectImageUpdate(ProjectImageVO vo);
+	
+	void projectImageDelete(int projectNO);
 	
 	int searchLike(ProjectLikeVO vo);
 	

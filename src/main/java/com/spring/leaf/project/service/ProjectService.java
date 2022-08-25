@@ -33,6 +33,11 @@ public class ProjectService implements IProjectService {
 		
 		return list;
 	}
+	
+	@Override
+	public List<ProjectListVO> projectadmin(int companyNO) {
+		return mapper.projectadmin(companyNO);
+	}
 	//프로젝트 상세보기 
 	@Override
 	public ProjectContentVO getContent(int projectNO){
@@ -64,6 +69,17 @@ public class ProjectService implements IProjectService {
 		return mapper.projectImageGet(projectNO);
 	}
 	
+	@Override
+	public void projectImageUpdate(ProjectImageVO vo) {
+		
+		mapper.projectImageUpdate(vo);
+	}
+	
+	@Override
+	public void projectImageDelete(int projectNO) {
+		
+		mapper.projectImageDelete(projectNO);
+	}
 	
 	//좋아요 생성
 	@Override
