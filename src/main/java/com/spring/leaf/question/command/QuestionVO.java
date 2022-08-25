@@ -20,6 +20,7 @@ public class QuestionVO {
 	private Timestamp questionDate;
 	private int questionViews;
 	
+	private int answerCount;
 	private int rn;//글번호
 
 }

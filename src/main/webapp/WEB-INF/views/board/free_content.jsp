@@ -41,7 +41,7 @@
  		text-align:center;
  		line-height: 40px;
  		border-bottom:1px solid #D8D8D8; 
- 		margin: 10px 0px;
+ 		padding: 10px 0px;
  		
  	}
     
@@ -82,8 +82,10 @@
 			                                        <div class="free_title_up" scope="col" style="width: 100%;  margin-top:10px;">
 			                                        	<input type="hidden" id="hidden-boardNo" name="boardNo" value="${board.boardNo}">
 			                                        	<h4 style="display:inline-block;">${board.boardTitle}</h4>
+
 			                                        	<c:if test="${board.boardWriter eq user.userID || user.commonCODE == 'ADM002'}">
 				                                        	<a type="submit" id="btn-board-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
+
 				                                        </c:if>
 			                                        </div>
 			                                        
@@ -105,19 +107,20 @@
 				                                            
 				                                            <span style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif; margin-left:15px;">&nbsp; ${board.boardWriter} &nbsp;</span>
 				                                            <c:if test="${board.boardWriter eq user.userID }">
-			                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+			                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px; margin-left:10px;">내가 작성한 글</span>
 			                                            	</c:if>
 				                                            <c:if test="${board.boardWriter eq company.companyID }">
-			                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+			                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px; margin-left:10px;">내가 작성한 글</span>
 			                                            	</c:if>
 			                                       		</div>
 			                                       		<div style="display:inline-block; float:right; margin-top:10px; margin-right:40px; color:gray;">
-					                                        <div style="display:inline-block;" >
+					                                         <div style=" margin-left:50px; ">
+		                                        				<span style="color:black; font-style: bold;">조회수</span> ${board.boardViews }
+					                                        </div>
+					                                        <div style="float:right; margin-top:10px; margin-right:40px; color:gray;" >
 					                                            <fmt:formatDate value="${board.boardDate}" pattern="yyyy-MM-dd HH:mm" />
 					                                        </div>
-					                                        <div style="display:inline-block;">
-					                                        	조회수 : ${board.boardViews }
-					                                        </div>
+					                                       
 				                                        </div>
 			                                        </div>
 	                                    </div>
@@ -375,6 +378,7 @@
 					
 					for(let i=0; i<boardReplyList.length; i++) {
 						
+						
 						var timestamp = boardReplyList[i].boardReplyDate;
 						
 						var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '');
@@ -395,7 +399,7 @@
 							if(replyWriter == replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap'>
-										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin-right: 8px; float:left; border-radius:50%;"><span>
+										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
 										</div>
 				                        <div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -411,8 +415,8 @@
 							} //user.commonCODE == 'ADM002'
 							else if (replyWriter != replyReader) {
 								strAdd += 
-									`<div class='boardReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
-										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+									`<div class='boardReplyWrap' > 
+										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
 				                        </div>
 										<div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -440,7 +444,7 @@
 							if(replyWriter == replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap'>
-										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
 										</div>
 				                        <div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -456,8 +460,8 @@
 							} 
 							else {
 								strAdd += 
-									`<div class='boardReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
-										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px;"><span>
+									`<div class='boardReplyWrap'> 
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
 				                        </div>
 										<div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>

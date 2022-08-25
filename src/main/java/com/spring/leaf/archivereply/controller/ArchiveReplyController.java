@@ -31,7 +31,7 @@ public class ArchiveReplyController {
 	// 로그 출력을 위한 Logger 객체 생성
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-	//자료실 서비스 연결
+	//자료실 댓글 서비스 연결
 	@Autowired
 	private IArchiveReplyService service;
 	

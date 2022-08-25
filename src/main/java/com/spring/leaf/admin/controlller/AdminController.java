@@ -1,5 +1,8 @@
 package com.spring.leaf.admin.controlller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +157,64 @@ public class AdminController {
 		service.companyAccept(companyNO);
 		
 		return "YesCompanyAccept";
+	}
+	
+	
+	// 개발자 통계 페이지 이동 요청
+	@GetMapping("/chartDevelopers")
+	public String chartDevelopers() {
+		logger.info("/admin/chartDevelopers : GET (개발자 통계 페이지 이동)");
+		
+		return "/admin/chart-developers";
+	}
+	
+	
+	// 개발자 신규 가입 현황 데이터 얻어오는 요청
+	@PostMapping("/chartDevelopers1")
+	@ResponseBody
+	public Map<String, Object> chartDevelopers1() {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userRegistCount", service.userRegistCount());
+		map.put("userDate", service.userDate());
+		
+		return map;
+	}
+	
+	
+	// 개발자 프로필사진 등록 현황 데이터 얻어오는 요청
+	@PostMapping("/chartDevelopers2")
+	@ResponseBody
+	public Map<String, Object> chartDevelopers2() {
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("userProfileCount", service.userProfileCount());
+
+		return map;
+	}
+	
+	
+	// 개발자 이력서 등록 현황 데이터 얻어오는 요청
+	@PostMapping("/chartDevelopers3")
+	@ResponseBody
+	public Map<String, Object> chartDevelopers3() {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userResumeCount", service.userResumeCount());
+		
+		return map;
+	}
+	
+	
+	// 한 달간 개발자 신규가입 목록을 얻어오는 요청
+	@PostMapping("/chartDevelopers4")
+	@ResponseBody
+	public Map<String, Object> chartDevelopers4() {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNewList", service.userNewList());
+		
+		return map;
 	}
 	
 }

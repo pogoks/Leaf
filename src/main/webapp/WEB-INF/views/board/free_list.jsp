@@ -63,7 +63,7 @@
 		<section>
         
        
-        
+
         
         <div class="container" style="width: 90%;">
             <div class="row">
@@ -80,7 +80,7 @@
 					<button type="submit" class="btn btn-success mb-2 pull-right" id="btn-free-write">글쓰기</button>
 	            </c:if>
                  
-                <table class="table table-bordered"  style="text-align: center; font-size:15px;">
+                <table class="table table-bordered"  style="text-align: center;font-size:14px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                     <thead>
                         <tr>
                             <th style="background-color: #bbd0e7; text-align: center; width:5%">번호</th>

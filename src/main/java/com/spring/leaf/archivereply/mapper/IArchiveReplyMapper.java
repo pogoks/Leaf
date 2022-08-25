@@ -24,4 +24,7 @@ public interface IArchiveReplyMapper {
 	
 	//댓글 삭제
 	void archiveReplyDelete(int archiveReplyNo);
+	
+	// 사용자 프로필사진 불러오기 요청
+	int rarchivewriterProfile(Map<String, Object> rarchiveInfo);
 }

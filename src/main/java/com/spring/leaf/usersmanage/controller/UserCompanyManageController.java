@@ -52,4 +52,5 @@ public class UserCompanyManageController {
 			logger.info("/membersList/membersCompany : GET (기업목록 상세 보기 요청)");
 			return service.companyMembersDetail(companyNO);
 		}
+	
 }
