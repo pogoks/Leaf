@@ -88,8 +88,12 @@
                                     <div class="qa_content_up" style="margin-left:30px;" >
 		                                        <div class="qa_title" scope="col" style="width: 100%;  margin-top:10px;">
 		                                        	<input type="hidden" id="hidden-questionNo" name="questionNo" value="${question.questionNo}">
+
 		                                        	<h4 style="display:inline-block;"><span style="font-weight: bolder; font-size:24px;"> Q : </span> ${question.questionTitle}</h4>
-			                                        <a type="submit" id="btn-question-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:70px;">삭제</a>
+                                              <c:if test="${ question.questionWriter eq user.userID  || user.commonCODE == 'ADM002' }">
+			                                          <a type="submit" id="btn-question-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:70px;">삭제</a>
+                                              </c:if>
+
 		                                        </div>
 		                                        
 		                                        <div style="margin-top:30px;">
