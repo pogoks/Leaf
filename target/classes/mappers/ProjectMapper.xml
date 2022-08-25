@@ -96,9 +96,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateProjectContent">
 		UPDATE project
 		SET
-			project_name = #{projectName}, project_desc = #{projectDesc}, project_manager = #{projectManager}, project_manager_phone = #{projectManagerPhone},
-			project_manager_email = #{projectManagerEmail}, project_require_license = #{projectRequireLicense}, project_require_people = #{projectRequirePeople},
-			project_require_date1 = #{projectRequireDate1}, project_require_date2 = #{projectRequireDate2}, common_value = #{commonValue}
+			project_desc = #{projectDesc}, project_manager = #{projectManager}, project_manager_phone = #{projectManagerPhone},
+			project_manager_email = #{projectManagerEmail}, project_require_people = #{projectRequirePeople}
 		WHERE project_NO = #{projectNO}	
 	</update>
 	
@@ -131,6 +130,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY p.project_NO DESC
 	</select>
 	
+	<select id="projectadmin" resultMap="ProjectListMap">
+		SELECT
+   			p.project_NO, p.project_name, p.project_require_role, p.project_require_date1, p.project_require_date2, p.company_NO, c.company_name, p.common_CODE, cd.common_value
+		FROM
+   			project p LEFT OUTER JOIN company c
+      	ON p.company_NO = c.company_NO
+   		LEFT OUTER JOIN common cd
+      	ON p.common_CODE = cd.common_CODE
+      	WHERE p.project_NO != 1
+      	AND p.common_CODE != 'PST003'
+      	AND c.company_NO = #{companyNO}
+      	ORDER BY p.project_NO DESC
+	</select>
+	
 	
 	<!-- 일반회원 회원번호 얻어내는 SELECT 쿼리 -->
 	<select id="projectNOGet" resultType="int">
@@ -155,6 +168,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE project_NO = #{projectNO}
 	</select>
 	
+	<!-- 프로젝트 사진 수정하기 UPDATE 쿼리 -->
+	<update id="projectImageUpdate">
+		UPDATE project_image
+		SET project_image_filename=#{projectImageFilename}, project_image_uploadpath=#{projectImageUploadpath}, project_image_realname=#{projectImageRealname}
+		WHERE project_NO=#{projectNO}
+	</update>
+	
+	<!-- 프로젝트 사진 삭제하기 UPDATE 쿼리 -->
+	<update id="projectImageDelete">
+		UPDATE project_image
+		SET project_image_filename=null, project_image_uploadpath=null, project_image_realname=null
+		WHERE project_NO=#{projectNO}
+	</update>
 	
 	<!-- 프로젝트 등록 빈도 달 마다 값 가져오기 -->
 	<select id="projectRegistCount" resultMap="ProjectRegistCountMap">
@@ -204,11 +230,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE projectLikeNO=#{projectLikeNO} AND userNO=#{userNO}
 	</delete>
 	
-	<delete id="deleteProject">
-		DELETE FROM project
-		WHERE projectNO=#{projectNO} AND companyNO=#{companyNO}
 	
-	</delete>
 	
 
 </mapper>

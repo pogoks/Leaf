@@ -14,6 +14,8 @@ public interface IProjectService {
 	void projectputin(ProjectVO vo);
 	
 	List<ProjectListVO> projectlist();
+	
+	List<ProjectListVO> projectadmin(int companyNO);
 
 	ProjectContentVO getContent(int projectNO);
 	
@@ -25,6 +27,10 @@ public interface IProjectService {
 	
 	ProjectImageVO projectImageGet(int projectNO);
 	
+	void projectImageUpdate(ProjectImageVO vo);
+	
+	void projectImageDelete(int projectNO);
+  
 	ProjectRegistCountVO projectRegistCount(int companyNO);
 	
 	ProjectDateVO projectDate();

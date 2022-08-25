@@ -35,6 +35,9 @@ import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.spring.leaf.archive.command.ArchiveFileVO;
+import com.spring.leaf.archive.command.ArchiveVO;
+import com.spring.leaf.company.command.CompanyIntroVO;
 import com.spring.leaf.company.command.CompanyLogoVO;
 import com.spring.leaf.company.command.CompanyVO;
 import com.spring.leaf.project.command.ProjectContentVO;
@@ -125,11 +128,11 @@ public class ProjectController {
 	
 	//프로젝트 관리 창 
 	@GetMapping("/projectadmin")
-	public String project5(HttpSession session, Model model) throws JsonProcessingException {
+	public String project5(HttpSession session, Model model) {
 		
 		CompanyVO vo = (CompanyVO) session.getAttribute("company");
 		
-		model.addAttribute("projectlist", service.projectlist());
+		model.addAttribute("projectlist", service.projectadmin(vo.getCompanyNO()));
 		
 		return "project/project-admin";
 	}
@@ -168,7 +171,7 @@ public class ProjectController {
 	// 프로젝트 상세보기 수정하기 이동 요청
 	@GetMapping("/projectviewfix")
 	public String project4(@RequestParam int projectNO, Model model) {
-
+		
 		model.addAttribute("projectview", service.getContent(projectNO));
 
 		return "project/project-view-fix";
@@ -176,15 +179,204 @@ public class ProjectController {
 	
 	//프로젝트 상세보기 수정 로직
 	@PostMapping("/updateProjectContent")
-	public String UpdateProjectCondent(ProjectContentVO vo,RedirectAttributes ra) {
+	public String UpdateProjectCondent(@RequestParam int projectNO, Model model, ProjectContentVO vo,RedirectAttributes ra) {
 		
 		service.updateProjectContent(vo);
 		
+		model.addAttribute("projectNO", projectNO);
+		
 		ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
-		return "redirect:/project/projectview";
+		return "redirect:/project/projectadmin";
 		
 	}
+	
+	// 프로젝트 사진 수정 요청
+	@PostMapping("/projectImageUpdate/{projectNO}")
+	@ResponseBody
+	public String projectImageUpdate(@RequestParam("newProjectImage") MultipartFile newProjectImage, @PathVariable("projectNO") int projectNO) throws Exception {
+		
+		// 날짜별로 폴더를 생성해서 파일을 관리한다.
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
+		Date date = new Date();
+
+		String location = sdf.format(date);
+
+		// 저장할 폴더 경로
+		String uploadPath = "C:\\projectImage\\" + location;
+
+		File folder = new File(uploadPath);
+
+		// 폴더가 존재하지 않는다면 생성한다.
+		if (!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		// 파일명을 고유한 랜덤 문자로 생성
+		UUID uuid = UUID.randomUUID();
+		// 랜덤으로 생성된 문자에 있는 - 을 모두 지운다.
+		String uuids = uuid.toString().replaceAll("-", "");
+
+		// 사용자가 원래 가지고 있던 원본 파일 명
+		String realName = newProjectImage.getOriginalFilename();
+		// 확장자 추출
+		String extention = realName.substring(realName.indexOf("."), realName.length());
+
+		// 고유한 문자와 확장자를 합쳐 새로운 랜덤이름의 파일이름을 만들어준다.
+		String name = uuids + extention;
+
+		// 업로드한 파일을 서버 컴퓨터 내의 지정한 경로로 실제 저장
+		File saveFile = new File(uploadPath + "\\" + name);
+
+		try {
+			newProjectImage.transferTo(saveFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// 받은 파일의 정보를 CompanyIntroVO 안에 넣고 데이터베이스에 저장한다.
+		ProjectImageVO vo = new ProjectImageVO();
+		vo.setProjectImageFilename(name);
+		vo.setProjectImageUploadpath(uploadPath);
+		vo.setProjectImageRealname(realName);
+		vo.setProjectNO(projectNO);
+
+		service.projectImageUpdate(vo);
+
+		// 파일을 로컬이 아닌 서버에도 저장한다.
+		// SSH 원격접속을 위한 username, ip, port, password
+		String username = "leaf";
+		String host = "35.203.164.40";
+		int port = 22;
+		String password = "1q2w3e4r";
+
+		Session session = null;
+		Channel channel = null;
+
+		try {
+			// 파일을 원격서버로 보내기 위해 JSch 객체를 선언한다. (SFTP)
+			JSch jsch = new JSch();
+
+			// 세션 객체 생성 (JSch를 이용해 서버에 원격접속을 하기 위해서)
+			session = jsch.getSession(username, host, port);
+			session.setPassword(password);
+
+			// ssh_config에 호스트 key 없이 접속이 가능하도록 property 설정 (이건 잘 모르겠다,. 따로 공부해야 할 듯)
+			java.util.Properties config = new java.util.Properties();
+			config.put("StrictHostKeyChecking", "no");
+			session.setConfig(config);
+
+			// 접속 시도
+			session.connect();
+
+			// SFTP 채널 오픈 및 연결
+			channel = session.openChannel("sftp");
+
+			// SFTP 접속 시도
+			channel.connect();
+
+			// 로컬에 저장된 파일과 동일한 파일을 서버 /home/leaf/project 디렉토리 경로로 보낸다.
+			// 앞에는 로컬에서 보낼 파일, 뒤에는 서버에서 받을 디렉토리 위치 경로
+			ChannelSftp channelSftp = (ChannelSftp) channel;
+			channelSftp.put(uploadPath + "\\" + name, "/home/leaf/projectImage");
+
+			// 이건 다운로드, 나중에 프로필사진 불러오기 할 때 참고해서
+			// 사용하자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 앞에는 서버에서 받아올 파일, 뒤에는 로컬에서 받을 폴더 위치 경로
+			// channelSftp.get("/home/leaf/userProfile/" + name, uploadPath + "\\");
+
+		} catch (JSchException e) {
+			e.printStackTrace();
+		} finally {
+			// 전송이 완료되면 접속 종료
+			if (channel != null) {
+				channel.disconnect();
+			}
+
+			// 전송이 완료되면 접속 종료
+			if (session != null) {
+				session.disconnect();
+			}
+		}
+
+		return "YesProjectImageUpdate";
+	}
+
+	
+	@PostMapping("/projectImageDelete/{projectNO}")
+	@ResponseBody
+	public String projectImageDelete(@PathVariable("projectNO") int projectNO) throws Exception {
+
+		// 해당 사용자의 회사 소개서 파일 정보를 얻어옴
+		ProjectImageVO vo = service.projectImageGet(projectNO);
+
+		// 해당 경로에 있는 파일을 삭제한다.
+		File deleteFile = new File(vo.getProjectImageUploadpath() + "\\" + vo.getProjectImageFilename());
+
+		if (deleteFile.exists()) {
+			deleteFile.delete();
+		}
+
+		// 파일을 로컬이 아닌 서버에도 저장한다.
+		// SSH 원격접속을 위한 username, ip, port, password
+		String username = "leaf";
+		String host = "35.203.164.40";
+		int port = 22;
+		String password = "1q2w3e4r";
+
+		Session session = null;
+		Channel channel = null;
+
+		try {
+			// 파일을 원격서버로 보내기 위해 JSch 객체를 선언한다. (SFTP)
+			JSch jsch = new JSch();
+
+			// 세션 객체 생성 (JSch를 이용해 서버에 원격접속을 하기 위해서)
+			session = jsch.getSession(username, host, port);
+			session.setPassword(password);
+
+			// ssh_config에 호스트 key 없이 접속이 가능하도록 property 설정 (이건 잘 모르겠다,. 따로 공부해야 할 듯)
+			java.util.Properties config = new java.util.Properties();
+			config.put("StrictHostKeyChecking", "no");
+			session.setConfig(config);
+
+			// 접속 시도
+			session.connect();
+
+			// SFTP 채널 오픈 및 연결
+			channel = session.openChannel("sftp");
+
+			// SFTP 접속 시도
+			channel.connect();
+
+			// 서버 컴퓨터에 저장되어 있는 해당 파일을 삭제한다.
+			ChannelSftp channelSftp = (ChannelSftp) channel;
+			// channelSftp.put(uploadPath + "\\" + name, "/home/leaf/userResume");
+			channelSftp.rm("/home/leaf/projectImage/" + vo.getProjectImageFilename());
+
+			// 이건 다운로드, 나중에 프로필사진 불러오기 할 때 참고해서
+			// 사용하자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 앞에는 서버에서 받아올 파일, 뒤에는 로컬에서 받을 폴더 위치 경로
+			// channelSftp.get("/home/leaf/userProfile/" + name, uploadPath + "\\");
+
+		} catch (JSchException e) {
+			e.printStackTrace();
+		} finally {
+			// 전송이 완료되면 접속 종료
+			if (channel != null) {
+				channel.disconnect();
+			}
+
+			// 전송이 완료되면 접속 종료
+			if (session != null) {
+				session.disconnect();
+			}
+		}
+
+		service.projectImageDelete(projectNO);
+
+		return "YesProjectImageDelete";
+	}
 	
 	// 프로젝트 번호 구하기 요청
 	@PostMapping("/projectNOGet")
