@@ -35,7 +35,8 @@ public interface IQuestionService {
 	//질문글 조회수
 	void questionViews(int questionNo);
 	
-	
+	//답변글 총 게시물 수
+	int answerTotal(int questionNo);
 	
 	//답변글 등록
 	void answerWrite(AnswerVO vo);

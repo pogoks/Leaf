@@ -39,7 +39,7 @@
 			text-align:center;
 			line-height: 40px;
 			border-bottom:1px solid #D8D8D8; 
-			margin: 10px 0px;
+			padding: 10px 0px;
 		}
 		
 		#btn-archiveReply-Modify {
@@ -61,7 +61,7 @@
 	   
 	<div class="mainbox">
 	
-        <section>
+        <section >
             <div class="container">
 				<div class="row">
 					 <!-- 메인화면 공지사항 상단 -->
@@ -72,13 +72,13 @@
                      <div class="container my-1">
                        <form action="<c:url value='/archive/archiveDelete'/>" method="post" name="archiveDeleteForm"> 
                         <div class="row" style="margin-bottom:50px;">
-                        	<div class="archive_content" >
+                        	<div class="archive_content" style="font-size: 14px; font-family: sans-serif;" >
                                     <div class="archive_content_up" style="margin-left:30px;" >
                                         <div class="archive_title_up" scope="col" style="width: 100%;  margin-top:10px;">
                                         	<input type="hidden" id="hidden-archiveNo" name="archiveNo" value="${archive.archiveNo}">
                                         	<h4 style="display:inline-block;">${archive.archiveTitle}</h4>
                                         	<c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">
-	                                        	<a type="submit" id="btn-archive-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
+	                                        	<a type="submit" id="btn-archive-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:70px;">삭제</a>
 	                                        </c:if>
                                         </div>
                                         
@@ -101,26 +101,31 @@
 	                                            <div style="display: inline-block; font-size: 14px; font-weight: bold; font-family: sans-serif; margin-left:15px;">
 	                                            	${archive.archiveWriter}
 		                                            <c:if test="${archive.archiveWriter eq user.userID }">
-	                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+	                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px; margin-left:10px;">내가 작성한 글</span>
 	                                            	</c:if>
 		                                            <c:if test="${archive.archiveWriter eq company.companyID }">
-	                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px;">내가 작성한 글</span>
+	                                            		<span style="background:lightgray; font-size:13px; color:#202020; padding:5px; margin-left:10px;">내가 작성한 글</span>
 	                                            	</c:if>
+	                                            	
 	                                            </div>
+	                                            
                                        		</div>
+                                       
                                        		<div style="display:inline-block; float:right; margin-top:10px; margin-right:40px; color:gray;">
-		                                        <div style="display:inline-block;" >
-		                                            <fmt:formatDate value="${archive.archiveDate}" pattern="yyyy-MM-dd HH:mm" />
+		                                        
+		                                        <div style=" margin-left:50px; ">
+		                                        	<span style="color:black; font-style: bold;">조회수</span> ${archive.archiveViews}
 		                                        </div>
-		                                        <div style="display:inline-block;">
-		                                        	조회수 : ${archive.archiveViews }
-		                                        </div>
-	                                        </div>
+		                                        <div style=" float:right; margin-top:10px; margin-right:40px; color:gray;" >
+			                                            <fmt:formatDate value="${archive.archiveDate}" pattern="yyyy-MM-dd HH:mm" />
+			                                    </div>
+		                                    </div>
                                         </div>
+                                        
                                     </div>
 
 							<div class="archive_content_down" style="min-height:300px; margin-top:50px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
-								<div>
+								<div style="min-height:300px;">
 									${fn:replace(archive.archiveContent, newLineChar, '<br/>')}
 								</div>   
 								
@@ -162,17 +167,17 @@
 						</div>
 					</div>
                        
-                                
-						<table class="table table-borderless"  style="text-align: center; font-size:12px;">
-							<thead>
+                       <!-- 댓글 보여지는 부분 -->         
+						<div class="archivereply-List" style="text-align: center; font-size:12px;">
+							<div>
 		                    	<div style="background-color: #bbd0e7;" >
 									<div style=" text-align: left; margin-left:10px; padding-top:10px; ">전체댓글
 										<p id="p-reply-count" style="color:red; display:inline-block; "></p>
 							        </div>
 		                        </div>
-							</thead>
+							</div>
 				                  	
-		                  	<!-- 댓글이 보여지는 부분 (여기서댓글이 반복됨) -->
+		                  	<!-- 댓글 보기 모드 (여기서댓글이 반복됨) -->
 							<div id="archiveReplyList" style="width=100%; background:#FAFAFA; padding:5px 15px 5px 15px;">
 								<!-- ------------------------댓글이 반복됨---------------------------- -->
 								<!-- ------------------------댓글이 반복됨---------------------------- -->
@@ -185,7 +190,7 @@
 							<button class="form-control" id="moreList">댓글 더보기</button>
 							
 							
-						</table>
+						</div>
 				                
 				                
 						<div class="text-center">
@@ -381,46 +386,91 @@
 				}
 				
 				for(let i=0; i<archiveReplyList.length; i++) {
+					
 					var timestamp = archiveReplyList[i].archiveReplyDate;
 					var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '');
 					
 					var replyWriter = archiveReplyList[i].archiveReplyWriter;
 					var replyReader = ''; 
 					
-					if(${user != null}) {
-						replyReader = '${user.userID}';
-					} else {
-						replyReader = '${company.companyID}';
-					}
+					var memberNo = '';
 					
-					if(replyWriter == replyReader) {
-						strAdd +=
-							`<div class='archiveReplyWrap'>
-								<div><span><img src="resources/img/logo2.png" width="30px" style="float:left; border-radius:50px;"><span>
-								</div>
-								<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
-								</div>
-								<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
-								</div>
-								<div style="float:right; width:13%;">`+ date +`
-								</div>
-								<div style="float:right; width:5%;">
-                            		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
-                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
-								</div>
-							</div>`;
-					} else {
-						strAdd +=
-							`<div class='archiveReplyWrap' style="border-bottom:1px solid #D8D8D8; margin: 10px 0px;"> 
-								<div><span><img src="resources/img/logo2.png" width="30px" style="float:left; border-radius:50px;"><span>
-								</div>
-								<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
-								</div>
-								<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
-								</div>
-								<div style="float:right; width:13%;">`+ date +`
-								</div>
-							</div>`;
+					if(archiveReplyList[i].userNo != '') {
+						memberNo = archiveReplyList[i].userNo;
+					
+						if(${user != null}) {
+							replyReader = '${user.userID}';
+						} else {
+							replyReader = '${company.companyID}';
+						}
+						
+						if(replyWriter == replyReader) {
+							strAdd +=
+								`<div class='archiveReplyWrap'>
+									<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
+									</div>
+									<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+									</div>
+									<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+									</div>
+									<div style="float:right; width:13%;">`+ date +`
+									</div>
+									<div style="float:right; width:5%;">
+	                            		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+	                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+									</div>
+								</div>`;
+						} else {
+							strAdd +=
+								`<div class='archiveReplyWrap'> 
+									<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
+									</div>
+									<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+									</div>
+									<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+									</div>
+									<div style="float:right; width:13%;">`+ date +`
+									</div>
+								</div>`;
+						}
+					} else {	
+						memberNo = archiveReplyList[i].companyNo;
+						
+						if(${user != null}) {
+							replyReader = '${user.userID}';
+						} else {
+							replyReader = '${company.companyID}';
+						}
+						
+						if(replyWriter == replyReader) {
+							strAdd +=
+								`<div class='archiveReplyWrap'>
+									<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
+									</div>
+									<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+									</div>
+									<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+									</div>
+									<div style="float:right; width:13%;">`+ date +`
+									</div>
+									<div style="float:right; width:5%;">
+	                            		<a id="btn-board-reply-delete` + i + `" class="glyphicon glyphicon-remove replyDelete" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+	                            		<a id="btn-board-reply-update` + i + `" class="glyphicon glyphicon-ok replyModify" aria-hidden="true" data-value="` + archiveReplyList[i].archiveReplyNo + `"></a>
+									</div>
+								</div>`;
+						} else {
+							strAdd +=
+								`<div class='archiveReplyWrap'> 
+									<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
+									</div>
+									<div id='archiveReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ archiveReplyList[i].archiveReplyWriter +`
+									</div>
+									<div id='archiveReply-Content' style="width:65%; word-break:break-all; text-align: left; float:left;">` + archiveReplyList[i].archiveReplyContent +`
+									</div>
+									<div style="float:right; width:13%;">`+ date +`
+									</div>
+								</div>`;
+						}
 					}
 					$('#archiveReplyList').html(strAdd);
 					

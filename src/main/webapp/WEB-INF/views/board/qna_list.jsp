@@ -85,7 +85,7 @@
                 <button type="submit" class="btn btn-success mb-2 pull-right" id="btn-question-write">질문하기</button>
                  
                  
-                <table class="table table-bordered"  style="text-align: center; font-size:15px;">
+                <table class="table table-bordered"  style="text-align: center; font-size:14px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                     <thead>
                         <tr>
                             <th style="background-color: #bbd0e7; text-align: center; width:5%">번호</th>
@@ -105,11 +105,15 @@
                             <td style="text-align: left;">
                             	<a href="<c:url value='/question/questionContent/${question.questionNo}'/>">
                             		${question.questionTitle}
+                            		 <!-- new마크 -->
+									<c:if test="${question.questionDate>=nowday }">
+		                           		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">
+									</c:if>
+									<!-- 댓글수 -->
+									<c:if test="${question.answerCount >= 1}">
+										<span style="color:red; font-size:15px;">[${question.answerCount}]</span>
+									</c:if>
                             	</a>
-                       	        <!-- new마크 -->
-								<c:if test="${question.questionDate>=nowday }">
-	                           		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">
-								</c:if>
                             </td>
                             <td <c:if test="${question.questionWriter eq user.userID || question.questionWriter eq company.companyID}">style="color:#042894;"</c:if>>
                             	${question.questionWriter}

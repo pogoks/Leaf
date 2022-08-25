@@ -38,8 +38,6 @@ import com.spring.leaf.archive.command.ArchiveVO;
 import com.spring.leaf.archive.command.ArchiveWriterVO;
 import com.spring.leaf.archive.service.IArchiveService;
 import com.spring.leaf.archivereply.service.IArchiveReplyService;
-import com.spring.leaf.user.command.UserProfileVO;
-import com.spring.leaf.user.controller.UserController;
 import com.spring.leaf.util.PageCreator;
 import com.spring.leaf.util.PageVO;
 
@@ -134,7 +132,7 @@ public class Archivecontroller {
 	public String archiveUpdate(ArchiveVO vo, RedirectAttributes ra) {
 		
 		service.archiveModify(vo);
-		ra.addFlashAttribute("msg", "updateSuccess");
+		ra.addFlashAttribute("msg", "자료실 글 수정이 완료되었습니다.");
 		return "redirect:/archive/archiveContent/" + vo.getArchiveNo();
 	}
 	
