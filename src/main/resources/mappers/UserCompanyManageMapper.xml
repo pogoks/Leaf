@@ -53,8 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			cd.common_value
 		FROM user u LEFT OUTER JOIN common cd
 		ON u.common_CODE = cd.common_CODE
-		WHERE u.common_CODE = 'ADM001'
-		AND u.common_CODE != 'ADM003'
+		WHERE u.common_CODE != 'ADM002'
 		AND u.user_NO != 1
 	</select>
 	
