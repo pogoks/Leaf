@@ -85,7 +85,7 @@
 						<th style="width: 12%;">비고</th>
 					</tr>
 				</thead>
-				<tbody style="width: 10px; font-size: 13px; background: #F7F7F7;">
+				<tbody style="width: 10px; font-size: 13px; background: #FCFCFC;">
 					
 					<c:forEach var="companyList" items="${companyAcceptList}" varStatus="index">
 						<tr id="companyDetail${index.index}" style="cursor: pointer;">

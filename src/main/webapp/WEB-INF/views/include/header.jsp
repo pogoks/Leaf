@@ -320,7 +320,7 @@
 		                        </a>
 		                        <ul id="submenu-1" class="panel-collapse collapse panel-switch" role="menu" style="background: #C0A703;">
 		                            <li><a href="#"><i class="fa fa-caret-right"></i>프로젝트 관리</a></li>
-			                        <li><a href="#"><i class="fa fa-caret-right"></i>공지사항 관리</a></li>
+			                        <li><a href="<c:url value='/notice/noticeList' />"><i class="fa fa-caret-right"></i>공지사항 관리</a></li>
 			                        <li><a href="<c:url value='/membersList/membersList' />"><i class="fa fa-caret-right"></i>사용자 관리</a></li>
 		                        </ul>
 		                    </li>
@@ -343,9 +343,9 @@
 		                            <b class="caret"></b>
 		                        </a>
 		                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu" style="background: #7A6A00;">
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>Q&A 관리</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>자유게시판 관리</a></li>
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>자료실 관리</a></li>
+		                            <li><a href="<c:url value='/question/questionList' />"><i class="fa fa-caret-right"></i>Q&A 관리</a></li>
+		                            <li><a href="<c:url value='/board/boardList' />"><i class="fa fa-caret-right"></i>자유게시판 관리</a></li>
+		                            <li><a href="<c:url value='/archive/archiveList' />"><i class="fa fa-caret-right"></i>자료실 관리</a></li>
 		                        </ul>
 		                    </li>
 		                    <li>
@@ -355,7 +355,7 @@
 		                            <b class="caret"></b>
 		                        </a>
 		                        <ul id="submenu-4" class="panel-collapse collapse panel-switch" role="menu" style="background: #574D00;">
-		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>개발자 통계</a></li>
+		                            <li><a href="<c:url value='/admin/chartDevelopers' />" style="color: white;"><i class="fa fa-caret-right"></i>개발자 통계</a></li>
 		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>기업 통계</a></li>
 		                            <li><a href="#" style="color: white;"><i class="fa fa-caret-right"></i>프로젝트 통계</a></li>
 		                        </ul>

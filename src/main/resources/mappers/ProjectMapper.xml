@@ -53,6 +53,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="projectNO" column="project_NO" />
 	</resultMap>
 	
+	<!-- 현재 날짜에서 6달 전 달 까지의 값을 가져오는 ProjectDateVO와 데이터베이스 컬럼명을 일치시켜주는 resultMap인 ProjectDateMap 선언 -->
+	<resultMap type="com.spring.leaf.project.command.ProjectDateVO" id="ProjectDateMap">
+		<result property="projectDateNow" column="project_date_now" />
+		<result property="projectDateBefore1" column="project_date_before1" />
+		<result property="projectDateBefore2" column="project_date_before2" />
+		<result property="projectDateBefore3" column="project_date_before3" />
+		<result property="projectDateBefore4" column="project_date_before4" />
+		<result property="projectDateBefore5" column="project_date_before5" />
+	</resultMap>
+	
+	<!-- 현재 날짜에서 6달 전 까지의 프로젝트 등록 빈도를 가져오는 ProjectRegistCountVO와 데이터베이스 컬럼명을 일치시켜주는 resultMap인 ProjectRegistCountMap 선언 -->
+	<resultMap type="com.spring.leaf.project.command.ProjectRegistCountVO" id="ProjectRegistCountMap">
+		<result property="projectRegistCountNow" column="project_regist_count_now" />
+		<result property="projectRegistCountBefore1" column="project_regist_count_before1" />
+		<result property="projectRegistCountBefore2" column="project_regist_count_before2" />
+		<result property="projectRegistCountBefore3" column="project_regist_count_before3" />
+		<result property="projectRegistCountBefore4" column="project_regist_count_before4" />
+		<result property="projectRegistCountBefore5" column="project_regist_count_before5" />
+	</resultMap>
+	
 	<!-- 프로젝트 등록하기 -->
 	<insert id="projectputin">
 		INSERT INTO project(project_name, project_desc, project_manager, project_manager_phone, project_manager_email, project_require_license
@@ -95,6 +115,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	AND p.common_CODE != 'PST003'
       	ORDER BY p.project_NO DESC
 	</select>
+
+
+	<!-- 프로젝트 검색 -->
+	<select id="projectSearch" resultMap="ProjectListMap">
+		SELECT
+			p.project_NO, p.project_name, p.project_require_role, p.project_require_date1, p.project_require_date2, p.company_NO, c.company_name, p.common_CODE, cd.common_value
+		FROM
+			project p LEFT OUTER JOIN company c
+		ON p.company_NO = c.company_NO
+		LEFT OUTER JOIN common cd
+		ON p.common_CODE = cd.common_CODE
+		WHERE p.project_NO != 1
+		AND p.project_name LIKE CONCAT('%', #{keyword}, '%')
+		ORDER BY p.project_NO DESC
+	</select>
 	
 	
 	<!-- 일반회원 회원번호 얻어내는 SELECT 쿼리 -->
@@ -118,6 +153,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM project_image
 		WHERE project_NO = #{projectNO}
+	</select>
+	
+	
+	<!-- 프로젝트 등록 빈도 달 마다 값 가져오기 -->
+	<select id="projectRegistCount" resultMap="ProjectRegistCountMap">
+		SELECT 
+			COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -1 SECOND), 1, 7), '%') then 1 end) AS project_regist_count_now,
+			COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -1 MONTH), 1, 7), '%') then 1 end) AS project_regist_count_before1,
+		    COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -2 MONTH), 1, 7), '%') then 1 end) AS project_regist_count_before2,
+		    COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -3 MONTH), 1, 7), '%') then 1 end) AS project_regist_count_before3,
+		    COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -4 MONTH), 1, 7), '%') then 1 end) AS project_regist_count_before4,
+		    COUNT(case when project_date LIKE CONCAT('%', SUBSTRING(DATE_ADD(NOW(), INTERVAL -5 MONTH), 1, 7), '%') then 1 end) AS project_regist_count_before5
+		FROM project
+		WHERE company_NO = #{companyNO}
+	</select>
+
+	
+	
+	<!-- 6달 전 까지의 날짜 달 값 가져오기 -->
+	<select id="projectDate" resultMap="ProjectDateMap">
+		SELECT 
+			SUBSTRING(DATE_ADD(NOW(), INTERVAL -1 SECOND), 1, 7) AS project_date_now,
+		    SUBSTRING(DATE_ADD(NOW(), INTERVAL -1 MONTH), 1, 7) AS project_date_before1,
+		    SUBSTRING(DATE_ADD(NOW(), INTERVAL -2 MONTH), 1, 7) AS project_date_before2,
+		    SUBSTRING(DATE_ADD(NOW(), INTERVAL -3 MONTH), 1, 7) AS project_date_before3,
+		    SUBSTRING(DATE_ADD(NOW(), INTERVAL -4 MONTH), 1, 7) AS project_date_before4,
+		    SUBSTRING(DATE_ADD(NOW(), INTERVAL -5 MONTH), 1, 7) AS project_date_before5
+		FROM project
+		WHERE project_NO = 1;
 	</select>
 	
 	
