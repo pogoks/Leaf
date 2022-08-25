@@ -96,7 +96,7 @@
 								<th style="width: 12%;">비고</th>
 							</tr>
 						</thead>
-						<tbody style="width: 10px; font-size: 13px; background: #F7F7F7;">
+						<tbody style="width: 10px; font-size: 13px; background: #FCFCFC;">
 						
 							<c:forEach var="userMembers" items="${userMembers}" varStatus="index">
 							<tr id="userMembersDetail${index.index}" style="cursor: pointer;">
@@ -194,7 +194,7 @@
 								<th style="width: 12%;">비고</th>
 							</tr>
 						</thead>
-						<tbody style="width: 10px; font-size: 13px; background: #F7F7F7;">
+						<tbody style="width: 10px; font-size: 13px; background: #FCFCFC;">
 							
 							<c:forEach var="companyMembers" items="${companyMembers}" varStatus="index">
 							<tr id="companyMembersDetail${index.index}" style="cursor: pointer;">
