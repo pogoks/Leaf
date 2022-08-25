@@ -121,8 +121,9 @@ public class ProjectController {
 	}
 	// 지원 후 목록 창 이동 
 	@PostMapping("/projectputin")
-	public String projectputin(ProjectVO vo) {
+	public String projectputin(ProjectVO vo, RedirectAttributes ra) {
 		service.projectputin(vo);
+		ra.addFlashAttribute("msg", "성공적으로 등록되었습니다.");
 		return "redirect:/project/project";
 	}
 	
