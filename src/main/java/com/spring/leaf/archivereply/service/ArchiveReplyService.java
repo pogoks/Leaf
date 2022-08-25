@@ -36,12 +36,26 @@ public class ArchiveReplyService implements IArchiveReplyService {
 		
 		return mapper.archiveReplyList(data);
 	}
+	
+	//자료실 댓글 프로필 사진 불러오기
+	@Override
+	public int rarchivewriterProfile(String archiveReplyWriter, int archiveReplyNo) {
+		
+		Map<String, Object> rarchiveInfo = new HashMap<>();
+		
+		rarchiveInfo.put("archiveReplyWriter", archiveReplyWriter);
+		rarchiveInfo.put("archiveReplyNo", archiveReplyNo);
+		
+		return mapper.rarchivewriterProfile(rarchiveInfo);
+	}
 
+	//댓글 개수
 	@Override
 	public int archiveReplyTotal(int archvieReplyNo) {
 		return mapper.archiveReplyTotal(archvieReplyNo);
 	}
 
+	//댓글 수정
 	@Override
 	public void archiveReplyUpdate(int archiveReplyNo, String archiveReplyContent) {
 		ArchiveReplyVO vo = new ArchiveReplyVO();
@@ -54,6 +68,7 @@ public class ArchiveReplyService implements IArchiveReplyService {
 		mapper.archiveReplyUpdate(vo);
 	}
 
+	//댓글 삭제
 	@Override
 	public void archiveReplyDelete(int archiveReplyNo) {
 		mapper.archiveReplyDelete(archiveReplyNo);

@@ -52,7 +52,6 @@ public class QuestionService implements IQuestionService {
 		return mapper.questionwriterProfile(questionInfo);
 	}
 	
-
 	//질문글 수정하기
 	@Override
 	public void questionModify(QuestionVO vo) {
@@ -77,6 +76,11 @@ public class QuestionService implements IQuestionService {
 		return mapper.questionTotal(vo);
 	}
 	
+	//답변글 총 개수
+	@Override
+	public int answerTotal(int questionNo) {
+		return mapper.answerTotal(questionNo);
+	}
 	
 	
 	//답변글 글 등록

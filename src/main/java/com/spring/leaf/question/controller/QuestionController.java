@@ -143,12 +143,16 @@ public class QuestionController {
 	
 	//답변글 상세보기(목록)프로필사진용
 	@PostMapping("/answerList/{answerNo}")
-	public String answerList(@PathVariable int answerNo, Model model) {		
+	public String answerList(@PathVariable int answerNo, int questionNo, Model model) {		
 
 		
 		AnswerVO vo = service.answerContent(answerNo);
 		
 		int answerWriterNo = service.answerwriterProfile(vo.getAnswerWriter(), answerNo);
+		
+		//답변글 수
+		int answerTotal = service.answerTotal(questionNo);
+		model.addAttribute("answerCount", answerTotal);
 		
 		model.addAttribute("answer", vo);
 		model.addAttribute("answerWriterNo", answerWriterNo);
@@ -163,7 +167,7 @@ public class QuestionController {
 	@PostMapping("/answerList")
 	@ResponseBody
 	public Map<String, Object> answerList(int questionNo) {		
-		List<AnswerVO> list = service.answerList(questionNo);
+		List<AnswerVO> list = service.answerList(questionNo);		
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("answerList", list);

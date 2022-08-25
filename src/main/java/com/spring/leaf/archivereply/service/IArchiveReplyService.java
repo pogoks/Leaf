@@ -1,6 +1,8 @@
 package com.spring.leaf.archivereply.service;
 
 import java.util.List;
+import java.util.Map;
+
 import com.spring.leaf.archivereply.command.ArchiveReplyVO;
 import com.spring.leaf.util.PageVO;
 
@@ -22,4 +24,7 @@ public interface IArchiveReplyService {
 	
 	//댓글 삭제
 	void archiveReplyDelete(int archvieReplyNo);
+	
+	// 사용자 프로필사진 불러오기 요청
+	int rarchivewriterProfile(String archiveReplyWriter, int archiveReplyNo);
 }

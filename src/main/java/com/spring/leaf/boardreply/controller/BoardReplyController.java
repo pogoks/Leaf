@@ -70,20 +70,7 @@ public class BoardReplyController {
 		
 		return map;
 	}
-	/*
-	//댓글 프로필 사진 불러오기
-	@PostMapping("/boardReplyList/{boardReplyNo}")
-	public String boardReplyList(@PathVariable int boardReplyNo, Model model) {
-		
 
-		
-		
-		model.addAttribute("rboard", vo);
-		model.addAttribute("boardReplyWriterNo", boardReplyWriterNo);
-		
-		return "redirect:/board/boardList";
-	}
-	*/
 	//댓글 수정
 	@PostMapping("/boardReplyUpdate")
 	@ResponseBody
