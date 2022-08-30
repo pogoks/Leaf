@@ -16,6 +16,8 @@ public interface IProjectService {
 	List<ProjectListVO> projectlist();
 	
 	List<ProjectListVO> projectadmin(int companyNO);
+	
+	List<ProjectListVO> projectadminAll();
 
 	ProjectContentVO getContent(int projectNO);
 	
@@ -41,6 +43,8 @@ public interface IProjectService {
 	
 	void deleteLike(ProjectLikeVO vo);
 	
-	void deleteProject(ProjectVO vo);
+	void deleteProject(int projectNO);
+	
+	int projectUserCheck(int projectNO);
 	
 }

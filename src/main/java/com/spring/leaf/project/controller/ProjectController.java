@@ -50,6 +50,8 @@ import com.spring.leaf.projectapply.service.IProjectApplyService;
 import com.spring.leaf.user.command.UserProfileVO;
 import com.spring.leaf.user.command.UserVO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 @RequestMapping("/project")
@@ -131,13 +133,45 @@ public class ProjectController {
 	@GetMapping("/projectadmin")
 	public String project5(HttpSession session, Model model) {
 		
-		CompanyVO vo = (CompanyVO) session.getAttribute("company");
+		if(session.getAttribute("user") != null) {			
+			model.addAttribute("projectadmin", service.projectadminAll());
+			model.addAttribute("adminCheck", 1);
+		}
 		
-		model.addAttribute("projectlist", service.projectadmin(vo.getCompanyNO()));
+		if(session.getAttribute("company") != null) {
+			CompanyVO vo = (CompanyVO) session.getAttribute("company");
+			
+			model.addAttribute("projectadmin", service.projectadmin(vo.getCompanyNO()));
+			model.addAttribute("adminCheck", 0);
+		}
 		
 		return "project/project-admin";
 	}
 	
+	//프로젝트 삭제하기 요청
+	@PostMapping("/projectDelete")
+	@ResponseBody
+	public String projectDelete(int projectNO) {
+		
+		service.deleteProject(projectNO);
+
+		return "YesProjectDelete";
+	}
+	
+	
+	//프로젝트 지원자 체크
+	@PostMapping("/projectUserCheck")
+	@ResponseBody
+	public String projectUserCheck(int projectNO) {
+		
+		int check = service.projectUserCheck(projectNO);
+		
+		if(check == 0) {
+			return "CheckZero";
+		} else {
+			return "CheckMany";
+		}
+	}
 	
 	// 프로젝트 관리 창 통계 데이터 얻어오는 요청
 	@PostMapping("/projectChart1")
@@ -304,6 +338,7 @@ public class ProjectController {
 	}
 
 	
+	// 프로젝트 사진 삭제 요청
 	@PostMapping("/projectImageDelete/{projectNO}")
 	@ResponseBody
 	public String projectImageDelete(@PathVariable("projectNO") int projectNO) throws Exception {

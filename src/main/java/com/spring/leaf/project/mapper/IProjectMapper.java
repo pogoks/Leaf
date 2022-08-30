@@ -17,6 +17,8 @@ public interface IProjectMapper {
 	List<ProjectListVO> projectlist();
 	
 	List<ProjectListVO> projectadmin(int companyNO);
+	
+	List<ProjectListVO> projectadminAll();
 
 	ProjectContentVO getContent(int projectNO);
 	//프로젝트 수정
@@ -42,6 +44,8 @@ public interface IProjectMapper {
 	
 	void deleteLike(ProjectLikeVO vo);
 	
-	void deleteProject(ProjectVO vo);
+	void deleteProject(int projectNO);
+	
+	int projectUserCheck(int projectNO);
 	
 }

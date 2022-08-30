@@ -40,6 +40,12 @@ public class ProjectService implements IProjectService {
 	public List<ProjectListVO> projectadmin(int companyNO) {
 		return mapper.projectadmin(companyNO);
 	}
+	
+	@Override
+	public List<ProjectListVO> projectadminAll() {
+		return mapper.projectadminAll();
+	}
+	
 	//프로젝트 상세보기 
 	@Override
 	public ProjectContentVO getContent(int projectNO){
@@ -112,8 +118,14 @@ public class ProjectService implements IProjectService {
 	}
 	
 	@Override
-	public void deleteProject(ProjectVO vo) {
-		mapper.deleteProject(vo);
+	public void deleteProject(int projectNO) {
+		mapper.deleteProject(projectNO);
+		
+	}
+	
+	@Override
+	public int projectUserCheck(int projectNO) {
+		return mapper.projectUserCheck(projectNO);
 		
 	}
 }
