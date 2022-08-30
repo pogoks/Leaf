@@ -128,6 +128,22 @@ public interface IProjectService {
 		
 	// 날짜에 포함되는 프로젝트 수
 	int getTotalSearchDate(String date);
+	
+	
+	// 프로젝트 관리창 리스트 검색 목록
+	List<ProjectListVO> projectadmin(PageApplyVO pvo, int companyNO);
+
+	
+	// 프로젝트 관리창 리스트 검색 목록 (관리자)
+	List<ProjectListVO> projectadminAll(PageApplyVO pvo);
+
+	
+	// 프로젝트 관리창 프로젝트 수
+	int getTotalAdmin(PageApplyVO pvo, int companyNO);
+
+	
+	// 프로젝트 관리창 프로젝트 수 (관리자)
+	int getTotalAdminAll(PageApplyVO pvo);
 
 }
 

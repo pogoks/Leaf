@@ -35,10 +35,20 @@
 
 
 <style>
-input.form-control {
-	width: 100%;
-	display: inline-block;
-}
+	input.form-control {
+		width: 100%;
+		display: inline-block;
+	}
+
+	#div-company-intro::-webkit-scrollbar {
+ 		width: 3px;
+  		background-color: #C7C7C7;
+	}
+	
+	
+	#div-company-intro::-webkit-scrollbar-thumb {
+		background: #535353;
+	}
 </style>
 
 </head>
@@ -114,7 +124,7 @@ input.form-control {
 									<div class="col-sm-3">
 										<p class="mb-0">기업소개</p>
 									</div>
-									<div class="col-sm-9">
+									<div class="col-sm-9" id="div-company-intro" style="height: 120px; overflow: auto;">
 										<p class="text-muted mb-0">${fn:replace(companyDetail.companyIntro, replaceChar, "<br/>")}</p>
 									</div>
 								</div>
@@ -300,70 +310,40 @@ input.form-control {
 		});
 		
 		
-		// 일반회원 회원탈퇴 버튼 클릭 시 회원탈퇴 진행
-		$('#btn-user-delete').click(function() {
+		// 기업회원 회원탈퇴 버튼 클릭 시 회원탈퇴 진행
+		$('#btn-company-delete').click(function() {
 			
-			if(confirm('정말 탈퇴하시겠습니까? 더 이상 서비스를 이용할 수 없게 됩니다.')) {
-				
-				$('#modal-delete-check').modal('show');
-				
-				
-				// 확인 버튼 클릭 시
-				$('#btn-password-check').click(function() {
-					
-					const inputPW = $('#input-password-check').val();
-					const userNO = $('#hidden-user-mypage-userno').val();
+			if(confirm('해당 기업을 강제탈퇴 처리하시겠습니까?')) {
+			
+					const companyNO = $('#hidden-company-mypage-companyno').val();
 					
 					$.ajax({
 						type: 'POST',
-						url: '<c:url value="/user/userPasswordCheck" />',
+						url: '<c:url value="/company/companyProjectCheck" />',
 						
-						dataType: 'text',
 						data: {
-							'inputPW': inputPW
+							'companyNO': companyNO
 						},
 						
 						success: function(result) {
-							if(result == 'YesCheck') {
-								
-								console.log('비밀번호 일치');
+							if(result == 'CheckZero') {
 								
 								$.ajax({
 									type: 'POST',
-									url: '<c:url value="/user/userDelete" />',
+									url: '<c:url value="/adminmypage/admincompanydelete" />',
 									
 									dataType: 'text',
 									data : {
-										'userNO': userNO
+										'companyNO': companyNO
 									},
 									
 									success: function(result) {
-										if(result == 'YesUserDelete') {
+										if(result == 'YesCompanyDelete') {
 											
-											// 로그아웃 처리 비동기 ajax
-						    				$.ajax({
-						    					type: 'POST',
-						    					url: '<c:url value="/user/userLogout" />',
-						    					contentType: 'application/json',
-						    					
-						    					success: function(result) {
-						    						if(result == 'logoutSuccess') {
-						    							alert('성공적으로 탈퇴되었습니다. 그동안 서비스를 이용해주셔서 감사합니다.');
-						    							
-						    							// location.href는 단순 페이지 이동이라면, location.replace()는 해당 주소를 redirect하는 것과 비슷하다.
-						    							location.replace('/');
-						    						} else {
-						    							alert('탈퇴가 정상적으로 이루어지지 않았습니다. 관리자에게 문의하세요.');
-						    							return;
-						    						}
-						    					},
-						    					
-						    					error: function() {
-						    						alert('로그아웃 처리 중 서버 오류가 발생했습니다.');
-						    						return;
-						    					}
-						    				});		// ajax 끝
+											alert('해당 기업을 강제탈퇴 처리했습니다.');
 											
+											location.replace("<c:url value='/membersList/membersListCompany' />");
+						    			
 										}
 									},
 									
@@ -373,152 +353,22 @@ input.form-control {
 									}
 								});
 								
-								
 							} else {
-								alert('비밀번호가 일치하지 않습니다.');
+								alert('모집중인 프로젝트가 있어 탈퇴할 수 없습니다. 모집이 끝난 후 탈퇴해주세요.');
 								return;
 							}
 						},
 						
 						error: function() {
-							alert('비밀번호 체크 중 서버오류가 발생했습니다.');
+							alert('해당 기업의 등록 프로젝트 존재 여부를 확인 중 서버오류가 발생했습니다.');
 							return;
 						}
 					});
 					
-				});
-				
-				
-				// 취소 버튼 클릭 시
-				$('#btn-password-check-close').click(function() {
-					$('#modal-delete-check').modal('hide');
-				});
-				
 			} else {
 				return false;
 			}
-		});
-		
-		
-		// 기업회원 회원탈퇴 버튼 클릭 시 회원탈퇴 진행
-		$('#btn-company-delete').click(function() {
-			
-			if(confirm('정말 탈퇴하시겠습니까? 더 이상 서비스를 이용할 수 없게 됩니다.')) {
-				
-				$('#modal-delete-check-company').modal('show');
-				
-				
-				// 확인 버튼 클릭 시
-				$('#btn-password-check-company').click(function() {
-					
-					const inputPW = $('#input-password-check-company').val();
-					const companyNO = $('#hidden-company-mypage-companyno').val();
-					
-					$.ajax({
-						type: 'POST',
-						url: '<c:url value="/company/companyPasswordCheck" />',
-						
-						dataType: 'text',
-						data: {
-							'inputPW': inputPW
-						},
-						
-						success: function(result) {
-							if(result == 'YesCheck') {
-								
-								console.log('비밀번호 일치');
-								
-								$.ajax({
-									type: 'POST',
-									url: '<c:url value="/company/companyProjectCheck" />',
-									
-									data: {
-										'companyNO': companyNO
-									},
-									
-									success: function(result) {
-										if(result == 'CheckZero') {
-											
-											$.ajax({
-												type: 'POST',
-												url: '<c:url value="/company/companyDelete" />',
-												
-												dataType: 'text',
-												data : {
-													'companyNO': companyNO
-												},
-												
-												success: function(result) {
-													if(result == 'YesCompanyDelete') {
-														
-														// 로그아웃 처리 비동기 ajax
-									    				$.ajax({
-									    					type: 'POST',
-									    					url: '<c:url value="/company/companyLogout" />',
-									    					contentType: 'application/json',
-									    					
-									    					success: function(result) {
-									    						if(result == 'logoutSuccess') {
-									    							alert('성공적으로 탈퇴되었습니다. 그동안 서비스를 이용해주셔서 감사합니다.');
-									    							
-									    							// location.href는 단순 페이지 이동이라면, location.replace()는 해당 주소를 redirect하는 것과 비슷하다.
-									    							location.replace('/');
-									    						} else {
-									    							alert('탈퇴가 정상적으로 이루어지지 않았습니다. 관리자에게 문의하세요.');
-									    							return;
-									    						}
-									    					},
-									    					
-									    					error: function() {
-									    						alert('로그아웃 처리 중 서버 오류가 발생했습니다.');
-									    						return;
-									    					}
-									    				});		// ajax 끝
-														
-													}
-												},
-												
-												error: function() {
-													alert('회원 탈퇴 처리 중 서버오류가 발생했습니다.');
-													return;
-												}
-											});
-											
-										} else {
-											alert('모집중인 프로젝트가 있어 탈퇴할 수 없습니다. 모집이 끝난 후 탈퇴해주세요.');
-											return;
-										}
-									},
-									
-									error: function() {
-										alert('해당 기업의 등록 프로젝트 존재 여부를 확인 중 서버오류가 발생했습니다.');
-										return;
-									}
-								});
-								
-							} else {
-								alert('비밀번호가 일치하지 않습니다.');
-								return;
-							}
-						},
-						
-						error: function() {
-							alert('비밀번호 체크 중 서버오류가 발생했습니다.');
-							return;
-						}
-					});
-					
-				});
-				
-				
-				// 취소 버튼 클릭 시
-				$('#btn-password-check-company-close').click(function() {
-					$('#modal-delete-check-company').modal('hide');
-				});
-				
-			} else {
-				return false;
-			}
+
 		});
 		
 	});

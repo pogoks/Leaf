@@ -33,7 +33,7 @@ public interface IProjectApplyMapper {
 		
 	
 	// 기업회원 등록 프로젝트 개수 얻어오기 요청
-	int myProjectCount(int companyNO);
+	int myProjectCount(Map<String, Object> map);
 	
 	
 	// 기업회원의 프로젝트를 지원한 지원자 목록 요청

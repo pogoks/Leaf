@@ -80,8 +80,23 @@
 				<br>
 				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px; clear: both;">내 프로젝트 목록</p>
 				<hr>
-				
-			
+					
+					<div class="clearfix" style="margin-top: -16px;">
+					
+						<form class="navbar-form navbar-left navbar-main-top pull-left" action="<c:url value='/project/projectadmin'/>" style="padding: 0; margin-left: 0; margin-bottom: 30px;">
+								<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
+				                            <option value="title">프로젝트 이름</option>
+				                </select>
+							
+								<div class="input-group"> 
+									<input type="text" name="keyword" class="form-control" value="${pc.paging.keyword}" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
+									</span>
+								</div>
+						</form>
+						
+					</div>
 				
 				<c:forEach var="project" items="${projectadmin}" varStatus="index">
 				

@@ -76,11 +76,11 @@ public class ProjectApplyController {
 		System.out.println(pvo);
 		PageApplyCreator pc = new PageApplyCreator();
 		pc.setPaging(pvo);
-		pc.setArticleTotalCount(service.myProjectCount(vo.getCompanyNO()));
+		pc.setArticleTotalCount(service.myProjectCount(vo.getCompanyNO(), pvo));
 		System.out.println(pc);
 		
 		model.addAttribute("myProjectStatus", service.myProjectStatus(vo.getCompanyNO(), pvo));
-		model.addAttribute("myProjectCount", service.myProjectCount(vo.getCompanyNO()));
+		model.addAttribute("myProjectCount", service.myProjectCount(vo.getCompanyNO(), pvo));
 		model.addAttribute("companyNO", vo.getCompanyNO());
 		model.addAttribute("pc", pc);
 		

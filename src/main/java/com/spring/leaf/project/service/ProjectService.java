@@ -120,8 +120,8 @@ public class ProjectService implements IProjectService {
 	
 		
 	@Override
-	public List<ProjectListVO> projectadmin(PageApplyVO pvo) {
-		List<ProjectListVO> list = mapper.projectlist(pvo);
+	public List<ProjectListVO> projectadmin(int companyNO) {
+		List<ProjectListVO> list = mapper.projectadmin(companyNO);
 		return list;
 	}
 	
@@ -295,5 +295,51 @@ public class ProjectService implements IProjectService {
 	public int projectUserCheck(int projectNO) {
 		return mapper.projectUserCheck(projectNO);
   }
+	
+	
+	// 프로젝트 관리창 리스트 검색 목록
+	@Override
+	public List<ProjectListVO> projectadmin(PageApplyVO pvo, int companyNO) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pvo", pvo);
+		map.put("companyNO", companyNO);
+		
+		return mapper.projectadmin(map);
+	}
+
+	
+	// 프로젝트 관리창 리스트 검색 목록 (관리자)
+	@Override
+	public List<ProjectListVO> projectadminAll(PageApplyVO pvo) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pvo", pvo);
+		
+		return mapper.projectadminAll(map);
+	}
+
+	
+	// 프로젝트 관리창 프로젝트 수
+	@Override
+	public int getTotalAdmin(PageApplyVO pvo, int companyNO) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pvo", pvo);
+		map.put("companyNO", companyNO);
+
+		return mapper.getTotalAdmin(map);
+	}
+
+	
+	// 프로젝트 관리창 프로젝트 수 (관리자)
+	@Override
+	public int getTotalAdminAll(PageApplyVO pvo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pvo", pvo);
+		
+		return mapper.getTotalAdminAll(map);
+	}
 	
 }

@@ -88,14 +88,15 @@ input.form-control {
 					<div>
 						<div>
 							<div style="width:500px;">
-							시작일자: <input name="projectRequireDate1" type="date" class="form-control"
-								placeholder="0000/00/00"> 
-							</div>
-							<div style="width:500px;">
-							종료일자: <input
-								name="projectRequireDate2" type="date" class="form-control"
-								placeholder="0000/00/00">
-							</div>
+                     시작일자: <input name="projectRequireDate1" id="project-require-date1" type="date" class="form-control"
+                        placeholder="0000/00/00">
+                        <span id="span-date1"></span>                
+                     </div>
+                     <div style="width:500px;">
+                     종료일자: <input
+                        name="projectRequireDate2" id="project-require-date2" type="date" class="form-control"
+                        placeholder="0000/00/00">
+                        <span id="span-date2"></span>
 						</div>
 					</div>
 
@@ -305,6 +306,7 @@ $(function() {
 				return;
 			}
 			
+			
 			//담당자 이름 입력 여부
 			if($('#project-manager').val() == '') {
 				alert('담당자 이름을 입력해주세요.');
@@ -314,6 +316,27 @@ $(function() {
 				$('#project-manager').focus();
 				return;
 			}
+			
+			// 프로젝트 기간1 입력 여부 체크
+	         if($('#project-require-date1').val() == '') {
+	                  alert('기간을 입력해주세요.');
+	                  $('#span-date1').text('프로젝트 기간을 입력해주세요.');
+	                  $('#span-date1').css('color', 'red');
+	                  
+	                  $('#project-require-date1').focus();
+	                  return;
+	               }
+	         
+	         // 프로젝트 기간2 입력 여부 체크
+	         if($('#project-require-date2').val() == '') {
+	                  alert('기간을 입력해주세요.');
+	                  $('#span-date2').text('프로젝트 기간을 입력해주세요.');
+	                  $('#span-date2').css('color', 'red');
+	                  
+	                  $('#project-require-date2').focus();
+	                  return;
+	               }
+			
 			
 			// 담당자 전화번호 입력 여부
 			if($('#project-mg-phone').val() == '') {

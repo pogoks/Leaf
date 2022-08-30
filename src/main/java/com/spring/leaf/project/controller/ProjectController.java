@@ -249,15 +249,32 @@ public class ProjectController {
 	public String project5(PageApplyVO pvo, HttpSession session, Model model) {
 		
 		if(session.getAttribute("user") != null) {			
-			model.addAttribute("projectadmin", service.projectadminAll());
+			// 페이징
+			System.out.println(pvo);
+			PageApplyCreator pc = new PageApplyCreator();
+			pc.setPaging(pvo);
+			pc.setArticleTotalCount(service.getTotalAdminAll(pvo));
+			System.out.println(pc);
+			
+			model.addAttribute("projectadmin", service.projectadminAll(pvo));
 			model.addAttribute("adminCheck", 1);
+			model.addAttribute("pc", pc);
 		}
 
 		if(session.getAttribute("company") != null) {
+			
 			CompanyVO vo = (CompanyVO) session.getAttribute("company");
+			
+			// 페이징
+			System.out.println(pvo);
+			PageApplyCreator pc = new PageApplyCreator();
+			pc.setPaging(pvo);
+			pc.setArticleTotalCount(service.getTotalAdmin(pvo, vo.getCompanyNO()));
+			System.out.println(pc);
       
-			model.addAttribute("projectadmin", service.projectadmin(vo.getCompanyNO()));
+			model.addAttribute("projectadmin", service.projectadmin(pvo, vo.getCompanyNO()));
 			model.addAttribute("adminCheck", 0);
+			model.addAttribute("pc", pc);
 		}
 
 		return "project/project-admin";

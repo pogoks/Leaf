@@ -133,4 +133,20 @@ public interface IProjectMapper {
 	// 날짜에 포함되는 프로젝트 수
 	int getTotalSearchDate(String date);
 	
+	
+	// 프로젝트 관리창 리스트 검색 목록
+	List<ProjectListVO> projectadmin(Map<String, Object> map);
+	
+	
+	// 프로젝트 관리창 리스트 검색 목록 (관리자)
+	List<ProjectListVO> projectadminAll(Map<String, Object> map);
+	
+	
+	// 프로젝트 관리창 프로젝트 수
+	int getTotalAdmin(Map<String, Object> map);
+	
+	
+	// 프로젝트 관리창 프로젝트 수 (관리자)
+	int getTotalAdminAll(Map<String, Object> map);
+	
 }

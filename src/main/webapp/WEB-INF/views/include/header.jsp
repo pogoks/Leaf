@@ -656,6 +656,8 @@
     				success: function(result) {
     					
     					let sendmailList = result.list;
+    					let sendmailCount = result.count;
+    					$('#sendMessageCount').text(sendmailCount);
     					
     					for(let i = 0; i < sendmailList.length; i++) {
     						var timestamp = sendmailList[i].userMessageDate;
@@ -714,6 +716,8 @@
     				success: function(result) {
     					
     					let sendmailList = result.list;
+    					let sendmailCount = result.count;
+    					$('#sendMessageCount').text(sendmailCount);
     					
     					for(let i = 0; i < sendmailList.length; i++) {
     						var timestamp = sendmailList[i].userMessageDate;

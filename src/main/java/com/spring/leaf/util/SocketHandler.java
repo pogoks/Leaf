@@ -138,11 +138,13 @@ public class SocketHandler extends TextWebSocketHandler {
 			
 				System.out.println(roomListSessions.get(i));
 				
+				/*
 				if(roomListSessions.get(i).get(session.getId()) == null) {
 					System.out.println("OHYEAH");
 					roomListSessions.get(i).put("roomNO", 0);
 					System.out.println(roomListSessions.get(i));
 				}
+				*/
 			}
 		} 
 		

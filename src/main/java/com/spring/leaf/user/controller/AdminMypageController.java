@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.leaf.company.command.CompanyVO;
+import com.spring.leaf.company.service.ICompanyService;
 import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.user.service.IUserMypageService;
+import com.spring.leaf.user.service.IUserService;
 
 @Controller
 @RequestMapping("/adminmypage")
@@ -27,6 +30,15 @@ public class AdminMypageController {
 		// 일반회원 유저 서비스 연결
 		@Autowired
 		private IUserMypageService service;
+		
+		
+		@Autowired
+		private IUserService uservice;
+		
+		
+		@Autowired
+		private ICompanyService cservice;
+		
 		
 		// 일반회원 마이페이지 이동 요청
 		@GetMapping("/adminusermypage")
@@ -79,6 +91,28 @@ public class AdminMypageController {
 
 			ra.addFlashAttribute("msg", "수정이 완료되었습니다.");
 			return "redirect:/membersList/membersList";
+		}
+		
+		
+		// 일반회원 강제탈퇴 로직
+		@PostMapping("/adminuserdelete")
+		@ResponseBody
+		public String userDelete(int userNO) {
+			
+			uservice.userDelete(userNO);
+			
+			return "YesUserDelete";
+		}
+		
+		
+		// 기업회원 강제탈퇴 로직
+		@PostMapping("/admincompanydelete")
+		@ResponseBody
+		public String companyDelete(int companyNO) {
+
+			cservice.companyDelete(companyNO);
+
+			return "YesCompanyDelete";
 		}
 		
 }

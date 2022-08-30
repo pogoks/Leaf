@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.leaf.project.command.ProjectListVO;
 import com.spring.leaf.projectapply.command.ApplyVO;
 import com.spring.leaf.projectapply.command.MyProjectApplyDetailVO;
 import com.spring.leaf.projectapply.command.MyProjectApplyListVO;
@@ -74,8 +75,13 @@ public class ProjectApplyService implements IProjectApplyService {
 	
 	// 기업회원 등록 프로젝트 개수 얻어오기 요청
 	@Override
-	public int myProjectCount(int companyNO) {
-		return mapper.myProjectCount(companyNO);
+	public int myProjectCount(int companyNO, PageApplyVO pvo) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("companyNO", companyNO);
+		map.put("pvo", pvo);
+		
+		return mapper.myProjectCount(map);
 	}
 	
 	
@@ -189,4 +195,5 @@ public class ProjectApplyService implements IProjectApplyService {
 	public List<ProjectApplyCountVO> projectApplyCount(int companyNO) {
 		return mapper.projectApplyCount(companyNO);
 	}
+	
 }

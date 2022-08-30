@@ -77,7 +77,7 @@
 			<div class="project-myproject-apply" style="clear: both;">
 				
 				<br>
-				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px;">등록한 내 프로젝트<span style="color: red;">&nbsp;&nbsp;${myProjectCount}</span></p>
+				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px;">등록한 전체 프로젝트 수<span style="color: red;">&nbsp;&nbsp;${myProjectCount}</span></p>
 				<hr>
 				
 				

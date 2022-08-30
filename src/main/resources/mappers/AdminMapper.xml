@@ -86,24 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userDate" column="user_date" />
 	</resultMap>
 	
-	<sql id="search">
-		<if test="condition == 'ID'">
-			AND company_ID LIKE concat('%', #{keyword}, '%')
-		</if>
-		<if test="condition == 'name'">
-			AND company_name LIKE concat('%', #{keyword}, '%')
-		</if>
-	</sql>
-	<sql id="searchCode">
-		<if test="condition == 'common'">
-			WHERE common_CODE LIKE concat('%', #{keyword}, '%')
-		</if>
-		<if test="condition == 'upper'">
-			WHERE upper_CODE LIKE concat('%', #{keyword}, '%')
-		</if>
-	</sql>
-	
-	
+
 	<!-- 현재 날짜에서 6달 전 까지의 일반회원 탈퇴 수를 가져오는 UserDeleteCountVO와 데이터베이스 컬럼명을 일치시켜주는 resultMap인 UserDeleteCountMap 선언 -->
 	<resultMap type="com.spring.leaf.admin.command.UserDeleteCountVO" id="UserDeleteCountMap">
 		<result property="userDeleteCountNow" column="user_delete_now" />
@@ -379,6 +362,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	
+	<sql id="search">
+		<if test="condition == 'ID'">
+			AND company_ID LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND company_name LIKE concat('%', #{keyword}, '%')
+		</if>
+	</sql>
+	<sql id="searchCode">
+		<if test="condition == 'common'">
+			WHERE common_CODE LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'upper'">
+			WHERE upper_CODE LIKE concat('%', #{keyword}, '%')
+		</if>
+	</sql>
+	
+	
 	<!-- 공통코드 목록 받아오기 SELECT 쿼리 -->
 	<select id="commonList" resultMap="CommonListMap">
 		SELECT 
@@ -464,8 +465,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			cd.common_value
 		FROM company c LEFT OUTER JOIN common cd
 		ON c.common_CODE = cd.common_CODE
-		
 		 WHERE c.common_CODE = 'CRG001'
+		 AND c.company_NO != 1
 		 <include refid="search" />
 		LIMIT ${cpp}
 		OFFSET ${skip}
