@@ -1,6 +1,8 @@
 package com.spring.leaf.project.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,31 +103,95 @@ public class ProjectService implements IProjectService {
 	}
 	
 	
-	//좋아요 생성
+	// 일반회원 프로젝트 좋아요 클릭 여부 체크
 	@Override
-	public void createLike(ProjectLikeVO vo) {
-		mapper.createLike(vo);
-	}
-	//좋아요 삭제
-	@Override
-	public void deleteLike(ProjectLikeVO vo) {
-		mapper.deleteLike(vo);
-	}
-	//좋아요 검색
-	@Override
-	public int searchLike(ProjectLikeVO vo) {
-		return mapper.searchLike(vo);
+	public int projectLikeCheck(int userNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNO", userNO);
+		map.put("projectNO", projectNO);
+		
+		return mapper.projectLikeCheck(map);
 	}
 	
+	
+	// 일반회원 프로젝트 좋아요 클릭
 	@Override
+	public void projectLikeOK(int userNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNO", userNO);
+		map.put("projectNO", projectNO);
+		
+		mapper.projectLikeOK(map);
+	}
+	
+	
+	// 일반회원 프로젝트 좋아요 취소
+	@Override
+	public void projectLikeCancel(int userNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNO", userNO);
+		map.put("projectNO", projectNO);
+		
+		mapper.projectLikeCancel(map);
+	}
+	
+	
+	// 기업회원 프로젝트 좋아요 클릭 여부 체크
+  @Override
+	public int projectLikeCheckCompany(int companyNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("companyNO", companyNO);
+		map.put("projectNO", projectNO);
+		
+		return mapper.projectLikeCheckCompany(map);
+	}
+	
+	
+	// 기업회원 프로젝트 좋아요 클릭
+	@Override
+	public void projectLikeCompanyOK(int companyNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("companyNO", companyNO);
+		map.put("projectNO", projectNO);
+		
+		mapper.projectLikeCompanyOK(map);
+	}
+	
+	
+	// 기업회원 프로젝트 좋아요 취소
+	@Override
+	public void projectLikeCompanyCancel(int companyNO, int projectNO) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("companyNO", companyNO);
+		map.put("projectNO", projectNO);
+		
+		mapper.projectLikeCompanyCancel(map);
+	}
+	
+	
+	// 프로젝트 좋아요 수 얻어오기
+	@Override
+	public int projectLikeGet(int projectNO) {
+		return mapper.projectLikeGet(projectNO);
+	}
+  
+  
+  @Override
 	public void deleteProject(int projectNO) {
 		mapper.deleteProject(projectNO);
 		
 	}
 	
+  
 	@Override
 	public int projectUserCheck(int projectNO) {
 		return mapper.projectUserCheck(projectNO);
-		
-	}
+  }
+	
 }
