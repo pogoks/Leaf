@@ -35,6 +35,17 @@
    			width: 560px;
    			margin: 0 auto;
    		}
+   		
+   		
+   		#modal-user-intro::-webkit-scrollbar {
+ 			width: 3px;
+  			background-color: #C7C7C7;
+		}
+	
+	
+		#modal-user-intro::-webkit-scrollbar-thumb {
+			background: #535353;
+		}
    
    </style>
    
@@ -121,12 +132,20 @@
 											if(user.userIntro == null || user.userIntro == '') {
 												$('#modal-user-intro').text('');
 											} else {
-												$('#modal-user-intro').text(user.userIntro);
+												let str = user.userIntro.replaceAll("\n", "<br/>");
+												$('#modal-user-intro').empty().append(str);
 											}
 											
 											if(user.resumeRealname == null || user.resumeRealname == '') {
-												$('#modal-user-resume-realname').text('');
+												$('#modal-user-resume-realname').css('color', '#A4A4A4');
+												$('#modal-user-resume-realname').css('font-weight', '500');
+												$('#modal-user-resume-realname').css('text-decoration', 'none');
+												$('#modal-user-resume-realname').text('등록된 이력서가 없습니다.');
 											} else {
+												$('#modal-user-resume-realname').css('color', 'blue');
+												$('#modal-user-resume-realname').css('font-weight', '500');
+												$('#modal-user-resume-realname').css('text-decoration', 'underline');
+												
 												$('#modal-user-resume-realname').text(user.resumeRealname);
 											}
 											

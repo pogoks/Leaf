@@ -19,8 +19,11 @@ public interface IProjectMapper {
 	void projectputin(ProjectVO vo);
 	
 	
+	List<ProjectListVO> projectadmin(int companyNO);
 	
-	List<ProjectListVO> projectadmin(PageApplyVO pvo);
+  
+	List<ProjectListVO> projectadminAll();
+
 
 	ProjectContentVO getContent(int projectNO);
 	//프로젝트 수정
@@ -40,13 +43,40 @@ public interface IProjectMapper {
 	
 	ProjectDateVO projectDate();
 	
-	int searchLike(ProjectLikeVO vo);
 	
-	void createLike(ProjectLikeVO vo);
+	// 일반회원 프로젝트 좋아요 클릭 여부 체크
+	int projectLikeCheck(Map<String, Object> map);
 	
-	void deleteLike(ProjectLikeVO vo);
+  
+	void deleteProject(int projectNO);
 	
-	void deleteProject(ProjectVO vo);
+  
+	int projectUserCheck(int projectNO);
+
+
+	// 일반회원 좋아요 클릭
+	void projectLikeOK(Map<String, Object> map);
+		
+		
+	// 일반회원 좋아요 취소
+	void projectLikeCancel(Map<String, Object> map);
+	
+	
+	// 기업회원 프로젝트 좋아요 클릭 여부 체크
+	int projectLikeCheckCompany(Map<String, Object> map);
+	
+	
+	// 기업회원 좋아요 클릭
+	void projectLikeCompanyOK(Map<String, Object> map);
+			
+			
+	// 기업회원 좋아요 취소
+	void projectLikeCompanyCancel(Map<String, Object> map);
+	
+	
+	// 프로젝트 좋아요 수 얻어오기
+	int projectLikeGet(int projectNO);
+
 	
 	//프로젝트 글 목록
 	List<ProjectListVO> projectlist(PageApplyVO pvo);

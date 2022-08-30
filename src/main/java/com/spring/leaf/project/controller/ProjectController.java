@@ -52,6 +52,8 @@ import com.spring.leaf.user.command.UserVO;
 import com.spring.leaf.util.PageApplyCreator;
 import com.spring.leaf.util.PageApplyVO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 @RequestMapping("/project")
@@ -208,40 +210,26 @@ public class ProjectController {
 			ApplyVO avo = aservice.applyGet(projectNO, vo.getUserNO());
 			
 			model.addAttribute("apply", avo);
+			model.addAttribute("projectLike", service.projectLikeCheck(vo.getUserNO(), projectNO));
 		} 
 		
 		if(session.getAttribute("company") != null) {
 			CompanyVO vo = (CompanyVO) session.getAttribute("company");
 			
 			model.addAttribute("companyNO", vo.getCompanyNO());
+			model.addAttribute("projectLikeCompany", service.projectLikeCheckCompany(vo.getCompanyNO(), projectNO));
 		}
 		
 		model.addAttribute("projectview", service.getContent(projectNO));
 		model.addAttribute("projectPassCount", aservice.applyPassCount(projectNO));
+		
 		
 		// 조회수 증가
 		aservice.projectViewCount(projectNO);
 		
 		return "project/project-view";
 	}
-	
-	
-	// 좋아요 버튼 클릭 처리
-	@PostMapping("/projectview")
-	@ResponseBody
-	public String likeConfirm(@RequestBody ProjectLikeVO vo) {
-		System.out.println(vo.getProjectNO());
-		System.out.println(vo.getUserNo());
-		
-		int result = service.searchLike(vo);
-		if(result == 0) {
-			service.createLike(vo);
-			return "like";
-		} else {
-			service.deleteLike(vo);
-			return "delete";
-		}
-	}
+
 	
 	//기업 - 프로젝트 등록하기
 	@GetMapping("/projectputin")
@@ -260,21 +248,45 @@ public class ProjectController {
 	@GetMapping("/projectadmin")
 	public String project5(PageApplyVO pvo, HttpSession session, Model model) {
 		
-		CompanyVO vo = (CompanyVO) session.getAttribute("company");
-		
-		//페이징
-		System.out.println(pvo);
-		PageApplyCreator pc = new PageApplyCreator();
-		pc.setPaging(pvo);
-		pc.setArticleTotalCount(service.getTotal(pvo));
-		System.out.println(pc);
-		
-		model.addAttribute("projectlist", service.projectadmin(pvo));
-		model.addAttribute("pc", pc);
-		
+		if(session.getAttribute("user") != null) {			
+			model.addAttribute("projectadmin", service.projectadminAll());
+			model.addAttribute("adminCheck", 1);
+		}
+
+		if(session.getAttribute("company") != null) {
+			CompanyVO vo = (CompanyVO) session.getAttribute("company");
+      
+			model.addAttribute("projectadmin", service.projectadmin(vo.getCompanyNO()));
+			model.addAttribute("adminCheck", 0);
+		}
+
 		return "project/project-admin";
 	}
 	
+	//프로젝트 삭제하기 요청
+	@PostMapping("/projectDelete")
+	@ResponseBody
+	public String projectDelete(int projectNO) {
+		
+		service.deleteProject(projectNO);
+
+		return "YesProjectDelete";
+	}
+	
+	
+	//프로젝트 지원자 체크
+	@PostMapping("/projectUserCheck")
+	@ResponseBody
+	public String projectUserCheck(int projectNO) {
+		
+		int check = service.projectUserCheck(projectNO);
+		
+		if(check == 0) {
+			return "CheckZero";
+		} else {
+			return "CheckMany";
+		}
+	}
 	
 	
 	// 프로젝트 관리 창 통계 데이터 얻어오는 요청
@@ -442,6 +454,7 @@ public class ProjectController {
 	}
 
 	
+	// 프로젝트 사진 삭제 요청
 	@PostMapping("/projectImageDelete/{projectNO}")
 	@ResponseBody
 	public String projectImageDelete(@PathVariable("projectNO") int projectNO) throws Exception {
@@ -777,4 +790,53 @@ public class ProjectController {
 		}
 		
 	}
+	
+	
+	// 일반회원 프로젝트 좋아요 적용
+	@PostMapping("/projectLikeOK")
+	@ResponseBody
+	public String projectLikeOK(int projectNO, int userNO) {
+		service.projectLikeOK(userNO, projectNO);
+		
+		return "YesProjectLikeOK";
+	}
+	
+	
+	// 일반회원 프로젝트 좋아요 취소
+	@PostMapping("/projectLikeCancel")
+	@ResponseBody
+	public String projectLikeCancel(int projectNO, int userNO) {
+		service.projectLikeCancel(userNO, projectNO);
+		
+		return "YesProjectLikeCancel";
+	}
+	
+	
+	// 일반회원 프로젝트 좋아요 적용
+	@PostMapping("/projectLikeCompanyOK")
+	@ResponseBody
+	public String projectLikeCompanyOK(int projectNO, int companyNO) {
+		service.projectLikeCompanyOK(companyNO, projectNO);
+
+		return "YesProjectLikeCompanyOK";
+	}
+
+	
+	// 일반회원 프로젝트 좋아요 취소
+	@PostMapping("/projectLikeCompanyCancel")
+	@ResponseBody
+	public String projectLikeCompanyCancel(int projectNO, int companyNO) {
+		service.projectLikeCompanyCancel(companyNO, projectNO);
+
+		return "YesProjectLikeCompanyCancel";
+	}
+	
+	
+	// 프로젝트 좋아요 수 비동기로 실시간 얻어오기
+	@PostMapping("/projectLikeGet")
+	@ResponseBody
+	public int projectLikeGet(int projectNO) {
+		return service.projectLikeGet(projectNO);
+	}
+	
 }
