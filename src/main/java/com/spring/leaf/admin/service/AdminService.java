@@ -15,6 +15,7 @@ import com.spring.leaf.admin.command.UserProfileCountVO;
 import com.spring.leaf.admin.command.UserRegistCountVO;
 import com.spring.leaf.admin.command.UserResumeCountVO;
 import com.spring.leaf.admin.mapper.IAdminMapper;
+import com.spring.leaf.util.PageVO;
 
 
 // 관리자 서비스 : 2022-08-07 생성
@@ -29,8 +30,9 @@ public class AdminService implements IAdminService {
 	
 	// 공통코드 목록 불러오기
 	@Override
-	public List<CommonListVO> commonList() {
-		return mapper.commonList();
+	public List<CommonListVO> commonList(PageVO vo) {
+		List<CommonListVO> list = mapper.commonList(vo);
+		return list;
 	}
 	
 	
@@ -78,8 +80,15 @@ public class AdminService implements IAdminService {
 	
 	// 가입 승인 대기중인 기업 목록 불러오기
 	@Override
-	public List<CompanyAcceptListVO> companyAcceptList() {
-		return mapper.companyAcceptList();
+	public List<CompanyAcceptListVO> companyAcceptList(PageVO vo) {
+		List<CompanyAcceptListVO> list = mapper.companyAcceptList(vo);
+		return list;
+	}
+	
+	//
+	@Override
+	public int getTotal(PageVO vo) {
+		return mapper.getTotal(vo);
 	}
 	
 	

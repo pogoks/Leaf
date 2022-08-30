@@ -51,14 +51,14 @@
 				<span class="main-board-title" style="color: #808080;">공통코드 목록</span>
 			</a>
 
-			<form class="navbar-form navbar-left navbar-main-top pull-left" role="search" style="padding: 0; margin-left: 0;">
+			<form class="navbar-form navbar-left navbar-main-top pull-left" action="<c:url value='/admin/commonCODE'/>" style="padding: 0; margin-left: 0;">
 				<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
-                            <option value="title">코드</option>
-                            <option value="content">상위코드</option>
+                            <option value="common" ${pc.paging.condition == 'common' ? 'selected' : ''}>코드</option>
+                            <option value="upper" ${pc.paging.condition == 'upper' ? 'selected' : ''}>상위코드</option>
                 </select>
 			
 				<div class="input-group"> 
-					<input type="text" class="form-control" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
+					<input type="text" name="keyword" class="form-control" value="${pc.paging.keyword}" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
 					</span>

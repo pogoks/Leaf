@@ -86,6 +86,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userDate" column="user_date" />
 	</resultMap>
 	
+	<sql id="search">
+		<if test="condition == 'ID'">
+			AND company_ID LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'name'">
+			AND company_name LIKE concat('%', #{keyword}, '%')
+		</if>
+	</sql>
+	<sql id="searchCode">
+		<if test="condition == 'common'">
+			WHERE common_CODE LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="condition == 'upper'">
+			WHERE upper_CODE LIKE concat('%', #{keyword}, '%')
+		</if>
+	</sql>
+	
 	
 	<!-- 공통코드 목록 받아오기 SELECT 쿼리 -->
 	<select id="commonList" resultMap="CommonListMap">
@@ -98,6 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				common c LEFT OUTER JOIN upper_common u
 			ON c.upper_CODE = u.upper_CODE
 		) cl, (SELECT @ROWNUM := 0) ROWNUM
+		<include refid="searchCode" />
 	</select>
 	
 	
@@ -155,6 +173,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE common_CODE = #{commonCODE}
 	</delete>
 	
+	<!-- 가입 승인 대기중인 기업목록 총 갯수 -->
+	<select id="getTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM common 
+		WHERE common_CODE = 'CRG001'
+	</select>
 	
 	<!-- 가입 승인 대기중인 기업 목록 SELECT 쿼리 -->
 	<select id="companyAcceptList" resultMap="CompanyAcceptListMap">
@@ -165,7 +189,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			cd.common_value
 		FROM company c LEFT OUTER JOIN common cd
 		ON c.common_CODE = cd.common_CODE
-		WHERE c.common_CODE = 'CRG001'
+		
+		 WHERE c.common_CODE = 'CRG001'
+		 <include refid="search" />
+		LIMIT ${cpp}
+		OFFSET ${skip}
 	</select>
 	
 	

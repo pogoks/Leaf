@@ -52,6 +52,11 @@
     border-radius: 5px;
    }
    
+   .sections {
+	width: 1200px;
+   	margin: 0 auto;
+   }   
+   
    </style>
    
 </head>
@@ -61,7 +66,7 @@
 	   
 	<div class="mainbox">
 	
-		<section>
+		<section class="sections">
         
        
         
@@ -110,7 +115,7 @@
 										<span style="color:red; font-size:15px;">[${archive.archiveReplyCount}]</span>
 									</c:if>
                             	</a>
-                            	<a class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></a>
+                            	<a class="glyphicon glyphicon-floppy-disk" id="archive-file-download" aria-hidden="true"></a>
                             </td>
                             <td <c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">style="color:#042894;"</c:if>>
                             	${archive.archiveWriter}

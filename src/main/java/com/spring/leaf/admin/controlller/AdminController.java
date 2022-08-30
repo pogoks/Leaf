@@ -21,6 +21,8 @@ import com.spring.leaf.admin.command.CommonVO;
 import com.spring.leaf.admin.command.CompanyAcceptVO;
 import com.spring.leaf.admin.service.IAdminService;
 import com.spring.leaf.user.controller.UserController;
+import com.spring.leaf.util.PageCreator;
+import com.spring.leaf.util.PageVO;
 
 
 // 관리자 컨트롤러 : 2022-08-07 생성
@@ -40,10 +42,18 @@ public class AdminController {
 	
 	// 공통코드 관리 페이지 이동 요청
 	@GetMapping("/commonCODE")
-	public String commonCODE(Model model) {
+	public String commonCODE(Model model,  PageVO vo) {
 		logger.info("/admin/commonCODE : GET (공통코드 관리 페이지 이동)");
 		
-		model.addAttribute("commonList", service.commonList());
+		//페이징
+		System.out.println(vo);
+		PageCreator pc = new PageCreator();
+		pc.setPaging(vo);
+		pc.setArticleTotalCount(service.getTotal(vo));
+		System.out.println(pc);
+		
+		model.addAttribute("commonList", service.commonList(vo));
+		model.addAttribute("pc", pc);
 		
 		return "/admin/common-code";
 	}
@@ -129,10 +139,18 @@ public class AdminController {
 	
 	// 기업회원 가입 관리 페이지 이동 요청
 	@GetMapping("/companyAccept")
-	public String companyAccept(Model model) {
+	public String companyAccept(Model model, PageVO vo) {
 		logger.info("/admin/companyAccept : GET (기업회원 가입 관리 페이지 이동 요청)");
 		
-		model.addAttribute("companyAcceptList", service.companyAcceptList());
+		//페이징
+		System.out.println(vo);
+		PageCreator pc = new PageCreator();
+		pc.setPaging(vo);
+		pc.setArticleTotalCount(service.getTotal(vo));
+		System.out.println(pc);
+		
+		model.addAttribute("companyAcceptList", service.companyAcceptList(vo));
+		model.addAttribute("pc", pc);
 		
 		return "/admin/company-accept";
 	}
