@@ -9,6 +9,7 @@ import com.spring.leaf.projectapply.command.MyProjectApplyListVO;
 import com.spring.leaf.projectapply.command.MyProjectStatusVO;
 import com.spring.leaf.projectapply.command.ProjectApplyCountVO;
 import com.spring.leaf.projectapply.command.ProjectPassListVO;
+import com.spring.leaf.userapply.command.UserApplyStatusVO;
 
 public interface IProjectApplyMapper {
 	
@@ -28,8 +29,8 @@ public interface IProjectApplyMapper {
 	
 	
 	// 기업회원 지원 현황 내 프로젝트 목록 요청
-	List<MyProjectStatusVO> myProjectStatus(int companyNO);
-	
+	List<MyProjectStatusVO> myProjectStatus(Map<String, Object> map);
+		
 	
 	// 기업회원 등록 프로젝트 개수 얻어오기 요청
 	int myProjectCount(int companyNO);

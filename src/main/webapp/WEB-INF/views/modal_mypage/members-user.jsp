@@ -9,8 +9,7 @@
 
 			<div class="modal-body modal-body-sections">
 				<a href="#" class="list-group-item active notice-list-top"> <span
-					class="main-board-title" style="color: #000686; font-size: 16px;">개발자
-						정보</span>
+					class="main-board-title" style="color: #000686; font-size: 16px;">개발자 정보</span>
 				</a>
 
 				<div style="display: inline-block; margin-top: 20px;">
@@ -83,7 +82,6 @@
 			</div>
 
 			<div class="modal-footer" style="clear: both;">
-				<button type="button" class="btn btn-danger" style="float:left;">강제탈퇴</button>
 				<button id="admin-editor" type="button" class="btn btn-success" style="float:left;">강제수정</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button type="button" class="btn btn-info" id="btn-members-user-message">쪽지발송</button>
@@ -152,7 +150,7 @@
 		//강제수정 버튼 눌렸을때
 		$('#admin-editor').off().click(function() {
 			const userNO = $('#hidden-members-user-no').val();
-			location.href="/usermypage/usermypage?userNO=" + userNO;
+			location.href="/adminmypage/adminusermypage?userNO=" + userNO;
 		});
 		
 	

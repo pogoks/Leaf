@@ -83,8 +83,7 @@
 			</div>
 
 			<div class="modal-footer" style="clear: both;">
-				<button type="button" class="btn btn-danger" style="float:left;">강제탈퇴</button>
-				<button type="button" class="btn btn-success" style="float:left;">강제수정</button>
+				<button id="admin-editor2" type="button" class="btn btn-success" style="float:left;">강제수정</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 				<button type="button" class="btn btn-info" id="btn-members-company-message">쪽지발송</button>
 			</div>
@@ -145,6 +144,12 @@
 			} else {
 				return false;
 			}
+		});
+		
+		//강제수정 버튼 눌렸을때
+		$('#admin-editor2').off().click(function() {
+			const companyNO = $('#hidden-members-company-no').val();
+			location.href="/adminmypage/admincompanymypage?companyNO=" + companyNO;
 		});
 		
 		

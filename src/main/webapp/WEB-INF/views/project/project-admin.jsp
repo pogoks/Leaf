@@ -138,7 +138,26 @@
 				</c:forEach>
 				
 			</div>
-
+			<!-- 프로젝트 목록 페이징 -->
+            <div class="text-center">
+				<form action="<c:url value='/project/project-admin'/>" name="pageForm">
+	                <ul class="pagination pagination-sm">
+						<c:if test="${pc.prev }"><!-- 이전버튼 -->
+		                    <li><a href="/project/projectadmin?pageNum=${pc.beginPage-1}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}" data-pagenum="${pc.beginPage-1 }"> << </a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pc.beginPage }" end="${pc.endPage}">
+							<li class="${pc.paging.pageNum == num ? 'active' : '' }"><a href="/project/projectadmin?pageNum=${num}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}" data-pagenum='${num }'>${num }</a></li>
+						</c:forEach>
+						<c:if test="${pc.next }"><!-- 다음버튼 -->
+		                    <li><a href="/project/projectadmin?pageNum=${pc.endPage+1}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}" data-pagenum="${pc.endPage-1 }"> >> </a></li>
+						</c:if>
+					</ul>
+                    <input type="hidden" name="pageNum" value="${pc.paging.pageNum}">
+                    <input type="hidden" name="cpp" value="${pc.paging.cpp}">
+                    <input type="hidden" name="condition" value="${pc.paging.condition}">
+                    <input type="hidden" name="keyword" value="${pc.paging.keyword}">
+				</form>
+			</div>
 		</div>
 	
 		<%@ include file="../include/footer.jsp" %>
@@ -276,6 +295,22 @@
 			}
 		});
 	 }
+	
+	
+	//페이징
+	$(function() {
+		const msg = '${msg}';
+		if(msg !== '') {
+			alert(msg);
+		}
+		$('#pagination').on('click', 'a', function(e) {
+			e.preventDefault(); //a태그의 고유기능 중지.
+			const value = $(this).data('pagenum'); //-> jQuery
+			console.log(value);
+			document.pageForm.pageNum.value = value;
+			document.pageForm.submit();
+		});
+	}); 
 
 </script>
 
