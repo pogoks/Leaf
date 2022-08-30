@@ -1,6 +1,7 @@
 package com.spring.leaf.project.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.leaf.project.command.ProjectContentVO;
 import com.spring.leaf.project.command.ProjectDateVO;
@@ -36,12 +37,32 @@ public interface IProjectMapper {
 	
 	ProjectDateVO projectDate();
 	
-	int searchLike(ProjectLikeVO vo);
 	
-	void createLike(ProjectLikeVO vo);
+	// 일반회원 프로젝트 좋아요 클릭 여부 체크
+	int projectLikeCheck(Map<String, Object> map);
 	
-	void deleteLike(ProjectLikeVO vo);
 	
-	void deleteProject(ProjectVO vo);
+	// 일반회원 좋아요 클릭
+	void projectLikeOK(Map<String, Object> map);
+		
+		
+	// 일반회원 좋아요 취소
+	void projectLikeCancel(Map<String, Object> map);
+	
+	
+	// 기업회원 프로젝트 좋아요 클릭 여부 체크
+	int projectLikeCheckCompany(Map<String, Object> map);
+	
+	
+	// 기업회원 좋아요 클릭
+	void projectLikeCompanyOK(Map<String, Object> map);
+			
+			
+	// 기업회원 좋아요 취소
+	void projectLikeCompanyCancel(Map<String, Object> map);
+	
+	
+	// 프로젝트 좋아요 수 얻어오기
+	int projectLikeGet(int projectNO);
 	
 }

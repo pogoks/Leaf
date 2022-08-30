@@ -290,12 +290,20 @@
 					if(apply.userIntro == null || apply.userIntro == '') {
 						$('#modal-user-intro').text('');
 					} else {
-						$('#modal-user-intro').text(apply.userIntro);
+						let str = apply.userIntro.replaceAll("\n", "<br/>");
+						$('#modal-user-intro').empty().append(str);
 					}
 					
 					if(apply.resumeRealname == null || apply.resumeRealname == '') {
-						$('#modal-user-resume-realname').text('');
+						$('#modal-user-resume-realname').css('color', '#A4A4A4');
+						$('#modal-user-resume-realname').css('font-weight', '500');
+						$('#modal-user-resume-realname').css('text-decoration', 'none');
+						$('#modal-user-resume-realname').text('등록된 이력서가 없습니다.');
 					} else {
+						$('#modal-user-resume-realname').css('color', 'blue');
+						$('#modal-user-resume-realname').css('font-weight', '500');
+						$('#modal-user-resume-realname').css('text-decoration', 'underline');
+						
 						$('#modal-user-resume-realname').text(apply.resumeRealname);
 					}
 					

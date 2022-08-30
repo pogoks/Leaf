@@ -79,40 +79,26 @@ public class ProjectController {
 			ApplyVO avo = aservice.applyGet(projectNO, vo.getUserNO());
 			
 			model.addAttribute("apply", avo);
+			model.addAttribute("projectLike", service.projectLikeCheck(vo.getUserNO(), projectNO));
 		} 
 		
 		if(session.getAttribute("company") != null) {
 			CompanyVO vo = (CompanyVO) session.getAttribute("company");
 			
 			model.addAttribute("companyNO", vo.getCompanyNO());
+			model.addAttribute("projectLikeCompany", service.projectLikeCheckCompany(vo.getCompanyNO(), projectNO));
 		}
 		
 		model.addAttribute("projectview", service.getContent(projectNO));
 		model.addAttribute("projectPassCount", aservice.applyPassCount(projectNO));
+		
 		
 		// 조회수 증가
 		aservice.projectViewCount(projectNO);
 		
 		return "project/project-view";
 	}
-	
-	
-	// 좋아요 버튼 클릭 처리
-	@PostMapping("/projectview")
-	@ResponseBody
-	public String likeConfirm(@RequestBody ProjectLikeVO vo) {
-		System.out.println(vo.getProjectNO());
-		System.out.println(vo.getUserNo());
-		
-		int result = service.searchLike(vo);
-		if(result == 0) {
-			service.createLike(vo);
-			return "like";
-		} else {
-			service.deleteLike(vo);
-			return "delete";
-		}
-	}
+
 	
 	//기업 - 프로젝트 등록하기
 	@GetMapping("/projectputin")
@@ -639,4 +625,53 @@ public class ProjectController {
 		}
 		
 	}
+	
+	
+	// 일반회원 프로젝트 좋아요 적용
+	@PostMapping("/projectLikeOK")
+	@ResponseBody
+	public String projectLikeOK(int projectNO, int userNO) {
+		service.projectLikeOK(userNO, projectNO);
+		
+		return "YesProjectLikeOK";
+	}
+	
+	
+	// 일반회원 프로젝트 좋아요 취소
+	@PostMapping("/projectLikeCancel")
+	@ResponseBody
+	public String projectLikeCancel(int projectNO, int userNO) {
+		service.projectLikeCancel(userNO, projectNO);
+		
+		return "YesProjectLikeCancel";
+	}
+	
+	
+	// 일반회원 프로젝트 좋아요 적용
+	@PostMapping("/projectLikeCompanyOK")
+	@ResponseBody
+	public String projectLikeCompanyOK(int projectNO, int companyNO) {
+		service.projectLikeCompanyOK(companyNO, projectNO);
+
+		return "YesProjectLikeCompanyOK";
+	}
+
+	
+	// 일반회원 프로젝트 좋아요 취소
+	@PostMapping("/projectLikeCompanyCancel")
+	@ResponseBody
+	public String projectLikeCompanyCancel(int projectNO, int companyNO) {
+		service.projectLikeCompanyCancel(companyNO, projectNO);
+
+		return "YesProjectLikeCompanyCancel";
+	}
+	
+	
+	// 프로젝트 좋아요 수 비동기로 실시간 얻어오기
+	@PostMapping("/projectLikeGet")
+	@ResponseBody
+	public int projectLikeGet(int projectNO) {
+		return service.projectLikeGet(projectNO);
+	}
+	
 }
