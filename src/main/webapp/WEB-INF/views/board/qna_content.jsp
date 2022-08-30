@@ -62,6 +62,11 @@
     	margin-top:30px;
     
     }
+    
+    .container{
+	width:1200px;
+	margin: 0 auto;
+	}
  
    </style>
    
@@ -70,18 +75,18 @@
 
 <%@ include file="../include/header.jsp" %>
 	   
-	<div class="mainbox">
-	
-        <section>
-            <div class="container">
-				<div class="row">
+	<div class="mainbox" style="background-color: white;">
+        <section >
+ 
+            <div class="container"  style="background-color: white;" >
+				<div class="row" >
 					 <!-- 메인화면 공지사항 상단 -->
 			            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 			            	<span class="main-notice-title">Q&A</span>
 			            </a>
 			            
 			         <!-- 질문글 상세보기 -->
-                     <div class="container my-1">
+                     <div class="container my-1" style=" padding-bottom: 30px;">
                        <form action="<c:url value='/question/questionDelete'/>" method="post" name="questionDeleteForm">
                         <div class="row">
                             <div class="qa_content" >
@@ -89,7 +94,7 @@
 		                                        <div class="qa_title" scope="col" style="width: 100%;  margin-top:10px;">
 		                                        	<input type="hidden" id="hidden-questionNo" name="questionNo" value="${question.questionNo}">
 
-		                                        	<h4 style="display:inline-block;"><span style="font-weight: bolder; font-size:24px;"> Q : </span> ${question.questionTitle}</h4>
+		                                        	<h4 style="display:inline-block;"><span style="font-weight: bolder; font-size:24px; color:#74C9DC;"> Q . </span> ${question.questionTitle}</h4>
                                               <c:if test="${ question.questionWriter eq user.userID  || user.commonCODE == 'ADM002' }">
 			                                          <a type="submit" id="btn-question-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:70px;">삭제</a>
                                               </c:if>
@@ -125,6 +130,7 @@
                                            
                                     </div>
                             </div>
+                           
                              <hr class="borderline" style="margin-bottom:40px;" />
                              <button type="submit" class="btn btn-light mb-2 pull-left">신고하기 </button>
                              <button type="button" id="btn-question-list" class="btn btn-info mb-2 pull-right" style="margin-left:10px;">목록 </button>
@@ -136,7 +142,9 @@
                         </div>
                       </form>  
                     </div>
+                    </div>
                     
+                    <div style="background-color: #FAFAFA;">
                     <form action="<c:url value='/question/answerModify' />" method="post" name="answerDetailForm">
                     	<div id="answerList">
                     	
@@ -144,10 +152,14 @@
                     
                     	</div>
                     </form>
-              		
-				</div>
-			</div> 
+              		</div>
+				
+			</div>
+			 
         </section> 
+        <div>
+        
+        </div>
  
         
 				
@@ -156,38 +168,6 @@
 	   
 	    <%@ include file="../include/footer.jsp" %>
 	    
-	    <!-- 답변 수정 모달  -->
-			<div class="modal fade" id="answerModal" role="dialog"">
-				<div class="modal-dialog modal-md">		                
-					<div class="modal-content">
-			    			<div class= "modal-header">
-					    	    	<div>
-					    	    		<div colspan= "2" style="float:left;">답변글 제목</div>
-					    	    		<button type="button" class="btn btn-default pull-right" data-dismiss="modal">닫기</button>
-					    	    		<button type="submit" id="btn-answer-update" class="btn btn-info pull-right" style="margin-left:10px;">수정</button>
-					    	    		<div><input type="hidden" name="answerNo" id="answerNo" value="${answer.answerNo}"></div>
-					    	    	</div>
-					    	    	<div>
-						    			<div><input type="text" name="answerTitle" class="form-control" ></div>
-						    			
-						    		</div>
-				    	    </div>
-						    <div class="modal-body" style="margin:8px;">
-						    	<input type="hidden" id="modalAnswerNo">
-						    		<div>
-					    	    		<div colspan= "2">답변글 내용</div>
-					    	    	</div>
-						    		<div>
-						    			<div>
-						    				<textarea class="form-control" name="answerContent" maxlength="2048"></textarea>
-						    			</div>
-						    			
-						    		</div>
-						    </div>
-			    	    </div>
-	    	    			
-					</div>
-				</div>
 	</div>
    
    
@@ -219,17 +199,20 @@
 			success: function(result) {
 				
 				let answerList = result.answerList;
+				let answerNoList = result.answerNoList;
+				
+				console.log(answerNoList);
 				
 				for(let i = 0; i < answerList.length; i++) {
 					
 					var timestamp = answerList[i].answerDate;
-					var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, "");
+					var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, "").slice(0,16);
 					
 					var content = answerList[i].answerContent.replace(/\n/g, '<br/>');
 					
 					var ansWriter = answerList[i].answerWriter;
 					var answerReader = '${user.userID}';
-					var memberNo = answerList[i].userNo;
+					var memberNo = answerNoList[i];
 					
 					
 					
@@ -237,13 +220,13 @@
 						
 
 						strAdd +=
-							`<hr class="borderline" style="margin-bottom:15px; margin-top:25px;" />
-			                    <div class="row" style="background:lightgrey;">
+							`
+			                    <div class="row" style="background:#FAFAFA; border-top: 1px solid black; padding-top: 10px;">
 			                            <div class="qa_content" >
 			                                    <div class="qa_content_up" style="margin-left:30px;" >
 					                                   <div class="qa_title" scope="col" style="width: 100%;  margin-top:10px;">
 					                                   		<input type="hidden" id="hidden-answer-no" name="answerNo">
-					                                       	<h4 style="display:inline-block;"> <span style="font-weight: bolder; color:blue; font-size:24px;"> A : </span> ` + answerList[i].answerTitle + `</h4>
+					                                       	<h4 style="display:inline-block;"> <span style="font-weight: bolder; color:#E8473F; font-size:24px;"> A . </span> ` + answerList[i].answerTitle + `</h4>
 					                                       	<a type="submit" id="btn-answer-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;" data-value="` + answerList[i].answerNo + `">삭제</a>
 					                                       	<a type="button" id="btn-answer-update" data-value="` + answerList[i].answerNo + `" class="btn mb-2 answerModify" style="display: inline-block; float:right;">수정</a>
 					                                   </div>
@@ -272,13 +255,13 @@
 					} else {
 						
 						strAdd +=
-							`<hr class="borderline" style="margin-bottom:15px; margin-top:25px;" />
-			                    <div class="row">
+							`
+			                    <div class="row" style="background:#FAFAFA; border-top: 1px solid black; padding-top: 10px;">
 			                            <div class="qa_content" >
 			                                    <div class="qa_content_up" style="margin-left:30px;" >
 					                                   <div class="qa_title" scope="col" style="width: 100%;  margin-top:10px;">
 					                                   		<input type="hidden" id="hidden-answer-no" name="answerNo">
-					                                       	<h4 style="display:inline-block;"> <span style="font-weight: bolder; color:blue; font-size:24px;"> A :</span> ` + answerList[i].answerTitle + `</h4>
+					                                       	<h4 style="display:inline-block;"> <span style="font-weight: bolder; color:#E8473F; font-size:24px;"> A .</span> ` + answerList[i].answerTitle + `</h4>
 					                                       	</div>
 					                                   
 					                                   <div style="margin-top:30px;">

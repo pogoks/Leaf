@@ -41,12 +41,13 @@ import com.spring.leaf.admin.command.UserProfileCountVO;
 import com.spring.leaf.admin.command.UserQuestionCountVO;
 import com.spring.leaf.admin.command.UserRegistCountVO;
 import com.spring.leaf.admin.command.UserResumeCountVO;
+import com.spring.leaf.util.PageVO;
 import com.spring.leaf.project.command.ProjectRegistCountVO;
 
 public interface IAdminMapper {
 
 	// 공통코드 목록 불러오기
-	List<CommonListVO> commonList();
+	List<CommonListVO> commonList(PageVO vo);
 	
 	
 	// 공통코드 상세 불러오기
@@ -74,7 +75,10 @@ public interface IAdminMapper {
 	
 	
 	// 가입 승인 대기중인 기업 목록 불러오기
-	List<CompanyAcceptListVO> companyAcceptList();
+	List<CompanyAcceptListVO> companyAcceptList(PageVO vo);
+	
+	//
+	int getTotal(PageVO vo);
 	
 	
 	// 가입 승인 대기중인 기업 상세보기
