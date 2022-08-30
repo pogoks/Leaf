@@ -124,7 +124,9 @@
 				                                        </div>
 			                                        </div>
 	                                    </div>
-	
+										
+										<br><hr>
+										
 	                                    <div class="free_content_down" style="min-height:300px; margin-top:50px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
 	                                        
 	                                        	${fn:replace(board.boardContent, newLineChar, '<br/>')}
@@ -381,7 +383,7 @@
 						
 						var timestamp = boardReplyList[i].boardReplyDate;
 						
-						var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '');
+						var date = new Date(timestamp).toISOString().replace("T", " ").replace(/\..*/, '').slice(0,16);
 						var replyWriter = boardReplyList[i].boardReplyWriter;
 						var replyReader = '';
 						

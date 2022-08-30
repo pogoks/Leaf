@@ -55,7 +55,16 @@
 	background: #92bce0;
 	}
 
-
+   .boardclick {
+   	color: black;
+   }
+   .boardclick:hover {
+   	text-decoration: none;
+   	color: 	#4682B4;
+   }
+   .boardclick:active {
+    text-decoration: none;
+   }
    
    </style>
    
@@ -103,7 +112,7 @@
                         <tr>
                             <td>${question.rn}</td> 
                             <td style="text-align: left;">
-                            	<a href="<c:url value='/question/questionContent/${question.questionNo}'/>">
+                            	<a href="<c:url value='/question/questionContent/${question.questionNo}'/>" class="boardclick">
                             		${question.questionTitle}
                             		 <!-- new마크 -->
 									<c:if test="${question.questionDate>=nowday }">

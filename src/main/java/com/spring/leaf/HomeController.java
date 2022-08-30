@@ -40,8 +40,6 @@ public class HomeController {
 		model.addAttribute("miniBoardList", service.homeBoardList());
 		model.addAttribute("miniProjectList", service.homeProjectList());
 		
-		model.addAttribute("projectList", pservice.projectlist());
-		
 		return "home";
 	}
 	

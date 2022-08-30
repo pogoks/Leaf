@@ -77,7 +77,7 @@ input.form-control {
 					</div>
 					<div>
 						<input type="text" id="project-name" class="form-control" name="projectName"
-							placeholder="프로젝트 이름을 입력하세요." style="width: 700px;"><br>
+							placeholder="프로젝트 이름을 입력하세요." style="width: 700px;" maxlength="50"><br>
 							<span id="span-name"></span>
 					</div>
 				</div>
@@ -126,15 +126,15 @@ input.form-control {
 					</div>
 					<div>
 						<div>
-							<input class="form-control" type="text"
+							<input class="form-control" type="text" maxlength="20"
 								value="${company.companyAddress1}" style="width: 300px;" disabled>
 						</div>
 						<div>
-							<input class="form-control" type="text"
+							<input class="form-control" type="text" maxlength="20"
 								value="${company.companyAddress2}" style="width: 300px;" disabled>
 						</div>
 						<div>
-							<input class="form-control" type="text"
+							<input class="form-control" type="text" maxlength="20"
 								value="${company.companyAddress3}" style="width: 300px;" disabled>
 						</div>
 					</div>
@@ -145,7 +145,7 @@ input.form-control {
 					</div>
 					<div>
 						<textarea class="form-control" rows="10" id="project-desc" name="projectDesc"
-							placeholder="프로젝트 설명을 간략하게 입력하세요." style="resize: none;"></textarea>
+							placeholder="프로젝트 설명을 간략하게 입력하세요." style="resize: none;" maxlength="4000"></textarea>
 							<span id="span-desc"></span>
 					</div>
 				</div>
@@ -155,7 +155,7 @@ input.form-control {
 					</div>
 					<div>
 						<input type="text" class="form-control" id="project-manager" name="projectManager"
-							placeholder="담당자 이름을 입력하세요." style="width: 300px;"><br>
+							placeholder="담당자 이름을 입력하세요." style="width: 300px;" maxlength="10"><br>
 							<span id="span-manager"></span>
 					</div>
 				</div>
@@ -165,7 +165,7 @@ input.form-control {
 					</div>
 					<div>
 						<input type="text" class="form-control" id="project-mg-phone" name="projectManagerPhone"
-							placeholder="전화번호를 입력하세요." style="width: 300px;"><br>
+							placeholder="전화번호를 입력하세요." style="width: 300px;"  maxlength="11"><br>
 							<span id="span-phone"></span>
 					</div>
 				</div>
@@ -174,7 +174,7 @@ input.form-control {
 						<p class="projectFont">담당자 이메일 *</p>
 					</div>
 					<div>
-						<input type="text" class="form-control" id="project-mg-email" name="projectManagerEmail" placeholder="담당자 이메일을 입력해주세요." style="width: 230px;"><br> <span id="span-email"></span> 
+						<input type="text" class="form-control" id="project-mg-email" name="projectManagerEmail" placeholder="담당자 이메일을 입력해주세요." style="width: 230px;"  maxlength="20"><br> <span id="span-email"></span> 
 					</div>
 				</div>
 				<div class="projectReg">
@@ -183,7 +183,7 @@ input.form-control {
 					</div>
 					<div>
 						<textarea class="form-control" rows="5" id="project-license" name="projectRequireLicense"
-							placeholder="지원자격을 간략하게 입력하세요." style="resize: none;"></textarea>
+							placeholder="지원자격을 간략하게 입력하세요." style="resize: none;" maxlength="1000"></textarea>
 							<span id="span-license"></span>
 					</div>
 				</div>
@@ -193,7 +193,7 @@ input.form-control {
 					</div>
 					<div>
 						<input type="text" class="form-control" id="project-role" name="projectRequireRole"
-							placeholder="모집하는 역할을 간단하게 입력하세요." style="width: 700px;"><br>
+							placeholder="모집하는 역할을 간단하게 입력하세요." style="width: 700px;" maxlength="200"><br>
 							<span id="span-role"></span>
 					</div>
 				</div>
@@ -203,7 +203,7 @@ input.form-control {
 					</div>
 					<div>
 						<input type="text" class="form-control" id="project-people" name="projectRequirePeople"
-							placeholder="모집 인원을 입력하세요." style="width: 700px;"><br>
+							placeholder="모집 인원을 입력하세요." style="width: 700px;" maxlength="5"><br>
 							<span id="span-people"></span>
 					</div>
 				</div>

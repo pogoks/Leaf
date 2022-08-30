@@ -13,7 +13,7 @@ import com.spring.leaf.util.PageVO;
 public interface IUserApplyMapper {
 	
 	//지원결과 리스트
-	List<UserApplyResultVO> applyResultList(int userNO);
+	List<UserApplyResultVO> applyResultList(Map<String, Object> map);
 	
 	//지원현황 리스트
 	List<UserApplyStatusVO> applyStatusList(Map<String, Object> map);

@@ -204,7 +204,6 @@
 </html>
 
 <script>
-
 	//특정 메시지 표현을 위한 스크립트
 	let msg = '${msg}';
 	
@@ -212,7 +211,6 @@
 		alert(msg);
 		msg = '';
 	}
-
 	$(function() {
 		
 		$('#btn-project-search').click(function() {
@@ -235,5 +233,3 @@
 	});
 	
 </script>
-
-

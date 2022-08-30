@@ -52,6 +52,21 @@
     border-radius: 5px;
    }
    
+   .boardclick {
+   	color: black;
+   }
+   .boardclick:hover {
+   	text-decoration: none;
+   	color: 	#4682B4;
+   }
+   
+   .fileicon:hover {
+    text-decoration: none;
+   }
+   .boardclick:active {
+    text-decoration: none;
+   }
+   
    </style>
    
 </head>
@@ -99,7 +114,7 @@
                         <tr>
                             <td>${archive.rn}</td>
                             <td style="text-align: left;">
-                            	<a href="<c:url value='/archive/archiveContent/${archive.archiveNo}${pc.makeURI(pc.paging.pageNum)}'/>">
+                            	<a href="<c:url value='/archive/archiveContent/${archive.archiveNo}${pc.makeURI(pc.paging.pageNum)}'/>" class="boardclick">
                             		${archive.archiveTitle}
                             		<!-- new마크 -->
                             		<c:if test="${archive.archiveDate>=nowday }">
@@ -110,7 +125,7 @@
 										<span style="color:red; font-size:15px;">[${archive.archiveReplyCount}]</span>
 									</c:if>
                             	</a>
-                            	<a class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></a>
+                            	<a class="glyphicon glyphicon-floppy-disk fileicon" aria-hidden="true"></a>
                             </td>
                             <td <c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">style="color:#042894;"</c:if>>
                             	${archive.archiveWriter}

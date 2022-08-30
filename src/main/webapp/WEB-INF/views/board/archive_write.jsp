@@ -51,7 +51,7 @@
 				    	    		<th colspan= "2">게시글 제목</th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" name="archiveTitle" class="form-control" placeholder="게시글 제목을 입력하세요." maxlength="50" ></td>
+					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" placeholder="게시글 제목을 입력하세요." maxlength="50" ></td>
 					    			<c:if test="${user.userID != null}">
 					    				<td><input type="hidden" name="archiveWriter" value="${user.userID}"></td>
 					    			</c:if>
@@ -65,7 +65,7 @@
 				    	    		<th colspan= "2">게시글 내용</th>
 				    	    	</tr>
 					    		<tr>
-					    			<td><textarea class="form-control" name="archiveContent" placeholder="게시글 내용을 입력하세요." maxlength="2048" style= "height:350px; resize:none;" ></textarea></td>
+					    			<td><textarea class="form-control" id="archiveContent" name="archiveContent" placeholder="게시글 내용을 입력하세요." maxlength="2048" style= "height:350px; resize:none;" ></textarea></td>
 					    		</tr>
 					    		
 					    	</tbody>
@@ -98,12 +98,6 @@
 
 <script>
 	
-	//등록버튼 연속클릭 방지
-	var bbw = document.querySelector("#btn-archive-write");
-	bbw.addEventListener("click", function (e) {
-	    this.setAttribute("disabled", true);
-	});
-	
 
 	//목록 이동 버튼
 	$(function() {
@@ -115,12 +109,26 @@
 		//자료실 글쓰기
 		$('#btn-archive-write').click(function(){
 			
+			//제목공백 방지
+			if($('#archiveTitle').val() == '') {
+				alert('제목을 입력해주세요.');
+				$('#archiveTitle').css('border-color', 'red');
+				return;
+			} 
+			
+			//내용공백 방지
+			if($('#archiveContent').val() == '') {
+				alert('내용을 입력해주세요.');
+				$('#archiveContent').css('border-color', 'red');
+				return;
+			} 
 			
 			// 자료실 파일 첨부 여부 체크
 			if($('#archive-file').val() == '') {
 				alert('자료실 파일 첨부는 필수입니다.');
 				return;
 			}
+			
 			
 			document.archiveWriteForm.submit();
 			

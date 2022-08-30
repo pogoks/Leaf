@@ -50,6 +50,17 @@
     margin-top: 1px;
     border-radius: 5px;
    }
+   
+   .boardclick {
+   	color: black;
+   }
+   .boardclick:hover {
+   	text-decoration: none;
+   	color: 	#4682B4;
+   }
+   .boardclick:active {
+    text-decoration: none;
+   }
 	
    </style>
    
@@ -97,7 +108,7 @@
                         <tr>
                             <td>${board.rn}</td>
                             <td style="text-align: left;">
-                     	        <a href="<c:url value='/board/boardContent/${board.boardNo}${pc.makeURI(pc.paging.pageNum)}'/>">
+                     	        <a href="<c:url value='/board/boardContent/${board.boardNo}${pc.makeURI(pc.paging.pageNum)}'/>" class="boardclick">
                             		${board.boardTitle} 
                             		<!-- new마크 -->
 									<c:if test="${board.boardDate>=nowday }">
@@ -134,7 +145,7 @@
 						<button type="submit" class="btn btn-primary mb-2">검색 </button>
 					</div>
 				</form>
-                
+				
             </div>
             
 			<!-- 자유게시판 페이징 -->

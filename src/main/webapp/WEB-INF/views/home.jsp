@@ -121,7 +121,7 @@
 					    	</div>
 					    	<div class="project-form" style="font-family: sans-serif;">
 					    		<div class="project-title">
-					    			<p>${miniProject.miniProjectName}</p>
+					    			<p style="">${miniProject.miniProjectName}</p>
 						    	</div>
 						    	<div class="project-content">
 						    		<p style="font-weight: 700; font-size: 13px; color: #909090;">${miniProject.miniCompanyName}</p>
