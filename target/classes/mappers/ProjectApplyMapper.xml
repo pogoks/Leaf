@@ -79,6 +79,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	
+	<sql id="search">
+		<if test="pvo.condition == 'title'">
+			AND p.project_name LIKE concat('%', #{pvo.keyword}, '%')
+		</if>
+		<if test="pvo.condition == 'writer'">
+			AND c.company_name LIKE concat('%', #{pvo.keyword}, '%')
+		</if>
+		<if test="pvo.condition == 'date'">
+			AND p.project_require_date1 LIKE concat('%', #{pvo.keyword}, '%')
+		</if>
+	</sql>
+	
+	
 	<insert id="projectapply">
 		INSERT INTO apply(user_NO, apply_msg, project_NO)
 		VALUES (#{userNO}, #{applyMsg}, #{projectNO})
@@ -129,7 +142,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			LEFT OUTER JOIN user u
 		ON a.user_NO = u.user_NO
 		WHERE c.company_NO = #{companyNO}
+		<include refid="search" />
 		GROUP BY p.project_NO
+		LIMIT ${pvo.cpp}
+		OFFSET ${pvo.skip}
 	</select>
 	
 	

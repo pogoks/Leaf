@@ -39,6 +39,29 @@
    			width: 560px;
    			margin: 0 auto;
    		}
+   		
+   		#members-company-intro::-webkit-scrollbar {
+ 			width: 3px;
+  			background-color: #C7C7C7;
+		}
+	
+	
+		#members-company-intro::-webkit-scrollbar-thumb {
+			background: #535353;
+		}
+		
+		
+		#members-user-intro::-webkit-scrollbar {
+ 			width: 3px;
+  			background-color: #C7C7C7;
+		}
+	
+	
+		#members-user-intro::-webkit-scrollbar-thumb {
+			background: #535353;
+		}
+   		
+   		
    </style>
    
 </head>
@@ -58,27 +81,22 @@
 			
 			<ul class="nav nav-tabs" style="text-align: center;">
 			  <li role="presentation" class="nav-item active">
-			  	<a href="#tab-user-regist" data-toggle="tab" style="color: #3071A9;">일반회원</a>
+			  	<a href="#" id="btn-user-tab" data-toggle="tab" style="color: #3071A9;">일반회원</a>
 			  </li>
-			  <li role="presentation" class="nav-item">
-			  	<a href="#tab-company-regist" data-toggle="tab" style="color: #3071A9;">기업회원</a>
+			  <li role="presentation" class="nav-item" id="li-company-tab">
+			  	<a href="#" id="btn-company-tab" data-toggle="tab" style="color: #3071A9;">기업회원</a>
 			  </li>
 			</ul>
-			
-			
-			<div class="tab-content" style="margin: 0;">
 
-				<!-- 일반회원 탭 클릭 시 뜨는 화면 -->
-				<div class="tab-pane fade in active" id="tab-user-regist">
 				
-					<form class="navbar-form navbar-left navbar-main-top pull-left" role="search" style="padding: 0; margin-left: 0; margin-top: 30px;">
+					<form class="navbar-form navbar-left navbar-main-top pull-left" action="<c:url value='/membersList/membersList'/>" style="padding: 0; margin-left: 0; margin-top: 30px;">
 						<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
-		                            <option value="id">개발자 ID</option>
-		                            <option value="name">개발자 이름</option>
+		                            <option value="UID" ${pc.paging.condition == 'UID' ? 'selected' : ''}>개발자 ID</option>
+		                            <option value="Uname" ${pc.paging.condition == 'Uname' ? 'selected' : ''}>개발자 이름</option>
 		                </select>
 					
 						<div class="input-group"> 
-							<input type="text" class="form-control" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
+							<input type="text" name="keyword" class="form-control" value="${pc.paging.keyword}" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
 							</span>
@@ -109,7 +127,9 @@
 							</tr>
 							
 							<%@ include file="../modal_mypage/members-user.jsp" %>
-						
+							
+							
+							
 						<script>
 							
 							$(function() {
@@ -131,14 +151,22 @@
 											if(user.userIntro == null || user.userIntro == '') {
 												$('#members-user-intro').text('');
 											} else {
-												$('#members-user-intro').text(user.userIntro);
+												let str = user.userIntro.replaceAll("\n", "<br/>");
+												$('#members-user-intro').empty().append(str);
 											}
 											
 											if(user.resumeRealname == null || user.resumeRealname == '') {
-												$('#members-user-resume-realname').text('');
+												$('#members-user-resume-realname').css('color', '#A4A4A4');
+												$('#members-user-resume-realname').css('font-weight', '500');
+												$('#members-user-resume-realname').css('text-decoration', 'none');
+												$('#members-user-resume-realname').text('등록된 이력서가 없습니다.');
 											} else {
+												$('#members-user-resume-realname').css('color', 'blue');
+												$('#members-user-resume-realname').css('font-weight', '500');
+												$('#members-user-resume-realname').css('text-decoration', 'underline');
+												
 												$('#members-user-resume-realname').text(user.resumeRealname);
-											}
+											}			
 											
 											$('#members-user-logo').attr('src', '<c:url value="/user/userProfileGet?userNO=" />' + user.userNO);
 											
@@ -161,114 +189,48 @@
 						</script>
 						
 						</c:forEach>
+						
 						</tbody>
+						
 					</table>
+					<!-- 일반회원 탭 페이징 -->
+					<div class="text-center">
+						<form action="<c:url value='/membersList/membersList'/>" name="pageForm">
+							<ul class="pagination pagination-sm">
+								<c:if test="${pc.prev }">
+									<!-- 이전버튼 -->
+									<li><a
+										href="/membersList/membersList?pageNum=${pc.beginPage-1}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}"
+										data-pagenum="${pc.beginPage-1 }"> << </a></li>
+								</c:if>
+								<c:forEach var="num" begin="${pc.beginPage }"
+									end="${pc.endPage }">
+									<li class="${pc.paging.pageNum == num ? 'active' : '' }"><a
+										href="/membersList/membersList?pageNum=${num}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}"
+										data-pagenum='${num }'>${num }</a></li>
+								</c:forEach>
+								<c:if test="${pc.next }">
+									<!-- 다음버튼 -->
+									<li><a
+										href="/membersList/membersList?pageNum=${pc.endPage+1}&cpp=${pc.paging.cpp }&condition=${pc.paging.condition}&keyword=${pc.paging.keyword}"
+										data-pagenum="${pc.endPage-1 }"> >> </a></li>
+								</c:if>
+							</ul>
+							<input type="hidden" name="pageNum" value="${pc.paging.pageNum}">
+							<input type="hidden" name="cpp" value="${pc.paging.cpp}">
+							<input type="hidden" name="condition"
+								value="${pc.paging.condition}"> <input type="hidden"
+								name="keyword" value="${pc.paging.keyword}">
+						</form>
+					</div>
 				</div>
 				
-				
-				<!-- 기업회원 탭 클릭 시 뜨는 화면 -->
-				<div class="tab-pane fade" id="tab-company-regist">
-					
-					<form class="navbar-form navbar-left navbar-main-top pull-left" role="search" style="padding: 0; margin-left: 0; margin-top: 30px;">
-						<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
-		                            <option value="id">기업 ID</option>
-		                            <option value="name">기업명</option>
-		                </select>
-					
-						<div class="input-group"> 
-							<input type="text" class="form-control" placeholder="검색어를 입력하세요" style="height: 30px; font-size: 13px;">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="submit" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색</button>
-							</span>
-						</div>
-					</form>
-				
-					<table class="table table-bordered" style="margin-top: 20px;">
-						<thead style="width: 10px; font-size: 13px; background: #ccac00;">
-							<tr style="font-family: sans-serif;">
-								<th style="width: 6%;">회원번호</th>
-								<th style="width: 12%;">기업 ID</th>
-								<th style="width: 30%;">기업명</th>
-								<th style="width: 20%;">기업 전화번호</th>
-								<th style="width: 20%;">기업 이메일</th>
-								<th style="width: 12%;">비고</th>
-							</tr>
-						</thead>
-						<tbody style="width: 10px; font-size: 13px; background: #FCFCFC;">
-							
-							<c:forEach var="companyMembers" items="${companyMembers}" varStatus="index">
-							<tr id="companyMembersDetail${index.index}" style="cursor: pointer;">
-								<td>${companyMembers.companyNO}</td>
-								<td>${companyMembers.companyID}</td>
-								<td>${companyMembers.companyName}</td>
-								<td>${companyMembers.companyPhone}</td>
-								<td>${companyMembers.companyEmail}</td>
-								<td>${companyMembers.commonValue}</td>
-							</tr>
-							
-							<%@ include file="../modal_mypage/members-company.jsp" %>
-						
-						<script>
-							
-							$(function() {
-								
-								$('#companyMembersDetail${index.index}').click(function() {
-									
-									$.ajax({
-										type: 'GET',
-										url: '<c:url value="/membersList/membersCompany?companyNO=" />' + '${companyMembers.companyNO}',
-										
-										success: function(company) {
-											console.log(company.companyNO);
-											
-											$('#members-company-id').text(company.companyID);
-											$('#members-company-name').text(company.companyName);
-											$('#members-company-phone').text(company.companyPhone);
-											$('#members-company-email').text(company.companyEmail);
-											
-											if(company.companyIntro == null || company.companyIntro == '') {
-												$('#members-company-intro').text('');
-											} else {
-												$('#members-company-intro').text(company.companyIntro);
-											}
-											
-											if(company.companyIntroRealname == null || company.companyIntroRealname == '') {
-												$('#members-company-intro-realname').text('');
-											} else {
-												$('#members-company-intro-realname').text(company.companyIntroRealname);
-											}
-											
-											$('#members-company-logo').attr('src', '<c:url value="/company/companyLogoGet?companyNO=" />' + company.companyNO);
-											$('#hidden-members-company-no').val(company.companyNO);
-											$('#members-main-company-id').text(company.companyID);
-											$('#members-main-company-name').text(company.companyName);
-										},
-										
-										error: function() {
-											alert('기업 목록 상세보기 요청 처리 중 서버오류가 발생했습니다.');
-											return;
-										}
-									});
-									
-									$('#modal-members-company').modal('show');
-								});
-								
-							});
-						
-						</script>
-							
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
+				<%@ include file="../include/footer.jsp" %>
 	
 			</div>
-	   
-		</div>
+
 		
-		<%@ include file="../include/footer.jsp" %>
-		
-	</div>
+
    
 </body>
 </html>
@@ -282,5 +244,28 @@
 	if(msg != '') {
 		alert(msg);
 	}
+	
+	//페이징
+	$(function() {
+		$('#pagination').on('click', 'a', function(e) {
+			e.preventDefault(); //a태그의 고유기능 중지.
+			const value = $(this).data('pagenum'); //-> jQuery
+			console.log(value);
+			document.pageForm.pageNum.value = value;
+			document.pageForm.submit();
+		});
+		
+		
+		$('#btn-user-tab').click(function() {
+			location.href = '<c:url value="/membersList/membersList" />';
+		});
+		
+		
+		$('#btn-company-tab').click(function() {
+			location.href = '<c:url value="/membersList/membersListCompany" />';
+		});
+		
+	}); //end jQuery
+	
 
 </script>

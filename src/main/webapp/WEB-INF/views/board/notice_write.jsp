@@ -90,9 +90,7 @@
 			location.href='<c:url value="/notice/noticeList" />';
 		})
 	});
-	
-	
-	
+
 	
 	//제목이 공백일시 '제목을 입력하세요!'문구와 글 등록 문구.
 	$('#btn-notice-write').click(function() { 

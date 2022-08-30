@@ -52,6 +52,7 @@
     border-radius: 5px;
    }
    
+
    .boardclick {
    	color: black;
    }
@@ -66,6 +67,12 @@
    .boardclick:active {
     text-decoration: none;
    }
+
+   .sections {
+	width: 1200px;
+   	margin: 0 auto;
+   }   
+
    
    </style>
    
@@ -76,7 +83,7 @@
 	   
 	<div class="mainbox">
 	
-		<section>
+		<section class="sections">
         
        
         
@@ -125,7 +132,9 @@
 										<span style="color:red; font-size:15px;">[${archive.archiveReplyCount}]</span>
 									</c:if>
                             	</a>
+
                             	<a class="glyphicon glyphicon-floppy-disk fileicon" aria-hidden="true"></a>
+
                             </td>
                             <td <c:if test="${archive.archiveWriter eq user.userID || archive.archiveWriter eq company.companyID}">style="color:#042894;"</c:if>>
                             	${archive.archiveWriter}

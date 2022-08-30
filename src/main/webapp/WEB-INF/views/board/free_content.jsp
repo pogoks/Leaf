@@ -54,6 +54,11 @@
     	background-color:transparent; 
     	border: none;
     }
+    
+    .container{
+	width:1200px;
+	margin: 0 auto;
+	}
  
    </style>
    
@@ -401,7 +406,7 @@
 							if(replyWriter == replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap'>
-										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px;"><span>
+										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="margin: 5px; float:left; border-radius:50px; width:30px; height:30px; margin: 5px;"><span>
 										</div>
 				                        <div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -418,7 +423,7 @@
 							else if (replyWriter != replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap' > 
-										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
+										<div><span><img src="<c:url value='/user/userProfileGet?userNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px; margin: 5px;"><span>
 				                        </div>
 										<div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -446,7 +451,7 @@
 							if(replyWriter == replyReader) {
 								strAdd += 
 									`<div class='boardReplyWrap'>
-										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px; margin: 5px;"><span>
 										</div>
 				                        <div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>
@@ -463,7 +468,7 @@
 							else {
 								strAdd += 
 									`<div class='boardReplyWrap'> 
-										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px;"><span>
+										<div><span><img src="<c:url value='/company/companyLogoGet?companyNO=' />` + memberNo + `" width="30px" style="float:left; border-radius:50px; width:30px; height:30px; margin: 5px;"><span>
 				                        </div>
 										<div id='boardReply-Writer' style="text-align: left; float:left; width:10%; font-weight:bold; ">&nbsp;`+ boardReplyList[i].boardReplyWriter +`
 				                        </div>

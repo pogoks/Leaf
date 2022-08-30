@@ -51,6 +51,7 @@
     border-radius: 5px;
    }
    
+
    .boardclick {
    	color: black;
    }
@@ -60,6 +61,11 @@
    }
    .boardclick:active {
     text-decoration: none;
+
+   .sections {
+    width: 1200px;
+   	margin: 0 auto;
+
    }
    
    </style>
@@ -71,7 +77,7 @@
 	   
 	<div class="mainbox">
 	
-		<section>
+		<section class="sections">
         
         
         <div class="container" style="width: 90%;">
