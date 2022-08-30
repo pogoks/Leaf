@@ -283,7 +283,7 @@
 		                                      <span class="caret"></span>
 		                                  </a>
 		                                  <ul class="dropdown-menu">
-		                                      <li><a href="#">프로젝트 관리</a></li>
+		                                      <li><a href="<c:url value='/project/projectadmin' />">프로젝트 관리</a></li>
 		                                      <li><a href="#">공지사항 관리</a></li>
 		                                      <li><a href="#">사용자 관리</a></li>
 		                                  </ul>
@@ -322,8 +322,9 @@
 		                            <span class="sidebar-title">시스템 관리</span>
 		                            <b class="caret"></b>
 		                        </a>
+		                        <input type="hidden" value="${company.companyNO}">
 		                        <ul id="submenu-1" class="panel-collapse collapse panel-switch" role="menu" style="background: #C0A703;">
-		                            <li><a href="#"><i class="fa fa-caret-right"></i>프로젝트 관리</a></li>
+		                            <li><a href="<c:url value='/project/projectadmin' />"><i class="fa fa-caret-right"></i>프로젝트 관리</a></li>
 			                        <li><a href="<c:url value='/notice/noticeList' />"><i class="fa fa-caret-right"></i>공지사항 관리</a></li>
 			                        <li><a href="<c:url value='/membersList/membersList' />"><i class="fa fa-caret-right"></i>사용자 관리</a></li>
 		                        </ul>

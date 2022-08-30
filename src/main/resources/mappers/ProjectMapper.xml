@@ -111,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		LEFT OUTER JOIN common cd
       	ON p.common_CODE = cd.common_CODE
       	WHERE p.project_NO != 1
-      	AND p.common_CODE != 'PST003'
+      	AND p.common_CODE NOT IN ('PST003', 'PST004')
       	ORDER BY p.project_NO DESC
 	</select>
 
@@ -139,8 +139,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		LEFT OUTER JOIN common cd
       	ON p.common_CODE = cd.common_CODE
       	WHERE p.project_NO != 1
-      	AND p.common_CODE != 'PST003'
+      	AND p.common_CODE NOT IN ('PST003', 'PST004')
       	AND c.company_NO = #{companyNO}
+      	ORDER BY p.project_NO DESC
+	</select>
+	
+	
+	<select id="projectadminAll" resultMap="ProjectListMap">
+		SELECT
+   			p.project_NO, p.project_name, p.project_require_role, p.project_require_date1, p.project_require_date2, p.company_NO, c.company_name, p.common_CODE, cd.common_value
+		FROM
+   			project p LEFT OUTER JOIN company c
+      	ON p.company_NO = c.company_NO
+   		LEFT OUTER JOIN common cd
+      	ON p.common_CODE = cd.common_CODE
+      	WHERE p.project_NO != 1
+      	AND p.common_CODE NOT IN ('PST003', 'PST004')
       	ORDER BY p.project_NO DESC
 	</select>
 	
@@ -242,6 +256,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE project_NO = #{projectNO}
 		AND user_NO = #{userNO}
 	</delete>
+	
+	<!-- 프로젝트 삭제 -->
+	<update id="deleteProject">
+		UPDATE project
+		SET 
+			common_CODE = 'PST004', project_delete = NOW()
+		WHERE project_NO = #{projectNO}
+	</update>
+	
+	<!-- 프로젝트를 삭제하기 전 지원한 일반회원이 있는지 체크하는 SELECT 쿼리 -->
+	<select id="projectUserCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM apply
+		WHERE project_NO = #{projectNO}
+		AND common_CODE != 'SPT005'
+	</select>
 	
 	
 	<!-- 기업회원 좋아요 버튼 클릭 시 좋아요 테이블에 값 추가 INSERT 쿼리 -->

@@ -42,6 +42,12 @@ public class ProjectService implements IProjectService {
 	public List<ProjectListVO> projectadmin(int companyNO) {
 		return mapper.projectadmin(companyNO);
 	}
+	
+	@Override
+	public List<ProjectListVO> projectadminAll() {
+		return mapper.projectadminAll();
+	}
+	
 	//프로젝트 상세보기 
 	@Override
 	public ProjectContentVO getContent(int projectNO){
@@ -134,7 +140,7 @@ public class ProjectService implements IProjectService {
 	
 	
 	// 기업회원 프로젝트 좋아요 클릭 여부 체크
-	@Override
+  @Override
 	public int projectLikeCheckCompany(int companyNO, int projectNO) {
 		
 		Map<String, Object> map = new HashMap<>();
@@ -174,5 +180,18 @@ public class ProjectService implements IProjectService {
 	public int projectLikeGet(int projectNO) {
 		return mapper.projectLikeGet(projectNO);
 	}
+  
+  
+  @Override
+	public void deleteProject(int projectNO) {
+		mapper.deleteProject(projectNO);
+		
+	}
+	
+  
+	@Override
+	public int projectUserCheck(int projectNO) {
+		return mapper.projectUserCheck(projectNO);
+  }
 	
 }

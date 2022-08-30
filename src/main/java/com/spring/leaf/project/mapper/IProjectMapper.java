@@ -18,6 +18,8 @@ public interface IProjectMapper {
 	List<ProjectListVO> projectlist();
 	
 	List<ProjectListVO> projectadmin(int companyNO);
+	
+	List<ProjectListVO> projectadminAll();
 
 	ProjectContentVO getContent(int projectNO);
 	//프로젝트 수정
@@ -41,7 +43,13 @@ public interface IProjectMapper {
 	// 일반회원 프로젝트 좋아요 클릭 여부 체크
 	int projectLikeCheck(Map<String, Object> map);
 	
+  
+	void deleteProject(int projectNO);
 	
+  
+	int projectUserCheck(int projectNO);
+
+
 	// 일반회원 좋아요 클릭
 	void projectLikeOK(Map<String, Object> map);
 		
@@ -64,5 +72,6 @@ public interface IProjectMapper {
 	
 	// 프로젝트 좋아요 수 얻어오기
 	int projectLikeGet(int projectNO);
+
 	
 }

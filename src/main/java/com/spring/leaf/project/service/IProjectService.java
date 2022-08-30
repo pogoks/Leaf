@@ -17,6 +17,8 @@ public interface IProjectService {
 	List<ProjectListVO> projectlist();
 	
 	List<ProjectListVO> projectadmin(int companyNO);
+	
+	List<ProjectListVO> projectadminAll();
 
 	ProjectContentVO getContent(int projectNO);
 	
@@ -59,8 +61,14 @@ public interface IProjectService {
 				
 	// 기업회원 좋아요 취소
 	void projectLikeCompanyCancel(int companyNO, int projectNO);
+
+
+	void deleteProject(int projectNO);
 	
-	
+  
+	int projectUserCheck(int projectNO);
+
+
 	// 프로젝트 좋아요 수 얻어오기
 	int projectLikeGet(int projectNO);
 	
