@@ -48,7 +48,7 @@ public class UserApplyController {
 			
 			model.addAttribute("applyStatusList", service.applyStatusList(vo.getUserNO(),pvo));
 			model.addAttribute("projectApplyCount", service.projectApplyCount(vo.getUserNO()));
-		model.addAttribute("pc", pc);
+	     	model.addAttribute("pc", pc);
 			
 			
 			return "user_mypage/user_apply_status";
