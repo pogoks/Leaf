@@ -52,7 +52,7 @@
 					    	    		<th><input type="hidden" name="noticeNo" id="noticeNo" value="${notice.noticeNo}"></th>
 					    	    	</tr>
 					    	    	<tr>
-						    			<td><input type="text" name="noticeTitle" class="form-control" value="${notice.noticeTitle}" maxlength="50" ></td>
+						    			<td><input type="text" id="noticeTitle" name="noticeTitle" class="form-control" value="${notice.noticeTitle}" maxlength="50" ></td>
 						    			
 						    		</tr>
 				    	    	</thead>
@@ -61,7 +61,7 @@
 					    	    		<th colspan= "2">공지사항 내용</th>
 					    	    	</tr>
 						    		<tr>
-						    			<td><textarea class="form-control" name="noticeContent" maxlength="2048" style= "height:350px" >${notice.noticeContent}</textarea></td>
+						    			<td><textarea class="form-control" id="noticeContent" name="noticeContent" maxlength="2048" style= "height:350px" >${notice.noticeContent}</textarea></td>
 						    		</tr>
 						    	</tbody>
 			    	    	</table>
@@ -85,21 +85,25 @@
 
 <script>
 
-/*//수정하기 버튼 이벤트
-$('#btn-notice-update').click(function() {
-	if($('input[name=noticeTitle]').val() === '') {
-		alert('제목을 필수로 작성해주세요.');
-		$('input[name=noticeTitle]').focus();
-		return;
-	} else if($('textarea[name=noticeContent]').val() === '') {
-		alert('내용을 필수로 작성해주세요.');
-		$('textarea[name=noticeContent]').focus();
-		return;
-	} else {
-		document.noticeUpdateForm.submit();
-	}
-});
-*/
-	
+	//제목이 공백일시 '제목을 입력하세요!'문구와 글 등록 문구.
+	$('#btn-notice-update').click(function() { 
+		const title = $('#noticeTitle').val();
+		const content = $('#noticeContent').val();
+		
+		if(title == '') {
+			alert('제목을 입력해주세요.');
+			$('#noticeTitle').css('border-color', 'red');
+			return false;
+		} else if(content == '') {
+			alert('내용을 입력해주세요.');
+			$('#noticeContent').css('border-color', 'red');
+			return false;
+		} else {
+			if(confirm('글을 등록하시겠습니까?')) { //예->등록성공
+				alert('글이 성공적으로 등록되었습니다!');
+				return;
+			} else {return false;} //아니요->등록실패
+		}
+	});
 
 </script>

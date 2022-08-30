@@ -128,6 +128,8 @@
 		                                        </div>
                                     </div>
 									
+									<br><hr>
+									
 									<!-- 글 내용 -->
                                     <div class="notice_content_down" style="min-height:300px; margin-top:50px; margin-left:30px; font-size:15px; margin-bottom: 30px;">
 										${fn:replace(notice.noticeContent, cn, br) }

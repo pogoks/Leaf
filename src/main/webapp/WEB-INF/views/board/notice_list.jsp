@@ -51,9 +51,21 @@
     border-radius: 5px;
    }
    
+
+   .boardclick {
+   	color: black;
+   }
+   .boardclick:hover {
+   	text-decoration: none;
+   	color: 	#4682B4;
+   }
+   .boardclick:active {
+    text-decoration: none;
+
    .sections {
     width: 1200px;
    	margin: 0 auto;
+
    }
    
    </style>
@@ -66,8 +78,6 @@
 	<div class="mainbox">
 	
 		<section class="sections">
-        
-       
         
         
         <div class="container" style="width: 90%;">
@@ -103,7 +113,7 @@
                         <tr>
                             <td>${notice.rn}</td>
                             <td style="text-align: left;">
-                            	<a href="<c:url value='/notice/noticeContent/${notice.noticeNo}${pc.makeURI(pc.paging.pageNum)}'/>">
+                            	<a href="<c:url value='/notice/noticeContent/${notice.noticeNo}${pc.makeURI(pc.paging.pageNum)}'/>" class="boardclick">
                             		${notice.noticeTitle}
 									<c:if test="${notice.noticeDate>=nowday }">
 	                            		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">

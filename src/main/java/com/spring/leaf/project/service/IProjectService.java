@@ -81,7 +81,7 @@ public interface IProjectService {
 	//프로젝트 총 개수
 	int getTotal(PageApplyVO pvo);
 	
-	
+
 	// 현재 모집중인 프로젝트 검색
 	List<ProjectListVO> projectNow(PageApplyVO pvo);
 	
@@ -130,3 +130,4 @@ public interface IProjectService {
 	int getTotalSearchDate(String date);
 
 }
+

@@ -109,6 +109,19 @@
 		//자료실 글쓰기
 		$('#btn-archive-write').click(function(){
 			
+			//제목공백 방지
+			if($('#archiveTitle').val() == '') {
+				alert('제목을 입력해주세요.');
+				$('#archiveTitle').css('border-color', 'red');
+				return;
+			} 
+			
+			//내용공백 방지
+			if($('#archiveContent').val() == '') {
+				alert('내용을 입력해주세요.');
+				$('#archiveContent').css('border-color', 'red');
+				return;
+			} 
 			
 			//제목 작성 여부 체크
 			if($('#archiveTitle').val() == '') {
@@ -143,8 +156,7 @@
 				alert('자료실 파일 첨부는 필수입니다.');
 				return;
 			}
-			
-			$('#btn-archive-write').attr('disabled', true);
+
 			
 			document.archiveWriteForm.submit();
 			

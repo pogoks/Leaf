@@ -53,7 +53,7 @@
 				    	    		<th><input type="hidden" name="archiveNo" id="archiveNo" value="${archive.archiveNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
+					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>
@@ -61,7 +61,7 @@
 				    	    		<th colspan= "2">게시글 내용</th>
 				    	    	</tr>
 					    		<tr>
-					    			<td><textarea class="form-control" name="archiveContent" maxlength="2048" style= "height:350px" >${archive.archiveContent}</textarea></td>
+					    			<td><textarea class="form-control" id="archiveContent" name="archiveContent" maxlength="2048" style= "height:350px" >${archive.archiveContent}</textarea></td>
 					    		</tr>
 					    	</tbody>
 		    	    	</table>
@@ -114,16 +114,19 @@
 			//제목 작성 여부 체크
 			if($('#archiveTitle').val() == '') {
 				alert('제목을 입력해주세요.');
-				$('#archiveTitle').focus();
+				$('#archiveTitle').css('border-color', 'red');
+        $('#archiveTitle').focus();
 				return;
-			}
+			} 
 			
 			//게시글 작성 여부 체크
 			if($('#archiveContent').val() == '') {
-				alert('제목을 입력해주세요.');
-				$('#archiveContent').focus();
+				alert('내용을 입력해주세요.');
+				$('#archiveContent').css('border-color', 'red');
+        $('#archiveContent').focus();
 				return;
-			}
+			} 
+
 			
 			// 자바스크립트의 파일 크기 체크 (5MB 이내의 크기만 첨부할 수 있도록)
 			if($('#file-archive-file').val() != '') {
@@ -138,7 +141,7 @@
 				}
 			}
 			
-		
+
 			//자료실 게시글 번호와 자료파일을 새로 등록했는지 확인하기 위해 값을 가져온다.
 			const archiveNo = $('#archiveNo').val();
 			const archiveFileCheck = $('#file-archive-file').val();

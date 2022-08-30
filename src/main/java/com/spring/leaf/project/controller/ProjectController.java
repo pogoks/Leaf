@@ -790,7 +790,7 @@ public class ProjectController {
 		}
 		
 	}
-	
+
 	
 	// 일반회원 프로젝트 좋아요 적용
 	@PostMapping("/projectLikeOK")
@@ -840,3 +840,4 @@ public class ProjectController {
 	}
 	
 }
+
