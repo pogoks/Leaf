@@ -37,8 +37,8 @@ public class BoardService implements IBoardService {
 		
 		for(int i = 0; i < list.size(); i++) {
 			
-			if(list.get(i).getBoardTitle().length() > 40) {
-				String boardTitle = list.get(i).getBoardTitle().substring(0, 39) + "...";
+			if(list.get(i).getBoardTitle().length() > 44) {
+				String boardTitle = list.get(i).getBoardTitle().substring(0, 43) + "...";
 				
 				list.get(i).setBoardTitle(boardTitle);
 			}

@@ -52,7 +52,7 @@
 					    	    		<th><input type="hidden" name="noticeNo" id="noticeNo" value="${notice.noticeNo}"></th>
 					    	    	</tr>
 					    	    	<tr>
-						    			<td><input type="text" id="noticeTitle" name="noticeTitle" class="form-control" value="${notice.noticeTitle}" maxlength="50" ></td>
+						    			<td><input type="text" id="noticeTitle" name="noticeTitle" class="form-control" value="${notice.noticeTitle}" maxlength="100" ></td>
 						    			
 						    		</tr>
 				    	    	</thead>

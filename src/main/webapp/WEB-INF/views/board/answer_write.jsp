@@ -51,7 +51,7 @@
 				    	    		<th colspan= "2">답변 제목</th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="answerTitle" name="answerTitle" class="form-control" placeholder="질문 제목을 입력하세요." maxlength="50" ></td>
+					    			<td><input type="text" id="answerTitle" name="answerTitle" class="form-control" placeholder="질문 제목을 입력하세요." maxlength="100" ></td>
 					    			<td><input type="hidden" name="answerWriter" value="${user.userID}"></td>
 					    		</tr>
 			    	    	</thead>

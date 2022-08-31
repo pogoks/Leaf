@@ -482,10 +482,6 @@
 	
 	//페이징
 	$(function() {
-		const msg = '${msg}';
-		if(msg !== '') {
-			alert(msg);
-		}
 		$('#pagination').on('click', 'a', function(e) {
 			e.preventDefault(); //a태그의 고유기능 중지.
 			const value = $(this).data('pagenum'); //-> jQuery

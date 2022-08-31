@@ -34,8 +34,8 @@ public class NoticeService implements INoticeService {
 
 		for(int i = 0; i < list.size(); i++) {
 			
-			if(list.get(i).getNoticeTitle().length() > 40) {
-				String noticeTitle = list.get(i).getNoticeTitle().substring(0, 39) + "...";
+			if(list.get(i).getNoticeTitle().length() > 44) {
+				String noticeTitle = list.get(i).getNoticeTitle().substring(0, 43) + "...";
 				
 				list.get(i).setNoticeTitle(noticeTitle);
 			}

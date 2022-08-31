@@ -50,7 +50,7 @@
 				    	    		<th colspan= "2">게시글 제목</th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" name="boardTitle" id="boardTitle" class="form-control" placeholder="제목을 입력하세요." maxlength="45" ></td>
+					    			<td><input type="text" name="boardTitle" id="boardTitle" class="form-control" placeholder="제목을 입력하세요." maxlength="100" ></td>
 
 					    			<c:if test="${user.userID != null }">
 					    				<td><input type="hidden" name="boardWriter" value="${user.userID}"></td>

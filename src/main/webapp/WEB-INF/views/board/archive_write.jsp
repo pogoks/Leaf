@@ -51,7 +51,7 @@
 				    	    		<th colspan= "2">게시글 제목</th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" placeholder="게시글 제목을 입력하세요." maxlength="50" ></td>
+					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" placeholder="게시글 제목을 입력하세요." maxlength="100" ></td>
 					    			<c:if test="${user.userID != null}">
 					    				<td><input type="hidden" name="archiveWriter" value="${user.userID}"></td>
 					    			</c:if>

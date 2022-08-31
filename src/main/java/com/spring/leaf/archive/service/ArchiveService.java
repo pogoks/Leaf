@@ -36,8 +36,8 @@ public class ArchiveService implements IArchiveService {
 		
 		for(int i = 0; i < list.size(); i++) {
 			
-			if(list.get(i).getArchiveTitle().length() > 40) {
-				String archiveTitle = list.get(i).getArchiveTitle().substring(0, 39) + "...";
+			if(list.get(i).getArchiveTitle().length() > 44) {
+				String archiveTitle = list.get(i).getArchiveTitle().substring(0, 43) + "...";
 				
 				list.get(i).setArchiveTitle(archiveTitle);
 			}

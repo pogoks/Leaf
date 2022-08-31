@@ -51,7 +51,7 @@
 				    	    		<th><input type="hidden" name="questionNo" id="questionNo" value="${question.questionNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="questionTitle" name="questionTitle" class="form-control" value="${question.questionTitle}" maxlength="50" ></td>
+					    			<td><input type="text" id="questionTitle" name="questionTitle" class="form-control" value="${question.questionTitle}" maxlength="100" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>

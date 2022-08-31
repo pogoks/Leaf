@@ -82,7 +82,7 @@
         <div class="container" style="width: 90%;">
             <div class="row">
 			<!-- 공지사항 상단 -->
-			<a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+			<a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px; cursor: default;">
 				<span class="main-notice-title">공지사항</span>
 			</a>
 		    <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="head-control mx-sm-3 mb-2" style="float:left; font-size: 13px;">

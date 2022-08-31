@@ -52,7 +52,7 @@
 				    	    		<th><input type="hidden" name="answerNo" id="answerNo" value="${answerContent.answerNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="answerTitle" name="answerTitle" class="form-control" value="${answerContent.answerTitle}" maxlength="50" ></td>
+					    			<td><input type="text" id="answerTitle" name="answerTitle" class="form-control" value="${answerContent.answerTitle}" maxlength="100" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>

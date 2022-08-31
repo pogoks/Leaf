@@ -139,7 +139,7 @@
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="popupOpenMain()" class="input-group">
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
+		                                    <button class="btn btn-default" type="button" style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #e6e9f0 31%, #eef1f5 75%, #e9e9e7 100%); width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -259,7 +259,7 @@
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="popupOpenMain()" class="input-group">
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
+		                                    <button class="btn btn-default" type="button" style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #e6e9f0 31%, #eef1f5 75%, #e9e9e7 100%); width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -389,7 +389,7 @@
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="alert('로그인이 필요한 서비스입니다.')" class="input-group">
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
+		                                    <button class="btn btn-default" type="button" style="background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #e6e9f0 31%, #eef1f5 75%, #e9e9e7 100%); width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>

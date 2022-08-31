@@ -53,7 +53,7 @@
 				    	    		<th><input type="hidden" name="archiveNo" id="archiveNo" value="${archive.archiveNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="50" ></td>
+					    			<td><input type="text" id="archiveTitle" name="archiveTitle" class="form-control" value="${archive.archiveTitle}" maxlength="100" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>

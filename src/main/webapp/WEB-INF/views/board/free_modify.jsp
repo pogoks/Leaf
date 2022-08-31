@@ -51,7 +51,7 @@
 				    	    		<th><input type="hidden" name="boardNo" id="boardNo" value="${board.boardNo}"></th>
 				    	    	</tr>
 				    	    	<tr>
-					    			<td><input type="text" id="boardTitle" name="boardTitle" class="form-control" value="${board.boardTitle}" maxlength="50" ></td>
+					    			<td><input type="text" id="boardTitle" name="boardTitle" class="form-control" value="${board.boardTitle}" maxlength="100" ></td>
 					    		</tr>
 			    	    	</thead>
 					    	<tbody>
