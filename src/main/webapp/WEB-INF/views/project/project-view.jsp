@@ -34,6 +34,14 @@
    			margin: 0 auto;
    	}
    	
+   	img[src$=".jpg"], img[src$=".png"] {
+	image-rendering: -moz-crisp-edges; /* Firefox */
+	image-rendering: -o-crisp-edges; /* Opera */
+	image-rendering: -webkit-optimize-contrast;/* Webkit (non-standard naming) */
+	image-rendering: crisp-edges;
+	-ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+	}
+   	
   </style>
 
 
@@ -182,8 +190,8 @@
 							<input type="hidden" value="${projectview.companyAddress1}" id="address-no">
 							${projectview.companyAddress2} ${projectview.companyAddress3}
 							
-				      		<a href="project-map.html" onclick="window.open(this.href, '_blank', 'width=600px, height=400px,toolbars=no,scrollbars=no'); return false;">
-				        		<button type="button" class="btn btn-primary pull-right" style="display: inline; margin-top: -8px; margin-bottom: -8px; margin-right: -8px; height: 37px; width: 120px; border-radius: 0;">지도</button>
+				      		<a href="#">
+				        		<button id="btn-show-map" type="button" class="btn btn-primary pull-right" style="display: inline; margin-top: -8px; margin-bottom: -8px; margin-right: -8px; height: 37px; width: 120px; border-radius: 0;">지도</button>
 				         	</a>
 						</td>
 					</tr>
@@ -752,7 +760,24 @@
 			
 		});
 		
+		
+		// 지도 버튼 클릭 시
+		$('#btn-show-map').click(function() {
+			popupMap();
+		});
+		
 	});
+	
+	
+	function popupMap() {
+		var address = '${projectview.companyAddress2}';
+		
+		var url = '/project/projectMap?address=' + address;
+		var winWidth = 400;
+		var winHeight = 460;
+		var popupOption = 'width=' + winWidth + ', height=' + winHeight;
+		window.open(url, '', popupOption);
+	}
 
 </script> 
                  

@@ -22,9 +22,8 @@
 		                    <div id="navbar-collapse" class="collapse navbar-collapse">
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="popupOpenMain()" class="input-group">
-		                                <input type="text" class="form-control" placeholder="실시간 채팅" style="width: 140px; background: white; cursor: pointer;" readonly>
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -141,9 +140,8 @@
 		                    <div id="navbar-collapse" class="collapse navbar-collapse">
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="popupOpenMain()" class="input-group">
-		                                <input type="text" class="form-control" placeholder="실시간 채팅" style="width: 140px; background: white; cursor: pointer;" readonly>
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -262,9 +260,8 @@
 		                    <div id="navbar-collapse" class="collapse navbar-collapse">
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="popupOpenMain()" class="input-group">
-		                                <input type="text" class="form-control" placeholder="실시간 채팅" style="width: 140px; background: white; cursor: pointer;" readonly>
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -394,9 +391,8 @@
 		                    <div id="navbar-collapse" class="collapse navbar-collapse">
 		                        <form class="navbar-form navbar-left navbar-main-top" role="search">
 		                            <div id="div-chat" onclick="alert('로그인이 필요한 서비스입니다.')" class="input-group">
-		                                <input type="text" class="form-control" placeholder="실시간 채팅" style="width: 140px; background: white; cursor: pointer;" readonly>
 		                                <span class="input-group-btn">
-		                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+		                                    <button class="btn btn-default" type="button" style="color: #757575; width: 140px; border-radius: 10px; font-size: 13px; font-weight: bold; font-family: sans-serif;"><span style="color: black;"><i class="fa fa-comments" aria-hidden="true"></i>&nbsp; </span>LIVE CHAT</button>
 		                                </span>
 		                            </div>
 		                        </form>
@@ -1060,7 +1056,7 @@
     		//const rand = Math.floor(Math.random() * 100000);
     		
     		var url = '/chat/chatPage';
-    		var winWidth = 1000;
+    		var winWidth = 800;
     		var winHeight = 600;
     		var popupOption = 'width=' + winWidth + ', height=' + winHeight;
     		window.open(url, '', popupOption);
@@ -1069,7 +1065,7 @@
     	
     	function popupOpenMain() {
     		var url = '/chat/chatMain';
-    		var winWidth = 1000;
+    		var winWidth = 800;
     		var winHeight = 600;
     		var popupOption = 'width=' + winWidth + ', height=' + winHeight;
     		window.open(url, '', popupOption);
