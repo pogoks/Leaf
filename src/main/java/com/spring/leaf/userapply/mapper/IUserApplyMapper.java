@@ -24,4 +24,7 @@ public interface IUserApplyMapper {
 	//지원한 프로젝트 개수 얻어오기 요청
 	int projectApplyCount(int userNO);
 	
+	// 지원현황 프로젝트 개수 얻어오기 요청
+	int projectApplyCountSearch(Map<String, Object> map);
+	
 }

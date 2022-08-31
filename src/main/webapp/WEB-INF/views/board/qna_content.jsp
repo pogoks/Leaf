@@ -95,6 +95,7 @@
 		                                        	<input type="hidden" id="hidden-questionNo" name="questionNo" value="${question.questionNo}">
 
 		                                        	<h4 style="display:inline-block;"><span style="font-weight: bolder; font-size:24px; color:#74C9DC;"> Q . </span> ${question.questionTitle}</h4>
+                                              
                                               <c:if test="${ question.questionWriter eq user.userID  || user.commonCODE == 'ADM002' }">
 			                                          <a type="submit" id="btn-question-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:70px;">삭제</a>
                                               </c:if>
@@ -134,8 +135,12 @@
                              <hr class="borderline" style="margin-bottom:40px;" />
                              <button type="submit" class="btn btn-light mb-2 pull-left">신고하기 </button>
                              <button type="button" id="btn-question-list" class="btn btn-info mb-2 pull-right" style="margin-left:10px;">목록 </button>
-                             <c:if test="${question.questionWriter eq user.userID || question.questionWriter eq company.companyID }">
+                             <c:if test="${question.questionWriter eq user.userID || question.questionWriter eq company.companyID}">
                              	<button type="button" class="btn btn-primary mb-2 pull-right"  style="margin-left:10px;" onclick="location.href='<c:url value="/question/questionModify?questionNo=${question.questionNo}"/>'">수정 </button>
+                             </c:if>
+                             
+                             <c:if test="${user.commonCODE == 'ADM002'}">
+                             	<button type="button" class="btn btn-danger mb-2 pull-right"  style="margin-left:10px;" onclick="location.href='<c:url value="/question/questionModify?questionNo=${question.questionNo}"/>'">강제수정 </button>
                              </c:if>
                              <button type="button" id="btn-go-answer" class="btn btn-success mb-2 pull-right"  style="margin-left:10px;">답변하기 </button>
                            
@@ -341,6 +346,7 @@
 			
 			
 		}); //답글 목록(상세보기) 끝
+		
 		
 		
 		//답글 수정 이동 버튼 (아직 수정중입니다)

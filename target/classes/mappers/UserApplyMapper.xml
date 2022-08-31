@@ -114,5 +114,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM apply
 		WHERE user_NO = #{userNO}
 	</select>
+	
+	
+	<!-- 지원한 프로젝트 총 개수 구하기 SELECT 쿼리 -->
+	<select id="projectApplyCountSearch" resultType="int">
+		SELECT COUNT(*)
+		FROM apply a LEFT OUTER JOIN project p
+        ON a.project_NO = p.project_NO
+        LEFT OUTER JOIN company c
+        ON p.company_NO = c.company_NO
+        WHERE a.user_NO = #{userNO}
+        <include refid="search" />
+	</select>
 
 </mapper>

@@ -50,4 +50,13 @@ public class UserApplyService implements IUserApplyService {
 		return mapper.projectApplyCount(userNO);
 	}
 	
+	@Override
+	public int projectApplyCountSearch(int userNO, PageApplyVO pvo) {
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		map.put("userNO", userNO);
+		map.put("pvo", pvo);
+		
+		return mapper.projectApplyCountSearch(map);
+	}
+	
 }

@@ -78,7 +78,7 @@
 	   
 	<div class="mainbox">
 	
-		<section class="sections" >
+		<section class="sections">
         
        
 
@@ -89,7 +89,7 @@
 	            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
 	            	<span class="main-notice-title">자유게시판</span>
 	            </a>
-			    <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="head-control mx-sm-3 mb-2" style="float:left;">
+			    <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="head-control mx-sm-3 mb-2" style="float:left; font-size: 13px;">
 			        <option value="10" <c:if test="${pc.paging.cpp == 10}">selected</c:if>>10개씩 보기</option>
 			        <option value="15" <c:if test="${pc.paging.cpp == 15}">selected</c:if>>15개씩 보기</option>
 			        <option value="20" <c:if test="${pc.paging.cpp == 20}">selected</c:if>>20개씩 보기</option>
@@ -98,7 +98,7 @@
 					<button type="submit" class="btn btn-success mb-2 pull-right" id="btn-free-write">글쓰기</button>
 	            </c:if>
                  
-                <table class="table table-bordered"  style="text-align: center;font-size:14px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+                <table class="table table-bordered"  style="text-align: center;font-size:13px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
                     <thead>
                         <tr>
                             <th style="background-color: #bbd0e7; text-align: center; width:5%">번호</th>
