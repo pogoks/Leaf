@@ -176,7 +176,7 @@
 				              </div>
 				              <div class="project-form" style="margin-left: 30px;">
 				                <div class="project-title" id="" style="cursor: pointer;">
-				                  <p style="width: 400px;" >${project.projectName}</p>
+				                  <p style="width: 400px;" id="project-view-icon${index.index}" >${project.projectName}</p>
 				                  <input type="hidden" value="${project.projectNO}" id="project-list-content${index.index}">
 				              	</div>
 				                <div class="project-content1">
