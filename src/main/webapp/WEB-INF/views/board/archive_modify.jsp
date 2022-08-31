@@ -123,7 +123,7 @@
 			if($('#archiveContent').val() == '') {
 				alert('내용을 입력해주세요.');
 				$('#archiveContent').css('border-color', 'red');
-        $('#archiveContent').focus();
+       			$('#archiveContent').focus();
 				return;
 			} 
 
@@ -179,6 +179,9 @@
 													console.log('자료실 파일 수정 성공');
 													
 													// 이력서 수정이 완료되면 나머지 정보도 수정한다.
+													if(confirm('글을 수정하시겠습니까?')) { //예->등록성공
+													alert('글이 성공적으로 수정되었습니다!');
+													return;
 													document.archiveUpdateForm.submit();
 												} else {
 													alert('자료실 파일 수정 중 오류가 발생했습니다.');
@@ -205,6 +208,9 @@
 							});
 						} else {
 							// 아무 파일을 선택하지 않았다면 그냥 나머지 정보만 수정을 진행한다.
+							if(confirm('글을 수정하시겠습니까?')) { //예->등록성공
+							alert('글이 성공적으로 수정되었습니다!');
+							return;
 							document.archiveUpdateForm.submit();
 						
 						

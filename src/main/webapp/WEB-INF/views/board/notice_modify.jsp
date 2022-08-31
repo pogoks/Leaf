@@ -61,7 +61,7 @@
 					    	    		<th colspan= "2">공지사항 내용</th>
 					    	    	</tr>
 						    		<tr>
-						    			<td><textarea class="form-control" id="noticeContent" name="noticeContent" maxlength="2048" style= "height:350px" >${notice.noticeContent}</textarea></td>
+						    			<td><textarea class="form-control" id="noticeContent" name="noticeContent" maxlength="2048" style= "height:350px; resize:none;" >${notice.noticeContent}</textarea></td>
 						    		</tr>
 						    	</tbody>
 			    	    	</table>
@@ -93,14 +93,15 @@
 		if(title == '') {
 			alert('제목을 입력해주세요.');
 			$('#noticeTitle').css('border-color', 'red');
+			$('#noticeTitle').focus();
 			return false;
 		} else if(content == '') {
 			alert('내용을 입력해주세요.');
 			$('#noticeContent').css('border-color', 'red');
+			$('#noticeContent').focus();
 			return false;
 		} else {
-			if(confirm('글을 등록하시겠습니까?')) { //예->등록성공
-				alert('글이 성공적으로 등록되었습니다!');
+			if(confirm('글을 수정하시겠습니까?')) { //예->등록성공
 				return;
 			} else {return false;} //아니요->등록실패
 		}

@@ -99,10 +99,12 @@
 		if(title == '') {
 			alert('제목을 입력해주세요.');
 			$('#answerTitle').css('border-color', 'red');
+			$('#answerTitle').focus();
 			return false;
 		} else if(content == '') {
 			alert('내용을 입력해주세요.');
 			$('#answerContent').css('border-color', 'red');
+			$('#answerContent').focus();
 			return false;
 		} else {
 			if(confirm('글을 등록하시겠습니까?')) { //예->등록성공
