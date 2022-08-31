@@ -292,9 +292,31 @@ $(function() {
 						$('#span-name').text('프로젝트 이름을 입력해주세요.');
 						$('#span-name').css('color', 'red');
 						
-						$('#user-name').focus();
+						$('#project-name').focus();
 						return;
 					}
+			
+
+			// 프로젝트 기간1 입력 여부 체크
+	         if($('#project-require-date1').val() == '') {
+	                  alert('기간을 입력해주세요.');
+	                  $('#span-date1').text('프로젝트 기간을 입력해주세요.');
+	                  $('#span-date1').css('color', 'red');
+	                  
+	                  $('#project-require-date1').focus();
+	                  return;
+	               }
+	         
+	         // 프로젝트 기간2 입력 여부 체크
+	         if($('#project-require-date2').val() == '') {
+	                  alert('기간을 입력해주세요.');
+	                  $('#span-date2').text('프로젝트 기간을 입력해주세요.');
+	                  $('#span-date2').css('color', 'red');
+	                  
+	                  $('#project-require-date2').focus();
+	                  return;
+	               }
+			
 			
 			//프로젝트 설명 입력 여부 체크
 			if($('#project-desc').val() == '') {
@@ -316,26 +338,6 @@ $(function() {
 				$('#project-manager').focus();
 				return;
 			}
-			
-			// 프로젝트 기간1 입력 여부 체크
-	         if($('#project-require-date1').val() == '') {
-	                  alert('기간을 입력해주세요.');
-	                  $('#span-date1').text('프로젝트 기간을 입력해주세요.');
-	                  $('#span-date1').css('color', 'red');
-	                  
-	                  $('#project-require-date1').focus();
-	                  return;
-	               }
-	         
-	         // 프로젝트 기간2 입력 여부 체크
-	         if($('#project-require-date2').val() == '') {
-	                  alert('기간을 입력해주세요.');
-	                  $('#span-date2').text('프로젝트 기간을 입력해주세요.');
-	                  $('#span-date2').css('color', 'red');
-	                  
-	                  $('#project-require-date2').focus();
-	                  return;
-	               }
 			
 			
 			// 담당자 전화번호 입력 여부

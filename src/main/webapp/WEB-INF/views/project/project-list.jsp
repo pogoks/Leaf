@@ -175,8 +175,10 @@
 				                <a href="#"><img src="<c:url value='/project/projectImageGet?projectNO=${project.projectNO}' />" alt="사진" style="width: 200px; height: 100px; object-fit: cover; vertical-align: text-bottom; margin-left: 20px; margin-top: 16px;"></a>
 				              </div>
 				              <div class="project-form" style="margin-left: 30px;">
+
 				                <div class="project-title" id="project-view-icon${index.index}" style="cursor: pointer;">
 				                  <p style="width: 400px;" >${project.projectName}</p>
+
 				                  <input type="hidden" value="${project.projectNO}" id="project-list-content${index.index}">
 				              	</div>
 				                <div class="project-content1">
