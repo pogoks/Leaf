@@ -291,8 +291,7 @@
 		                               </a>
 		                               <ul class="dropdown-menu" role="menu">
 		                                  <li class="dropdown-header">쪽지</li>
-		                                  <li><a href="#">받은 쪽지함</a></li>
-		                                  <li><a href="#">쪽지 쓰기</a></li>
+		                                  <li><a href="<c:url value='/membersList/membersList' />">쪽지 쓰기</a></li>
 		                               </ul>
 		                              </li>
 		                    </div>
