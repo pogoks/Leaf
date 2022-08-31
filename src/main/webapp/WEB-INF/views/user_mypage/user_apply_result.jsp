@@ -58,13 +58,11 @@
 				<!-- 검색 -->
 				<form class="form-inline d-flex justify-content-end" action="<c:url value='/userapply/applyresult'/>" >
 					<div class="form-group mx-sm-3 mb-2 pull-right">
-						<span class="input-group-btn">
 							<select class="foot-control search-select form-control" name="condition"  style="height: 30px; font-size: 13px;">
 			                    <option value="id" ${pc.paging.condition == 'id' ? 'selected' : ''}>프로젝트명</option>
 							</select>
 							<input type="text" name="keyword" class="form-control search-input" value="${pc.paging.keyword}"  style="height: 30px; font-size: 13px;" placeholder="검색어를 입력하세요.">
 							<button type="submit" class="btn btn-default" style="height: 30px; background: #d3d3d3; font-size: 13px;">검색 </button>
-						</span>
 					</div>
 				</form>
 				
@@ -86,7 +84,7 @@
 					
 					<c:forEach var="applyResultList" items="${applyResultList}" varStatus="index">
 						<tr>
-							<td>${applyResultList.applyNO}</td>
+							<td>${applyResultList.rn}</td>
 							<td>${applyResultList.projectName}</td>
 							<td><fmt:formatDate value="${applyResultList.applyDate}" pattern="yyyy-MM-dd" /></td>
 							<td><fmt:formatDate value="${applyResultList.projectRequireDate1}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${applyResultList.projectRequireDate2}" pattern="yyyy-MM-dd" /></td>

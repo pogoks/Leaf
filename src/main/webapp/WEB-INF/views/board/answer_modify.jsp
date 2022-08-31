@@ -65,7 +65,7 @@
 					    	</tbody>
 		    	    	</table>
 
-		    	    	<input type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/question/questionList"/>'" value="목록">
+		    	    	<input type="button" class="btn btn-primary pull-right" onclick="location.href='<c:url value="/question/questionList"/>'" value="목록" style="margin-left:10px;">
     	    			<button type="submit" class="btn btn-info pull-right" id="btn-answer-update">수정하기</button>
 
 					  </form>
@@ -102,7 +102,6 @@ $('#btn-answer-update').click(function() {
 		return false;
 	} else {
 		if(confirm('글을 수정하시겠습니까?')) { //예->등록성공
-			alert('글이 성공적으로 수정되었습니다!');
 			return;
 		} else {return false;} //아니요->등록실패
 	}

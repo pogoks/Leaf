@@ -91,12 +91,9 @@
 												value="${board.boardNo}">
 											<h4 style="display: inline-block;">${board.boardTitle}</h4>
 
-											<c:if
-												test="${board.boardWriter eq user.userID || user.commonCODE == 'ADM002'}">
-												<a type="submit" id="btn-board-delete" class="btn mb-2"
-													style="display: inline-block; float: right; margin-right: 50px;">삭제</a>
-
-											</c:if>
+											<c:if test="${board.boardWriter eq user.userID || board.boardWriter eq company.companyID || user.commonCODE == 'ADM002'}">
+	                                        	<a type="submit" id="btn-board-delete" class="btn mb-2" style="display: inline-block; float:right; margin-right:50px;">삭제</a>
+	                                        </c:if>
 										</div>
 
 										<div class="free_title_down" style="margin-top: 30px;">

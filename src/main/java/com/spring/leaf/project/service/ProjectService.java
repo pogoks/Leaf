@@ -335,11 +335,8 @@ public class ProjectService implements IProjectService {
 	// 프로젝트 관리창 프로젝트 수 (관리자)
 	@Override
 	public int getTotalAdminAll(PageApplyVO pvo) {
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pvo", pvo);
-		
-		return mapper.getTotalAdminAll(map);
+
+		return mapper.getTotalAdminAll(pvo);
 	}
 	
 }
