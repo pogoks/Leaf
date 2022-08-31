@@ -90,10 +90,12 @@ $('#btn-question-update').click(function() {
 	if(title == '') {
 		alert('제목을 입력해주세요.');
 		$('#questionTitle').css('border-color', 'red');
+		$('#questionTitle').focus();
 		return false;
 	} else if(content == '') {
 		alert('내용을 입력해주세요.');
 		$('#questionContent').css('border-color', 'red');
+		$('#questionContent').focus();
 		return false;
 	} else {
 		if(confirm('글을 수정하시겠습니까?')) { //예->등록성공

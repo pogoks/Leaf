@@ -61,7 +61,8 @@
    }
    .boardclick:active {
     text-decoration: none;
-
+	}
+	
    .sections {
    	width: 1200px;
    	margin: 0 auto;

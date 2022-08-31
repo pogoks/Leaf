@@ -113,6 +113,7 @@
 			if($('#archiveTitle').val() == '') {
 				alert('제목을 입력해주세요.');
 				$('#archiveTitle').css('border-color', 'red');
+				$('#archiveTitle').focus();
 				return;
 			} 
 			
@@ -120,22 +121,10 @@
 			if($('#archiveContent').val() == '') {
 				alert('내용을 입력해주세요.');
 				$('#archiveContent').css('border-color', 'red');
-				return;
-			} 
-			
-			//제목 작성 여부 체크
-			if($('#archiveTitle').val() == '') {
-				alert('제목을 입력해주세요.');
-				$('#archiveTitle').focus();
-				return;
-			}
-			
-			//게시글 작성 여부 체크
-			if($('#archiveContent').val() == '') {
-				alert('내용을 입력해주세요.');
 				$('#archiveContent').focus();
 				return;
-			}
+			} 
+
 			
 			// 자바스크립트의 파일 크기 체크 (5MB 이내의 크기만 첨부할 수 있도록)
 			if($('#archive-file').val() != '') {
