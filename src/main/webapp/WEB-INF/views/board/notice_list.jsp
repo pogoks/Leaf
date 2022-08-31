@@ -113,7 +113,7 @@
                             <td>${notice.rn}</td>
                             <td style="text-align: left;">
                             	<a href="<c:url value='/notice/noticeContent/${notice.noticeNo}${pc.makeURI(pc.paging.pageNum)}'/>" class="boardclick">
-                            		${notice.noticeTitle}
+                            		${notice.noticeTitle} 
 									<c:if test="${notice.noticeDate>=nowday }">
 	                            		<img alt="newmark" src="<c:url value='/resources/img/newmark.gif' />">
 									</c:if>
