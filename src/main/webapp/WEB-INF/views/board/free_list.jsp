@@ -86,10 +86,11 @@
         <div class="container" style="width: 90%;">
             <div class="row">
                 <!-- 공지사항 상단 -->
-	            <a href="#" class="list-group-item active notice-list-top" style="margin-top: 20px;">
+	            <div class="list-group-item active notice-list-top" style="margin-top: 20px;">
 	            	<span class="main-notice-title">자유게시판</span>
-	            </a>
+
 			    <select id="pageUnit" name="pageUnit" onchange="Change(1)" class="head-control mx-sm-3 mb-2" style="float:left; font-size: 13px;">
+
 			        <option value="10" <c:if test="${pc.paging.cpp == 10}">selected</c:if>>10개씩 보기</option>
 			        <option value="15" <c:if test="${pc.paging.cpp == 15}">selected</c:if>>15개씩 보기</option>
 			        <option value="20" <c:if test="${pc.paging.cpp == 20}">selected</c:if>>20개씩 보기</option>

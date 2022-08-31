@@ -101,7 +101,6 @@ $('#btn-board-update').click(function() {
 		return false;
 	} else {
 		if(confirm('글을 수정하시겠습니까?')) { //예->등록성공
-			alert('글이 성공적으로 수정되었습니다!');
 			return;
 		} else {return false;} //아니요->등록실패
 	}
