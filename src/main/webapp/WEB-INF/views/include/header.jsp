@@ -55,8 +55,6 @@
 		                               <ul class="dropdown-menu" role="menu">
 		                                  <li class="dropdown-header">쪽지</li>
 		                                  <li><a href="#" id="user-receive-message2">받은 쪽지함</a></li>
-		                                  <li><a href="#" id="popup-test">채팅 테스트 중</a></li>
-		                                  <li><a href="#" id="popup-test-main">채팅 테스트 중 채팅 메인</a></li>
 		                               </ul>
 		                              </li>
 		                    </div>

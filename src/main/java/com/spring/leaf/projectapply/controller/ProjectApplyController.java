@@ -51,6 +51,8 @@ public class ProjectApplyController {
 		model.addAttribute("projectNO", projectNO);
 		model.addAttribute("projectInfo", vo);
 		
+		System.out.println("yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + vo);
+		
 		return "project/project-putin";
 	}
 	

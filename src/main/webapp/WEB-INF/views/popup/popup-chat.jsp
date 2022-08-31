@@ -127,7 +127,9 @@
 	
 	var userName = '';
 	
-	if(checkUser != '') {
+	if(checkUser == 'admin') {
+		userName = '관리자';
+	} else if(checkUser != '') {
 		userName = checkUser;
 	} else {
 		userName = checkCompany + 'ⓒ';
@@ -174,7 +176,11 @@
 					
 					} else {
 						
-						$("#chating").append("<p class='others' style='text-align: left; margin-top: 20px; font-family: sans-serif;'><span style='background: #E9E9E9; border-radius: 8px; padding: 8px;'>" + "<span style='font-weight: bold;'>" + d.userName + "</span> : " + d.msg + "</span></p>");
+						if(d.userName == '관리자') {
+							$("#chating").append("<p class='others' style='text-align: left; margin-top: 20px; font-family: sans-serif;'><span style='background: #FFD5D5; border-radius: 8px; padding: 8px;'>" + "<span style='font-weight: bold;'>" + "관리자" + "</span> : " + d.msg + "</span></p>");
+						} else {
+							$("#chating").append("<p class='others' style='text-align: left; margin-top: 20px; font-family: sans-serif;'><span style='background: #E9E9E9; border-radius: 8px; padding: 8px;'>" + "<span style='font-weight: bold;'>" + d.userName + "</span> : " + d.msg + "</span></p>");
+						}
 						
 					}
 						

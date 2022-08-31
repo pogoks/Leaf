@@ -41,13 +41,13 @@ public class UserApplyController {
 			System.out.println(pvo);
 			PageApplyCreator pc = new PageApplyCreator();
 			pc.setPaging(pvo);
-			pc.setArticleTotalCount(service.projectApplyCount(vo.getUserNO()));
+			pc.setArticleTotalCount(service.projectApplyCountSearch(vo.getUserNO(), pvo));
 			System.out.println(pc);
 			
 			logger.info("/userapply/applystatus: GET (지원현황 페이지로 이동)");
 			
 			model.addAttribute("applyStatusList", service.applyStatusList(vo.getUserNO(),pvo));
-			model.addAttribute("projectApplyCount", service.projectApplyCount(vo.getUserNO()));
+			model.addAttribute("projectApplyCount", service.projectApplyCountSearch(vo.getUserNO(), pvo));
 			model.addAttribute("pc", pc);
 
 			

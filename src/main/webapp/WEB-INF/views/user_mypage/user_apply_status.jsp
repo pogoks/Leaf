@@ -73,7 +73,7 @@
 			<div style="clear: both;">
 			
 				<br>
-				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px;">지원한 전체 프로젝트<span style="color: red;">&nbsp;&nbsp;${projectApplyCount}</span></p>
+				<p style="font-size: 14px; font-weight: bold; margin-top: 20px; margin-left: 16px; margin-bottom: -10px;">지원한 프로젝트<span style="color: red;">&nbsp;&nbsp;${projectApplyCount}</span></p>
 				<hr>
 					
 				<c:forEach var="applyStatusList" items="${applyStatusList}" varStatus="index">
