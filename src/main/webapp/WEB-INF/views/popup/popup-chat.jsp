@@ -79,18 +79,16 @@
 	   
 		<div class="sections clearfix" style="width: 100%; margin: 0 auto; padding-left: 5%; padding-right: 5%;">
 
-			<nav style="float: left; width: 15%; height: 90%; background: #FCFCFC; border: 1px solid #E9E9E9; border-left: 2px solid #E9E9E9;">
-				
-			</nav>
-			
-			
 			<!--콘텐츠부분-->
-			<section style="float: left; width: 70%; height: 90%; background: white; border: 1px solid #E9E9E9;">
+			<section style="float: left; width: 100%; height: 90%; background: white; border: 1px solid #E9E9E9;">
 				
-				<div style="height: 10%; padding: 10px; border-bottom: 2px solid #E9E9E9; background: #FCFCFC;">
-					<a href="#" class="list-group-item active notice-list-top" style="width: 100%; border: 0; background: #FCFCFC;"> 
-						<span class="main-board-title" style="color: #373737; font-size: 14px; font-family: sans-serif;">${roomNO}번 채팅방</span>
+				<div style="padding: 5px; border-bottom: 2px solid #E9E9E9; background: #FCFCFC;">
+					<a href="#" class="list-group-item active notice-list-top" style="width: 100%; border: 0; background: #FCFCFC; cursor: default;"> 
 						<button class="btn btn-danger pull-right" type="button" id="btn-create-room" onclick="exit()" style="height: 32px; font-size: 12px; position: relative; bottom: 6px;">나가기</button>
+						<span class="main-board-title" style="color: #4965FE; font-size: 16px; font-family: sans-serif;">${roomName}&nbsp;&nbsp;
+							<span class="pull-right" style="line-height: 2.0em; margin-right: 40px; font-size: 11px; font-weight: 500;">현재 참여자 : <span id="onlineCount" style="color: #EA00AA; font-weight: 500; font-size: 12px;"></span></span>
+						</span>
+						
 					</a>
 				</div>
 				
@@ -113,12 +111,7 @@
 				</div>
 
 			</section>
-			
-			
-			<!--사이드바-->
-			<aside style="float: left; width: 15%; height: 90%; background: #FCFCFC; border: 1px solid #E9E9E9; border-right: 2px solid #E9E9E9;">
-				
-			</aside>
+
 
 		</div>
 
@@ -128,55 +121,77 @@
 <script>
 
 	var ws;
+
+	var checkUser = '${user.userID}';
+	var checkCompany = '${company.companyName}';
+	
+	var userName = '';
+	
+	if(checkUser != '') {
+		userName = checkUser;
+	} else {
+		userName = checkCompany + 'ⓒ';
+	}
+	
+	$('#hidden-user-id').val(userName);
+	
 	
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chat/" + $('#hidden-room-no').val());
-		
-		var checkUser = '${user.userID}';
-		var checkCompany = '${company.companyName}';
-		
-		var userName = '';
-		
-		if(checkUser != '') {
-			userName = checkUser;
-		} else {
-			userName = checkCompany + 'ⓒ';
-		}
-		
-		$('#hidden-user-id').val(userName);
-		
+
 		wsEvt();
 	}
 		
 	function wsEvt() {
 		ws.onopen = function(data){
 			//소켓이 열리면 동작
+			console.log(data);
 			enter();
 		}
 		
 		ws.onmessage = function(data) {
 			//메시지를 받으면 동작
 			var msg = data.data;
+			
 			if(msg != null && msg.trim() != ''){
+				
 				var d = JSON.parse(msg);
+				
 				if(d.type == "getId"){
+					
+					$('#onlineCount').empty().text(d.sessionCount);
+					
 					var si = d.sessionId != null ? d.sessionId : "";
+					
 					if(si != ''){
 						$("#hidden-session-id").val(si);
 					}
-				}else if(d.type == "message"){
-					if(d.sessionId == $("#hidden-session-id").val()){
+				} else if(d.type == "message") {
+					
+					if(d.sessionId == $("#hidden-session-id").val()) {
+						
 						$("#chating").append("<p class='me' style='text-align: right; margin-top: 20px; font-family: sans-serif;'><span style='background: #68DD28; border-radius: 8px; padding: 8px;'>" + "<span style='font-weight: bold;'>" + d.userName + "</span> : " + d.msg + "</span></p>");	
-					}else{
+					
+					} else {
+						
 						$("#chating").append("<p class='others' style='text-align: left; margin-top: 20px; font-family: sans-serif;'><span style='background: #E9E9E9; border-radius: 8px; padding: 8px;'>" + "<span style='font-weight: bold;'>" + d.userName + "</span> : " + d.msg + "</span></p>");
+						
 					}
 						
 				} else if(d.type == "enter") {
+					
+					$('#onlineCount').empty().text(d.sessionCount);
 					$("#chating").append("<p class='me' style='text-align: left; color: red;'> 알림 : " + d.userName + "님이 입장하셨습니다.</p>");
+					
 				} else if(d.type == "exit") {
+					
+					$('#onlineCount').empty().text(d.sessionCount - 1);
 					$("#chating").append("<p class='me' style='text-align: left; color: red;'> 알림 : " + d.userName + "님이 퇴장하셨습니다.</p>");
+					
 				} else{
-					console.warn("unknown type!")
+					
+					console.warn("unknown type!");
+					
 				}
 			}
 		}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,6 +15,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.spring.leaf.user.command.UserVO;
+
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
@@ -22,14 +25,36 @@ public class SocketHandler extends TextWebSocketHandler {
 	// 웹소켓 세션을 담아둘 리스트 선언
 	List<HashMap<String, Object>> roomListSessions = new ArrayList<>();
 	
-	
+
 	// 메세지 발송 메소드
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		
+		String url = session.getUri().toString();
+		
+		String roomNO2 = url.split("/chat/")[1];
+		
+		int idx = 0;
+		
+		// 방 크기를 조사한다.
+		if(roomListSessions.size() > 0) {
+			
+			for(int i = 0; i < roomListSessions.size(); i++) {
+				String rn = (String) roomListSessions.get(i).get("roomNO");
+				
+				if(rn.equals(roomNO2)) {
+					idx = i;
+					break;
+				}
+			}
+		
+		}
 		
 		// JSON 형태의 String 메세지를 받은 후 JSON 데이터를 JSONObject로 파싱한다.
 		String msg = message.getPayload();
 		JSONObject obj = jsonToObjectParser(msg);
+		obj.put("sessionCount", roomListSessions.get(idx).size() - 1);
 		
 		// 방의 번호를 찾고 메세지의 타입을 파악한다.
 		String rn = (String) obj.get("roomNO");
@@ -62,7 +87,7 @@ public class SocketHandler extends TextWebSocketHandler {
 				
 				WebSocketSession wss = (WebSocketSession) temp.get(k);
 				
-				if(wss != null) {
+				if(wss != null) {	
 					try {
 						wss.sendMessage(new TextMessage(obj.toJSONString()));
 					} catch (IOException e) {
@@ -108,8 +133,6 @@ public class SocketHandler extends TextWebSocketHandler {
 		if(flag) {
 			HashMap<String, Object> map = roomListSessions.get(idx);
 			map.put(session.getId(), session);
-			
-			System.out.println(roomListSessions.get(idx));
 		} else {		// 최초 생성하는 방이라면 방 번호와 세션을 추가한다.
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("roomNO", roomNO);
@@ -122,6 +145,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		JSONObject obj = new JSONObject();
 		obj.put("type", "getId");
 		obj.put("sessionId", session.getId());
+		obj.put("sessionCount", roomListSessions.get(idx).size() - 1);
 		session.sendMessage(new TextMessage(obj.toJSONString()));
 	}
 	
@@ -129,26 +153,13 @@ public class SocketHandler extends TextWebSocketHandler {
 	// 소켓 종료
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		
 		// 소켓이 종료되면 해당 세션값들을 찾아서 지운다.
 		if(roomListSessions.size() > 0) {
 			for(int i = 0; i < roomListSessions.size(); i++) {
-				System.out.println(roomListSessions.get(i).get(session.getId()));
+				//System.out.println(roomListSessions.get(i).get(session.getId()));
 				roomListSessions.get(i).remove(session.getId());
-			
-				System.out.println(roomListSessions.get(i));
-				
-				/*
-				if(roomListSessions.get(i).get(session.getId()) == null) {
-					System.out.println("OHYEAH");
-					roomListSessions.get(i).put("roomNO", 0);
-					System.out.println(roomListSessions.get(i));
-				}
-				*/
 			}
 		} 
-		
-		
 		
 		super.afterConnectionClosed(session, status);
 	}

@@ -76,24 +76,20 @@
 	   
 		<div class="sections clearfix" style="width: 100%; margin: 0 auto; padding-left: 5%; padding-right: 5%;">
 
-			<nav style="float: left; width: 15%; height: 90%; background: #FCFCFC; border: 1px solid #E9E9E9; border-left: 2px solid #E9E9E9;">
-			
-			</nav>
-			
 			
 			<!--콘텐츠부분-->
-			<section style="float: left; width: 70%; height: 90%; background: white; border: 1px solid #E9E9E9;">
+			<section style="float: left; width: 100%; height: 90%; background: white; border: 1px solid #E9E9E9;">
 				
-				<div style="height: 10%; padding: 10px; border-bottom: 2px solid #E9E9E9; background: #FCFCFC;">
-					<a href="#" class="list-group-item active notice-list-top" style="width: 100%; border: 0; background: #FCFCFC;"> 
-						<span class="main-board-title" style="color: #373737; font-size: 14px; font-family: sans-serif;">채팅방 목록</span>
+				<div style="padding: 5px; border-bottom: 2px solid #E9E9E9; background: #FCFCFC;">
+					<a href="#" class="list-group-item active notice-list-top" style="width: 100%; border: 0; background: #FCFCFC; cursor: default;"> 
+						<span class="main-board-title" style="color: #5A2B23; font-size: 16px; font-family: sans-serif;">채팅방 목록</span>
 						<button class="btn btn-info pull-right" type="button" id="btn-create-room" style="height: 32px; font-size: 12px; position: relative; bottom: 6px;">방 만들기</button>
 					</a>
 				</div>
 				
 				<div id="chatRoom" style="height: 82%; overflow: auto;">
 				
-					<table class="table" style="font-size: 13px; font-family: sans-serif; cursor: pointer;">
+					<table class="table table-striped table-hover" style="font-size: 13px; font-family: sans-serif; cursor: pointer;">
 					
 						<thead>
 							<tr>
@@ -118,12 +114,6 @@
 				</div>
 
 			</section>
-			
-			
-			<!--사이드바-->
-			<aside style="float: left; width: 15%; height: 90%; background: #FCFCFC; border: 1px solid #E9E9E9; border-right: 2px solid #E9E9E9;">
-				
-			</aside>
 
 		</div>
 		

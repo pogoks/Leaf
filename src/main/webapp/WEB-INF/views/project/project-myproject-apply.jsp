@@ -61,7 +61,6 @@
 			<form class="navbar-form navbar-left navbar-main-top pull-left" style="padding: 0; margin-left: 0;" action="<c:url value='/project/projectMyApply'/>">
 				<select class="form-control" name="condition" style="height: 30px; font-size: 13px;">
                       <option value="title" ${pc.paging.condition == 'title' ? 'selected' : ''}>프로젝트 이름</option>
-                      <option value="writer" ${pc.paging.condition == 'writer' ? 'selected' : ''}>기업명</option>
                       <option value="date" ${pc.paging.condition == 'date' ? 'selected' : ''}>등록일자</option>
                 </select>
 				<div class="input-group"> 

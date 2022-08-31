@@ -856,5 +856,15 @@ public class ProjectController {
 		return service.projectLikeGet(projectNO);
 	}
 	
+	
+	// 프로젝트 상세보기 지도 팝업
+	@GetMapping("/projectMap")
+	public String projectMap(@RequestParam("address") String address, Model model) {
+		
+		model.addAttribute("address", address);
+		
+		return "/popup/popup-map";
+	}
+	
 }
 
