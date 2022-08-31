@@ -58,7 +58,12 @@ public class ChatController {
 			
 			if(session.getAttribute("user") != null) {
 				UserVO uvo = (UserVO) session.getAttribute("user");
-				vo.setRoomOwner(uvo.getUserID());
+				
+				if(uvo.getUserID().equals("admin")) {
+					vo.setRoomOwner("관리자");
+				} else {
+					vo.setRoomOwner(uvo.getUserID());
+				}
 			} 
 			
 			if(session.getAttribute("company") != null) {

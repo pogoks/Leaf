@@ -147,6 +147,6 @@ public interface IProjectMapper {
 	
 	
 	// 프로젝트 관리창 프로젝트 수 (관리자)
-	int getTotalAdminAll(Map<String, Object> map);
+	int getTotalAdminAll(PageApplyVO pvo);
 	
 }

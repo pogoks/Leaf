@@ -1,6 +1,7 @@
 package com.spring.leaf.userapply.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.leaf.userapply.command.UserApplyResultVO;
 import com.spring.leaf.userapply.command.UserApplyStatusContentVO;
@@ -23,7 +24,7 @@ public interface IUserApplyService {
 	//지원한 프로젝트 개수 얻어오기 요청
 	int projectApplyCount(int userNO);
 
+	// 지원현황 프로젝트 개수 얻어오기 요청
+	int projectApplyCountSearch(int userNO, PageApplyVO vo);
 	
-	
-
 }
