@@ -86,7 +86,7 @@
 					
 					<c:forEach var="applyResultList" items="${applyResultList}" varStatus="index">
 						<tr>
-							<td>${applyResultList.applyNO}</td>
+							<td>${applyResultList.rn}</td>
 							<td>${applyResultList.projectName}</td>
 							<td><fmt:formatDate value="${applyResultList.applyDate}" pattern="yyyy-MM-dd" /></td>
 							<td><fmt:formatDate value="${applyResultList.projectRequireDate1}" pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${applyResultList.projectRequireDate2}" pattern="yyyy-MM-dd" /></td>
